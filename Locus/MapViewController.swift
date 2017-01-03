@@ -116,7 +116,7 @@ extension MapViewController: MKMapViewDelegate{
         
         //else build a condition for clustering pins
         
-        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")! as MKAnnotationView
+        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") as MKAnnotationView!
         
         return pinView
     }
@@ -136,6 +136,13 @@ extension MapViewController: HandleMapSearch {
             let state = placemark.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
         }
+        
+        mapView.addAnnotation(annotation)
+        
+        //refactor the lines below into their own function
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
     }
     
 }
