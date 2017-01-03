@@ -11,6 +11,10 @@ import Firebase
 import GoogleSignIn
 import MapKit
 
+protocol HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
+
 
 class MapViewController: UIViewController {
     
@@ -63,7 +67,7 @@ class MapViewController: UIViewController {
         definesPresentationContext = true
         
         locationSearchTable.mapView = mapView
-//        locationSearchTable.handleMapSearchDelegate = self
+        locationSearchTable.handleMapSearchDelegate = self
         mapView.delegate = self
     }
     
@@ -117,6 +121,21 @@ extension MapViewController: MKMapViewDelegate{
         return pinView
     }
     
+}
 
+
+extension MapViewController: HandleMapSearch {
+    
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        mapView.selectedMark = placemark
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+    }
     
 }

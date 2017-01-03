@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class LocusMapView: MKMapView {
+    var selectedMark:MKPlacemark?
     
     func setup(){
         self.showsBuildings = true

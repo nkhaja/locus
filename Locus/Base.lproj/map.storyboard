@@ -33,12 +33,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DFN-7g-f5O" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" symbolic="YES" id="HLm-Or-Dp6"/>
+                            <constraint firstItem="DFN-7g-f5O" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="53" id="HLm-Or-Dp6"/>
                             <constraint firstAttribute="trailing" secondItem="k6O-LB-GKl" secondAttribute="trailing" id="U6x-4k-SRx"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="a3P-Zh-eVM"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="eq8-t1-gKc"/>
-                            <constraint firstItem="DFN-7g-f5O" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="-7" id="jMd-WG-F3y"/>
-                            <constraint firstItem="k6O-LB-GKl" firstAttribute="top" secondItem="DFN-7g-f5O" secondAttribute="bottom" constant="15" id="tRM-cm-oyo"/>
+                            <constraint firstItem="DFN-7g-f5O" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="jMd-WG-F3y"/>
+                            <constraint firstItem="k6O-LB-GKl" firstAttribute="top" secondItem="DFN-7g-f5O" secondAttribute="bottom" constant="-30" id="tRM-cm-oyo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
@@ -54,7 +54,7 @@
         <!--Location Search Table-->
         <scene sceneID="nry-h7-VgC">
             <objects>
-                <tableViewController storyboardIdentifier="LocationSearchTable" id="aIX-cV-RLQ" customClass="LocationSearchTable" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationSearchTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aIX-cV-RLQ" customClass="LocationSearchTable" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ove-Az-d3J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
