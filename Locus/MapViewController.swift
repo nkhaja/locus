@@ -71,6 +71,10 @@ class MapViewController: UIViewController {
         mapView.delegate = self
     }
     
+    func customizePin(){
+        
+    }
+    
     
     
     @IBAction func signOutButton(_ sender: AnyObject) {
@@ -114,11 +118,42 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
+        
         //else build a condition for clustering pins
+      
+        return nil
+    }
+    
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") as MKAnnotationView!
+        let btnHeight = view.frame.height * 0.8
+        let smallSquare = CGSize(width: btnHeight, height: btnHeight)
         
-        return pinView
+        let drive = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+        let pinIt = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+        
+        drive.contentMode = .scaleAspectFit
+        pinIt.contentMode = .scaleAspectFit
+        
+        drive.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+        pinIt.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+
+        
+        drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
+        
+
+        pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
+
+        self.performSegue(withIdentifier: "pinIt", sender: self)
+        view.leftCalloutAccessoryView = drive
+        view.rightCalloutAccessoryView = pinIt
+        
+    }
+    
+    func goBuildPin(){
+        performSegue(withIdentifier: "buildPin", sender: self)
     }
     
 }

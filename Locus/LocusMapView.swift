@@ -25,8 +25,13 @@ class LocusMapView: MKMapView {
         self.camera = mapCamera
         self.delegate?.mapView!(self, regionDidChangeAnimated: true)
     }
-
-
     
+    func getDirections(){
+        let mapItem = MKMapItem(placemark: selectedMark!)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions: launchOptions)
+    }
+    
+
 
 }
