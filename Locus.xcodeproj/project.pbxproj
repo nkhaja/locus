@@ -22,6 +22,7 @@
 		BD2DE5001E13268D0078AC9A /* LocationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */; };
 		BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */; };
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
+		BD365DFD1E21BDC4005BD9BE /* CustomCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchController.swift; sourceTree = "<group>"; };
 		BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPinViewController.swift; sourceTree = "<group>"; };
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
+		BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCallout.xib; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD1A7AF61E06081F001E290B /* Main.storyboard */,
 				BD2DE4FA1E0F22070078AC9A /* map.storyboard */,
+				BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */,
 				BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */,
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
@@ -189,6 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD365DFD1E21BDC4005BD9BE /* CustomCallout.xib in Resources */,
 				BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */,
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* map.storyboard in Resources */,

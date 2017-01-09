@@ -10,7 +10,27 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>001BF96548FB26FEA067C4698E77CBB0</key>
+		<key>0024C56921AFF2A17FAB7484669F5ADC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>9A906F8E9F6684C33CB5608BEA334F31</string>
+				<string>5A0369F55C3B695F0A1393D4C59EE1DA</string>
+				<string>3FCDA20B5B8047BA606266F09A9DC9F1</string>
+				<string>BC9D65A82437A2656C446D8AA65F9078</string>
+				<string>01BFB5E862E755C5DCC59C71C7E83CE2</string>
+				<string>FC900EC03BFDBFBA542CFBB4A485D670</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/GTMOAuth2</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>01BFB5E862E755C5DCC59C71C7E83CE2</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -18,37 +38,28 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMMIMEDocument.h</string>
 			<key>path</key>
-			<string>Source/GTMMIMEDocument.h</string>
+			<string>GTMOAuth2-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00B9D71D37EE35F9FCDAECECFAF886DC</key>
+		<key>02E91AB04F67D59B9EF59107C98F7E76</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>90FF67BCDBAB4B1ACCF06D021BCB89E3</string>
-				<string>851CFED2E9415807CF7C422682019F15</string>
-				<string>58DFBDF1A5B768DAD1B298774BEEC277</string>
-				<string>77BA71008FF6D43F1860F55D6675D097</string>
-				<string>1FE021D543B414254F78B14C54AEEFCA</string>
-				<string>DC44697C3AF8456561FB2931D110D680</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>../Target Support Files/GoogleToolboxForMac</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>037C2FE55EA3561B722215C81C8660E5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>EB065040B10A865CC5093EC360D34AEF</string>
+			<string>440C0427952E2E10B8E8A0A2DAF89F2C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -58,6 +69,21 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>03900658453B03515129CAFBC9908D29</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Firebase.h</string>
+			<key>path</key>
+			<string>Core/Sources/Firebase.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>03F0F022B0ECCC230356B877FCF777AB</key>
 		<dict>
@@ -75,18 +101,18 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>045F97D75845C661E7CB5EF6233CEAC6</key>
+		<key>04A6AB5F3764382809B9BFFD847FCC1D</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>E5A4AF3C73B4F923DAF6D5E7389A6473</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>SignIn.h</string>
+			<string>GoogleAppUtilities</string>
 			<key>path</key>
-			<string>Headers/SignIn.h</string>
+			<string>GoogleAppUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -106,16 +132,18 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>0506DE17F196997277E92DE27C684646</key>
+		<key>04BFC595AA053A73D026CB5A824BC70F</key>
 		<dict>
+			<key>children</key>
+			<array>
+				<string>DDE594FA3763795C8316EBD68E5D14B4</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>FirebaseDatabase.framework</string>
+			<string>Firebase</string>
 			<key>path</key>
-			<string>Frameworks/FirebaseDatabase.framework</string>
+			<string>Firebase</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -132,23 +160,23 @@
 			<key>remoteInfo</key>
 			<string>GTMSessionFetcher</string>
 		</dict>
-		<key>0A93FB217636606EE04CCCE28D0D39A9</key>
+		<key>071297495CEB32C9CB88A5FDE4D5A911</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>D1216C9D2821D46FDA98718700706854</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>0D57F7463834A541528D5AC6D69ACB51</key>
 		<dict>
 			<key>fileRef</key>
-			<string>365F2C08CD4FE2DF8232F4F82BD3B7B5</string>
+			<string>3C6BB46A692F3E724DFBBFD4E6634805</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -157,48 +185,17 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>0D677ED45F968AA05A7108A1081424F6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.xib</string>
-			<key>name</key>
-			<string>GTMOAuth2ViewTouch.xib</string>
-			<key>path</key>
-			<string>Source/Touch/GTMOAuth2ViewTouch.xib</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0E09CCB73B085443C56BE31E5C42FE8C</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6D0AC38AC7E5E2221CBB6A736399BAAB</string>
-				<string>16816673D3FA3571211AD922B6C98A88</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseInstanceID</string>
-			<key>path</key>
-			<string>FirebaseInstanceID</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>0FA35541DB858455805760CFCAD7604C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E3BB21AA2E1029A3EA52A23521BAE7D2</string>
+			<string>46FC369E299C9ED8E4881CA3A1404503</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
 		<key>114F93F67C1CE73C6B0C1BA3437D2440</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>E6A426520A997EB960E1A8B3868D111D</string>
+			<string>FE23AAA36B8A2685C50B9C78DFDA5312</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -258,7 +255,7 @@
 		<key>11D6F28C4A05ADF6F3A1F2351988AB9E</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>851CFED2E9415807CF7C422682019F15</string>
+			<string>91B6D8EBDCF342D798B3E0FC112AB8BD</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -315,23 +312,23 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>142EA633620054702DE09EC7CDBBC66E</key>
+		<key>12571C7FD8C71AE834659B04E1A903F4</key>
 		<dict>
+			<key>children</key>
+			<array>
+				<string>A45A1E7812D6F3F91B3174C2FE9D9C18</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>FirebaseInstanceID.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>15F9229A82FBF89A858BB1FCABADD283</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E9CE980D146DD63E5128D06145893A15</string>
+			<string>80904F09714208C673DB92DB87E2214A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -342,38 +339,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>16708F8CDC30A6763F12368D282D72F8</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>D2500E56B1BDE1EF2D6C42E0585081A2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseAuth</string>
-			<key>path</key>
-			<string>FirebaseAuth</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>16816673D3FA3571211AD922B6C98A88</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>142EA633620054702DE09EC7CDBBC66E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>169BF60F3D96D377804977A016B807C5</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>FC6B99788B7AAB99E4D9145AFB3D0F25</string>
+			<string>5A0369F55C3B695F0A1393D4C59EE1DA</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -430,7 +399,7 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>187D6972B8D64D3AD947026640319579</key>
+		<key>19FC4E23EB96522F7EDCFB8CC6F41621</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -438,69 +407,23 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SignIn.h</string>
 			<key>path</key>
-			<string>GTMSessionFetcher-prefix.pch</string>
+			<string>Headers/SignIn.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>1A852C05AC3C0B1776C9B9B647B91AAB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GTMDefines.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1AA982FA1D804E4ADF4B1E5D3248A406</key>
+		<key>1D8A8627718867551E986D620D2B5A0F</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>EBB3553A084B91CD7FB9AD5D0F5FF9C7</string>
+				<string>3DC870CB2878CD47B35933675AC2176B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1CF3250869E5FC56157EF5E4E3DE0B8F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>D726FA99DFB9E7DF6B35FBB43D46C67F</string>
-				<string>FC6B99788B7AAB99E4D9145AFB3D0F25</string>
-				<string>67F5F3AA32DEFBA5B8DFB446D1A3F60F</string>
-				<string>D6428E9966D731B07862E3B11C863D5B</string>
-				<string>E4A9D854B61ADB5908BB13D969D72B2A</string>
-				<string>DC963EF450E1F9DC1E31BF4C02EB4F21</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/GTMOAuth2</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1CF38FA213BE91240295D2BC87D8CC50</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B0612195FC29A7F34D26AB72E617A8A5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleInterchangeUtilities</string>
-			<key>path</key>
-			<string>GoogleInterchangeUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -520,7 +443,7 @@
 		<key>1E6413A49993395DF5B7D94733803936</key>
 		<dict>
 			<key>fileRef</key>
-			<string>F388B890F4D90C266B37030DA0700528</string>
+			<string>861B9DE47EE9426B08E02ACE617D6EF8</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -531,16 +454,33 @@
 				</array>
 			</dict>
 		</dict>
-		<key>1FE021D543B414254F78B14C54AEEFCA</key>
+		<key>1F6E34024EA8E886D5ADB9186B124894</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>7E32CBCB1DB271BBEB2DA4E0C568D228</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseDatabase</string>
 			<key>path</key>
-			<string>GoogleToolboxForMac-umbrella.h</string>
+			<string>FirebaseDatabase</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>204970FD5071615181B170BB2D8478AE</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>87D8371A8094714E62FD129D83B4D1F7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseStorage</string>
+			<key>path</key>
+			<string>FirebaseStorage</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -570,17 +510,101 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>27482BAFD65DA7D124250C38E7D7EBEA</key>
+		<key>2284BB30F4AED9F08E742C97E774FD32</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>045F97D75845C661E7CB5EF6233CEAC6</string>
-				<string>0A93FB217636606EE04CCCE28D0D39A9</string>
+				<string>04BFC595AA053A73D026CB5A824BC70F</string>
+				<string>A8EC16625FB4BC45CCC8E403726E0C75</string>
+				<string>2F6B11F522DA8F3041134ED4940332DE</string>
+				<string>B213B602F4D10AF95495873FA13C2C04</string>
+				<string>1F6E34024EA8E886D5ADB9186B124894</string>
+				<string>A58F0217A0E7EFAF19EA97DE0FF3841B</string>
+				<string>204970FD5071615181B170BB2D8478AE</string>
+				<string>5F392AC10301B61D33F08DA79C331CC3</string>
+				<string>04A6AB5F3764382809B9BFFD847FCC1D</string>
+				<string>AA6930DB296AF20DA025DBB269DB3E85</string>
+				<string>8584F17C7AC2501FDA3D77DBAC8E2A8E</string>
+				<string>A90B2045EB2F7536D91E1D28B79BBAE9</string>
+				<string>FF8B49A203D2D0E012B6078C240EF428</string>
+				<string>2CC980E1BEBE785AB172EE24E2D5C22B</string>
+				<string>E73AB073E10E2235FA435095E4E22CDB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>SignIn</string>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>24A42FA061DA848ADB8C29C76ED66901</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMReadMonitorInputStream.m</string>
+			<key>path</key>
+			<string>Source/GTMReadMonitorInputStream.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>266BF5B94AC9607DE9A6609CF7D375E3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMSessionFetcherLogging.m</string>
+			<key>path</key>
+			<string>Source/GTMSessionFetcherLogging.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2689603406F4FF611E35D7525C89CB01</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>52582ABCEF5FFB9FEE6F73CCB6E79507</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Defines</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2689C87574EC5376C5804F93D7804F4E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Core.h</string>
+			<key>path</key>
+			<string>Headers/Core.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>26BDE1EC0C9153997BECD74DD22098F0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseStorage.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseStorage.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -607,7 +631,7 @@
 		<key>2C24246B3E254B9C6F5B1B1BF4D7623D</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>851CFED2E9415807CF7C422682019F15</string>
+			<string>91B6D8EBDCF342D798B3E0FC112AB8BD</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -664,6 +688,28 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>2CC980E1BEBE785AB172EE24E2D5C22B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DC4519BB65933EA466413DD9B8281A8F</string>
+				<string>E6D9E30D971A827128D0F12DED78ECD2</string>
+				<string>861B9DE47EE9426B08E02ACE617D6EF8</string>
+				<string>3C6BB46A692F3E724DFBBFD4E6634805</string>
+				<string>817F0E0E1EF68E1602E5E83ED9B00E1A</string>
+				<string>2EEB332074BD15B3AB71F7BC206538DB</string>
+				<string>36D0BAB6D31DF713BF642E602617F621</string>
+				<string>0024C56921AFF2A17FAB7484669F5ADC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GTMOAuth2</string>
+			<key>path</key>
+			<string>GTMOAuth2</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -681,22 +727,65 @@
 		<key>2EA502D3EFD867FB42091E0ED32673F7</key>
 		<dict>
 			<key>fileRef</key>
-			<string>D3F54F17481155AA689930194473465D</string>
+			<string>266BF5B94AC9607DE9A6609CF7D375E3</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>33F9E4A1FDE1F2953EE998BADFD0CAB2</key>
+		<key>2EEB332074BD15B3AB71F7BC206538DB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMOAuth2ViewControllerTouch.m</string>
+			<key>path</key>
+			<string>Source/Touch/GTMOAuth2ViewControllerTouch.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2F6B11F522DA8F3041134ED4940332DE</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>1AA982FA1D804E4ADF4B1E5D3248A406</string>
+				<string>985CD4B635C21F86A7F162E218950CDD</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>FirebaseCore</string>
+			<string>FirebaseAuth</string>
 			<key>path</key>
-			<string>FirebaseCore</string>
+			<string>FirebaseAuth</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2FB2B6D5656401339E0EF8C524AC2E5E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CF5CB41275271805903006A8E74C69B9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30D7914C3976F24552DE0ADFBBFAA0AC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMSessionFetcherService.h</string>
+			<key>path</key>
+			<string>Source/GTMSessionFetcherService.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -713,13 +802,26 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>34BAC924347964DF6E08333D37E10F33</key>
+		<key>36D0BAB6D31DF713BF642E602617F621</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>E9CE980D146DD63E5128D06145893A15</string>
-				<string>D8F8281F49EFAE84457E2FFC828B02C1</string>
-				<string>8AA2A4D96495A02315A886F4AE552E33</string>
+				<string>E561345AD468EFA63E7C054279CDF96C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Resources</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>388E53761A3E642319C47F64EA869809</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>80904F09714208C673DB92DB87E2214A</string>
+				<string>D9BED1B18068A178E776B57252DBEF95</string>
+				<string>97367D898606247489E43D5E865EF884</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -728,68 +830,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>365F2C08CD4FE2DF8232F4F82BD3B7B5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMOAuth2SignIn.m</string>
-			<key>path</key>
-			<string>Source/GTMOAuth2SignIn.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>384CF0AFD5964365FFABD003E95C282C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMSessionFetcherService.m</string>
-			<key>path</key>
-			<string>Source/GTMSessionFetcherService.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38CDA00B2679E87DB1716F089C84F6AB</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleAppUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/GoogleAppUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38EB5AEC71A0231BEF8C54D60082B07C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMOAuth2Authentication.h</string>
-			<key>path</key>
-			<string>Source/GTMOAuth2Authentication.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>39195CE4F51713267EFFB978CC6FF659</key>
 		<dict>
 			<key>fileRef</key>
-			<string>49ED42F4C34894AE32CF965549431456</string>
+			<string>6A1E2C64E6E4132C8370D360E2142C62</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -808,21 +852,6 @@
 			<string>6C93DE13A9E39F5C57B693BE90DBB2D0</string>
 			<key>targetProxy</key>
 			<string>068DF437133B36CDA944A50B2C2E3CE8</string>
-		</dict>
-		<key>3AB6710384CC4F6B6C7645FB44846207</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMOAuth2ViewControllerTouch.m</string>
-			<key>path</key>
-			<string>Source/Touch/GTMOAuth2ViewControllerTouch.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3BC357D5304E5C726F4B5E326E6E188C</key>
 		<dict>
@@ -892,42 +921,7 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>3BFF4F92D3FB37F37998F81AC2CA35AA</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8D50F83E8BB370B759E5B366FCC6CEE0</string>
-				<string>E6A426520A997EB960E1A8B3868D111D</string>
-				<string>9B35372F83BDCE5AFF23E3B4EDA536B3</string>
-				<string>187D6972B8D64D3AD947026640319579</string>
-				<string>F948838CF48E90A959EF09510612A25C</string>
-				<string>603EEFD718810C5BE2AE729B0BDC22B5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/GTMSessionFetcher</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3C4A49F04933275EB53FE02D52310B16</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B01079DB3FB1C56ADF93FE35F3FD7DD5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities</string>
-			<key>path</key>
-			<string>GoogleSymbolUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3CF9DBEAF4F28DB3CC2577BEA7F2FDB0</key>
+		<key>3C6BB46A692F3E724DFBBFD4E6634805</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -936,25 +930,35 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>GTMNSData+zlib.m</string>
+			<string>GTMOAuth2SignIn.m</string>
 			<key>path</key>
-			<string>Foundation/GTMNSData+zlib.m</string>
+			<string>Source/GTMOAuth2SignIn.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3D03FD18D31FF8B190535E3D3C2A313B</key>
+		<key>3DC870CB2878CD47B35933675AC2176B</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>F8F9B7A649D8054E0917DB103072403A</string>
-				<string>27482BAFD65DA7D124250C38E7D7EBEA</string>
-			</array>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>Google</string>
+			<string>GGLSignIn.framework</string>
 			<key>path</key>
-			<string>Google</string>
+			<string>Frameworks/GGLSignIn.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3FCDA20B5B8047BA606266F09A9DC9F1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>GTMOAuth2-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1069,47 +1073,32 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>42F65A9CDC70FAC4A316974FC1FDF2C1</key>
+		<key>440C0427952E2E10B8E8A0A2DAF89F2C</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>FE6662EE49FA17D1ADC96CC21711BBA7</string>
-				<string>49ED42F4C34894AE32CF965549431456</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>NSDictionary+URLArguments</string>
+			<string>GTMSessionUploadFetcher.h</string>
+			<key>path</key>
+			<string>Source/GTMSessionUploadFetcher.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>431B7E18B6E16871823C19AEAD3C9703</key>
+		<key>449B646C3EE3E78A28C91EA21830A143</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>5671A4A41431675A962028922555A66F</string>
+				<string>19FC4E23EB96522F7EDCFB8CC6F41621</string>
+				<string>1D8A8627718867551E986D620D2B5A0F</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>FirebaseDatabase</string>
-			<key>path</key>
-			<string>FirebaseDatabase</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>44D99591AF0C3132B7584E5520698197</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7B6D925B16D87EAE7100BC7DAE2670BB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseAnalytics</string>
-			<key>path</key>
-			<string>FirebaseAnalytics</string>
+			<string>SignIn</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1120,31 +1109,18 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>45906AC4FC08F524417CC0B4594C9238</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleSignIn.framework</string>
-			<key>path</key>
-			<string>Frameworks/GoogleSignIn.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>46E4F96CE2A9842B6A4E7674019CD081</key>
+		<key>46FC369E299C9ED8E4881CA3A1404503</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>GTMSessionFetcherService.h</string>
+			<string>GTMGatherInputStream.m</string>
 			<key>path</key>
-			<string>Source/GTMSessionFetcherService.h</string>
+			<string>Source/GTMGatherInputStream.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1161,21 +1137,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>4806141361752732B60D704A735523CF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMNSData+zlib.h</string>
-			<key>path</key>
-			<string>Foundation/GTMNSData+zlib.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>48A5794D7633E929CAF945CCE5D94916</key>
 		<dict>
 			<key>fileRef</key>
@@ -1183,25 +1144,10 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>48FA0BD84CCCC85C81684B58674256D4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMSessionFetcher.m</string>
-			<key>path</key>
-			<string>Source/GTMSessionFetcher.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>496142BA8FDC455B8C71EB1D9D9CC520</key>
 		<dict>
 			<key>fileRef</key>
-			<string>1FE021D543B414254F78B14C54AEEFCA</string>
+			<string>DAA0D5D093BA82CF58731B4FC41DBA7D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1211,21 +1157,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>49ED42F4C34894AE32CF965549431456</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMNSDictionary+URLArguments.m</string>
-			<key>path</key>
-			<string>Foundation/GTMNSDictionary+URLArguments.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4A08F06AEF300F223AEF71D582CA7161</key>
 		<dict>
@@ -1237,21 +1168,6 @@
 			<string>sourcecode.c.h</string>
 			<key>path</key>
 			<string>Pods-Locus-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4A64F29266C93700A340E70B49CAFFEA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMNSString+URLArguments.m</string>
-			<key>path</key>
-			<string>Foundation/GTMNSString+URLArguments.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1269,19 +1185,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>4EB842AC9A06BA46565AB4EAF0A959B7</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GGLCore.framework</string>
-			<key>path</key>
-			<string>Frameworks/GGLCore.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>4EE6B231B05763F21D31AB3BF0DEDD96</key>
 		<dict>
 			<key>fileRef</key>
@@ -1289,18 +1192,16 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>4F7228DDF466D452ED674FD3A91DA70D</key>
+		<key>4FEB5458258CD9CC82A57BC24BDBD93B</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>8ECAB4F103CD43F4D6DA9666C7D1730B</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>GTMReadMonitorInputStream.m</string>
-			<key>path</key>
-			<string>Source/GTMReadMonitorInputStream.m</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1314,6 +1215,34 @@
 			<string>text</string>
 			<key>path</key>
 			<string>Pods-Locus-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>52582ABCEF5FFB9FEE6F73CCB6E79507</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GTMDefines.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>526E5E787C8419FBD0EBA7804BCB50C4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Analytics-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/Analytics-Module.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1332,16 +1261,32 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5671A4A41431675A962028922555A66F</key>
+		<key>5500148761197F93222F3B9CB5712731</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>0506DE17F196997277E92DE27C684646</string>
+				<string>FCE4B99E4F5E9D027BE68040A1C08AF9</string>
+				<string>6A1E2C64E6E4132C8370D360E2142C62</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>NSDictionary+URLArguments</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>555DB226AB38CBE5ABAE897A7FA81B3B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMSessionFetcherLogging.h</string>
+			<key>path</key>
+			<string>Source/GTMSessionFetcherLogging.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1358,29 +1303,16 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>58DFBDF1A5B768DAD1B298774BEEC277</key>
+		<key>5A0369F55C3B695F0A1393D4C59EE1DA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>GoogleToolboxForMac-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>597F0F769E7C3B1BC569F67BFFDB2EB2</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>A3BF91C7DED76830B67EDCFA11CD2D99</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Core</string>
+			<string>GTMOAuth2.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1408,23 +1340,39 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>603EEFD718810C5BE2AE729B0BDC22B5</key>
+		<key>5F392AC10301B61D33F08DA79C331CC3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C2A98F142CF225CD6F8F0A587A5B5C6B</string>
+				<string>449B646C3EE3E78A28C91EA21830A143</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Google</string>
+			<key>path</key>
+			<string>Google</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6107527A654F9539628C5C58F8BBDE50</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>Info.plist</string>
+			<string>GTMSessionFetcher-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>631324E5F9190B87D1D0E44501D0F99F</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>E6A426520A997EB960E1A8B3868D111D</string>
+			<string>FE23AAA36B8A2685C50B9C78DFDA5312</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -1481,19 +1429,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>63C4D0148EF1E6AED975E554AF43AAD2</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseAnalytics.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>646E47D2A4D29E055E2810ACE3290102</key>
 		<dict>
 			<key>isa</key>
@@ -1506,54 +1441,6 @@
 			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework</string>
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>64C0F6E8FCC44CE86F314C3AB13E2FEC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6C3F5BDE7A40A58C8C82697B877FC3B4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleAppUtilities</string>
-			<key>path</key>
-			<string>GoogleAppUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>667DE381A2619DDC03B560B6940F35A9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>A5ECAAB9653330CE94D826005FB71DC9</string>
-				<string>48FA0BD84CCCC85C81684B58674256D4</string>
-				<string>C79C9FE3DDC23E6260CCD506BB865F15</string>
-				<string>D3F54F17481155AA689930194473465D</string>
-				<string>46E4F96CE2A9842B6A4E7674019CD081</string>
-				<string>384CF0AFD5964365FFABD003E95C282C</string>
-				<string>EB065040B10A865CC5093EC360D34AEF</string>
-				<string>D127AD20363074BCA4C297504C3E7F66</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Core</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>67F5F3AA32DEFBA5B8DFB446D1A3F60F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>GTMOAuth2-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>687AD0CB21FC2586D0C5E982FEFF9861</key>
 		<dict>
@@ -1571,25 +1458,42 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>6A1E2C64E6E4132C8370D360E2142C62</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMNSDictionary+URLArguments.m</string>
+			<key>path</key>
+			<string>Foundation/GTMNSDictionary+URLArguments.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6A73801035C45C45582F44C0B519EC75</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMReadMonitorInputStream.h</string>
+			<key>path</key>
+			<string>Source/GTMReadMonitorInputStream.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>6B19083D7A764FCD08FDD0D6352625B2</key>
 		<dict>
 			<key>fileRef</key>
 			<string>646E47D2A4D29E055E2810ACE3290102</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>6C3F5BDE7A40A58C8C82697B877FC3B4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38CDA00B2679E87DB1716F089C84F6AB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>6C5EAB4C4FB784D34D6FCB5A94BC97FF</key>
 		<dict>
@@ -1631,25 +1535,23 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>6D0AC38AC7E5E2221CBB6A736399BAAB</key>
+		<key>6F1C587E1A7A5D0C065E946995CAFFB9</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>FIRInstanceID.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>Sources/FIRInstanceID.h</string>
+			<string>GoogleToolboxForMac-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>707B4AC7E5218DE525B884752B69F188</key>
 		<dict>
 			<key>fileRef</key>
-			<string>001BF96548FB26FEA067C4698E77CBB0</string>
+			<string>BEF730A5AF83BEE891371299E0557E10</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1660,49 +1562,36 @@
 				</array>
 			</dict>
 		</dict>
-		<key>7211D0F41107249EC248AC6193642443</key>
+		<key>70D6139F8F38B58195A2D5431D92D550</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>A346CFA8B2F02BE0790BB0BC08C5C246</string>
+				<string>FE23AAA36B8A2685C50B9C78DFDA5312</string>
+				<string>7A0B7D9604222C9A94107D33F87DF522</string>
+				<string>6107527A654F9539628C5C58F8BBDE50</string>
+				<string>E9DC1E6A85486D0222A919FEFCCCBB2D</string>
+				<string>A5168FA1717287D658FA3FF75BCE5D42</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/GTMSessionFetcher</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>718993C9AC96CEA7CCFF669EAFD26F33</key>
+		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>Core-Module.h</string>
+			<string>GGLCore.framework</string>
 			<key>path</key>
-			<string>Headers/ModuleHeaders/Core-Module.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>72D5D8521D7CC6824B1A005ACF9CCDBF</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>1A852C05AC3C0B1776C9B9B647B91AAB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Defines</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>733A1F970525FFAF4F84EAAE5A4591CC</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>920542DAC4C64110ABC0DE68F66AFCD5</string>
-				<string>E3BB21AA2E1029A3EA52A23521BAE7D2</string>
-				<string>001BF96548FB26FEA067C4698E77CBB0</string>
-				<string>B390301776FD18755CB91EE5BA6B434A</string>
-				<string>A4BC7A0EA52416B892EF66E0B50B37BB</string>
-				<string>4F7228DDF466D452ED674FD3A91DA70D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Full</string>
+			<string>Frameworks/GGLCore.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1719,29 +1608,84 @@
 			<key>remoteInfo</key>
 			<string>GTMSessionFetcher</string>
 		</dict>
-		<key>77BA71008FF6D43F1860F55D6675D097</key>
+		<key>741755615C762C9E8C56F3DCBD48CDFC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleAppUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/GoogleAppUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>75FE451513D37730101426EF6A1CFF89</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMNSData+zlib.m</string>
 			<key>path</key>
-			<string>GoogleToolboxForMac-prefix.pch</string>
+			<string>Foundation/GTMNSData+zlib.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7B6D925B16D87EAE7100BC7DAE2670BB</key>
+		<key>7763D7346E2FBAA41E26BEBD6A01F0EF</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>63C4D0148EF1E6AED975E554AF43AAD2</string>
+				<string>C60F8CC23A6E4CE1BEA1F973EA5859FE</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>Resources</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7A0B7D9604222C9A94107D33F87DF522</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>GTMSessionFetcher-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7B653DDF5A8B600027D5D295437EE835</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CA040100D860ED2E306D4DC28D0B8906</string>
+				<string>75FE451513D37730101426EF6A1CFF89</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>NSData+zlib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7BAAF72A32E161862F0681F69A7F40C0</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleSymbolUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/GoogleSymbolUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1820,21 +1764,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>7C987B58287B4971EBE562AEA89D60C3</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>Core.h</string>
-			<key>path</key>
-			<string>Headers/Core.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>7D04535608058A2FABC0D16935868FB9</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -1866,7 +1795,7 @@
 			<array>
 				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
 				<string>F2A875A48A4D36B979C042CC40252657</string>
-				<string>DDD73FA999FFEB74BFCF2401E49E011E</string>
+				<string>2284BB30F4AED9F08E742C97E774FD32</string>
 				<string>FB1EE11EB6C3B18C3A40B69C0FF484C7</string>
 				<string>C22DE196BEF372DAB086E14D6C08AD09</string>
 			</array>
@@ -1875,10 +1804,23 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>7E32CBCB1DB271BBEB2DA4E0C568D228</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B0A0439B17996C75C4CA5D3C9416BCEA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7F3CD09FD36808269650E3959E5C635C</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>FC6B99788B7AAB99E4D9145AFB3D0F25</string>
+			<string>5A0369F55C3B695F0A1393D4C59EE1DA</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -1938,7 +1880,7 @@
 		<key>7F3E69C651C78E1CA682944A7F455C89</key>
 		<dict>
 			<key>fileRef</key>
-			<string>F948838CF48E90A959EF09510612A25C</string>
+			<string>E9DC1E6A85486D0222A919FEFCCCBB2D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1949,17 +1891,74 @@
 				</array>
 			</dict>
 		</dict>
-		<key>81123A4F9D37E5287C673B955BD5B503</key>
+		<key>8037AA9528D18E8909F1034995B6C121</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FIRInstanceID.h</string>
+			<key>path</key>
+			<string>Sources/FIRInstanceID.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8066F8CCBC64AA6FF08976FDF64C6638</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>4806141361752732B60D704A735523CF</string>
-				<string>3CF9DBEAF4F28DB3CC2577BEA7F2FDB0</string>
+				<string>7BAAF72A32E161862F0681F69A7F40C0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>NSData+zlib</string>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>80904F09714208C673DB92DB87E2214A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMDebugSelectorValidation.h</string>
+			<key>path</key>
+			<string>DebugUtils/GTMDebugSelectorValidation.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>817F0E0E1EF68E1602E5E83ED9B00E1A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMOAuth2ViewControllerTouch.h</string>
+			<key>path</key>
+			<string>Source/Touch/GTMOAuth2ViewControllerTouch.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>81A4CA0E706A99052C2B8CF41193A101</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAuth.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseAuth.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1988,25 +1987,56 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>851CFED2E9415807CF7C422682019F15</key>
+		<key>8584F17C7AC2501FDA3D77DBAC8E2A8E</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>B1262B5051288DC1FF4A068F9F3BC3D0</string>
+				<string>7763D7346E2FBAA41E26BEBD6A01F0EF</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleSignIn</string>
 			<key>path</key>
-			<string>GoogleToolboxForMac.xcconfig</string>
+			<string>GoogleSignIn</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>85D02C2E762FCA04833E16B795EA40AF</key>
 		<dict>
 			<key>fileRef</key>
-			<string>67F5F3AA32DEFBA5B8DFB446D1A3F60F</string>
+			<string>3FCDA20B5B8047BA606266F09A9DC9F1</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>861B9DE47EE9426B08E02ACE617D6EF8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMOAuth2SignIn.h</string>
+			<key>path</key>
+			<string>Source/GTMOAuth2SignIn.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>869645FA0E516574FA77E2CAB12FFDDB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleSignIn.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleSignIn.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>86A29416936A64733B9C82229B52B2D6</key>
 		<dict>
@@ -2019,7 +2049,20 @@
 			<key>targetProxy</key>
 			<string>97327452CEC75C280979EC5E873C0EE0</string>
 		</dict>
-		<key>8AA2A4D96495A02315A886F4AE552E33</key>
+		<key>87D8371A8094714E62FD129D83B4D1F7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>26BDE1EC0C9153997BECD74DD22098F0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>893299E0019EF9E051C1D482AFE51446</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2028,9 +2071,24 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GTMMethodCheck.h</string>
+			<string>GTMGatherInputStream.h</string>
 			<key>path</key>
-			<string>DebugUtils/GTMMethodCheck.h</string>
+			<string>Source/GTMGatherInputStream.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>896E0BEFA54F05D9C30B5FE4C8F2EE86</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMSessionUploadFetcher.m</string>
+			<key>path</key>
+			<string>Source/GTMSessionUploadFetcher.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2047,21 +2105,23 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>8D50F83E8BB370B759E5B366FCC6CEE0</key>
+		<key>8ECAB4F103CD43F4D6DA9666C7D1730B</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities.framework</string>
 			<key>path</key>
-			<string>GTMSessionFetcher.modulemap</string>
+			<string>Frameworks/frameworks/GoogleInterchangeUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9060A2C3A72B80C3802589B0BADC9459</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C17D9E573D86A985671A3F029FB4A3A4</string>
+			<string>817F0E0E1EF68E1602E5E83ED9B00E1A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2072,51 +2132,36 @@
 				</array>
 			</dict>
 		</dict>
-		<key>90FF67BCDBAB4B1ACCF06D021BCB89E3</key>
+		<key>916CFE862171BA952738C559FDCF3F20</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>718993C9AC96CEA7CCFF669EAFD26F33</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>GoogleToolboxForMac.modulemap</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>919C570EE6EA3636FAAE7236F13AE458</key>
+		<key>91B6D8EBDCF342D798B3E0FC112AB8BD</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMNSString+URLArguments.h</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Foundation/GTMNSString+URLArguments.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>920542DAC4C64110ABC0DE68F66AFCD5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMGatherInputStream.h</string>
-			<key>path</key>
-			<string>Source/GTMGatherInputStream.h</string>
+			<string>GoogleToolboxForMac.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>92687B21E8A9DEB706F03F63110A2645</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A4BC7A0EA52416B892EF66E0B50B37BB</string>
+			<string>6A73801035C45C45582F44C0B519EC75</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2198,18 +2243,51 @@
 			<key>remoteInfo</key>
 			<string>GoogleToolboxForMac</string>
 		</dict>
-		<key>98ECAAAEAB5DCCBEAA924145758DE42F</key>
+		<key>97367D898606247489E43D5E865EF884</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GTMOAuth2Authentication.m</string>
+			<string>GTMMethodCheck.h</string>
 			<key>path</key>
-			<string>Source/GTMOAuth2Authentication.m</string>
+			<string>DebugUtils/GTMMethodCheck.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>985CD4B635C21F86A7F162E218950CDD</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>81A4CA0E706A99052C2B8CF41193A101</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>990AABBB685FC9EB420DF0DA5C586FF1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A9F2A3E26A011C7527EE898830E56EA7</string>
+				<string>A0ECF5E3E960BCECB98BEE83E3A89FC1</string>
+				<string>555DB226AB38CBE5ABAE897A7FA81B3B</string>
+				<string>266BF5B94AC9607DE9A6609CF7D375E3</string>
+				<string>30D7914C3976F24552DE0ADFBBFAA0AC</string>
+				<string>9E16DF9445E1B81952F10D9DC0B7888D</string>
+				<string>440C0427952E2E10B8E8A0A2DAF89F2C</string>
+				<string>896E0BEFA54F05D9C30B5FE4C8F2EE86</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Core</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2243,23 +2321,21 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>9B35372F83BDCE5AFF23E3B4EDA536B3</key>
+		<key>9A906F8E9F6684C33CB5608BEA334F31</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>GTMSessionFetcher-dummy.m</string>
+			<string>GTMOAuth2.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9B7C75BF845EC6AAE5E077803EC8D37F</key>
 		<dict>
 			<key>fileRef</key>
-			<string>38EB5AEC71A0231BEF8C54D60082B07C</string>
+			<string>DC4519BB65933EA466413DD9B8281A8F</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2270,6 +2346,24 @@
 				</array>
 			</dict>
 		</dict>
+		<key>9CB8E5227C9CAD20FE479988179318C2</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>893299E0019EF9E051C1D482AFE51446</string>
+				<string>46FC369E299C9ED8E4881CA3A1404503</string>
+				<string>BEF730A5AF83BEE891371299E0557E10</string>
+				<string>A069F6CD7B8688760690CC70C21FDC9C</string>
+				<string>6A73801035C45C45582F44C0B519EC75</string>
+				<string>24A42FA061DA848ADB8C29C76ED66901</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Full</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>9CE99118D32A95CF0BDA01EE541935DC</key>
 		<dict>
 			<key>fileRef</key>
@@ -2277,17 +2371,18 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>9FBC02EDAEC9CDCB42D292F5475A00C9</key>
+		<key>9E16DF9445E1B81952F10D9DC0B7888D</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>919C570EE6EA3636FAAE7236F13AE458</string>
-				<string>4A64F29266C93700A340E70B49CAFFEA</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>NSString+URLArguments</string>
+			<string>GTMSessionFetcherService.m</string>
+			<key>path</key>
+			<string>Source/GTMSessionFetcherService.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2306,10 +2401,40 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>A069F6CD7B8688760690CC70C21FDC9C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMMIMEDocument.m</string>
+			<key>path</key>
+			<string>Source/GTMMIMEDocument.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0ECF5E3E960BCECB98BEE83E3A89FC1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMSessionFetcher.m</string>
+			<key>path</key>
+			<string>Source/GTMSessionFetcher.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>A2AB2252C5CB27D158745F245C4ED39E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>1A852C05AC3C0B1776C9B9B647B91AAB</string>
+			<string>52582ABCEF5FFB9FEE6F73CCB6E79507</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2320,33 +2445,40 @@
 				</array>
 			</dict>
 		</dict>
-		<key>A3BF91C7DED76830B67EDCFA11CD2D99</key>
+		<key>A346CFA8B2F02BE0790BB0BC08C5C246</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>Firebase.h</string>
 			<key>path</key>
-			<string>Core/Sources/Firebase.h</string>
+			<string>GTMSessionFetcher.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A4BC7A0EA52416B892EF66E0B50B37BB</key>
+		<key>A45A1E7812D6F3F91B3174C2FE9D9C18</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseCore.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseCore.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A5168FA1717287D658FA3FF75BCE5D42</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMReadMonitorInputStream.h</string>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>Source/GTMReadMonitorInputStream.h</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2363,7 +2495,75 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A5ECAAB9653330CE94D826005FB71DC9</key>
+		<key>A58F0217A0E7EFAF19EA97DE0FF3841B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8037AA9528D18E8909F1034995B6C121</string>
+				<string>F424BF233501076CE9C80E24937462AA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseInstanceID</string>
+			<key>path</key>
+			<string>FirebaseInstanceID</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A736FFEC96B684CC99E9C4D9B8C70F53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>24A42FA061DA848ADB8C29C76ED66901</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A8EC16625FB4BC45CCC8E403726E0C75</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2FB2B6D5656401339E0EF8C524AC2E5E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseAnalytics</string>
+			<key>path</key>
+			<string>FirebaseAnalytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A90B2045EB2F7536D91E1D28B79BBAE9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8066F8CCBC64AA6FF08976FDF64C6638</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleSymbolUtilities</string>
+			<key>path</key>
+			<string>GoogleSymbolUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A98A1A60E25D5A45146EC1901A62356F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SignIn-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/SignIn-Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9F2A3E26A011C7527EE898830E56EA7</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2378,38 +2578,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A736FFEC96B684CC99E9C4D9B8C70F53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4F7228DDF466D452ED674FD3A91DA70D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AB2A3B1376BC272A205574988DC1EE28</key>
+		<key>AA6930DB296AF20DA025DBB269DB3E85</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>AD217630379BAC500322A53482CB3F7F</string>
+				<string>4FEB5458258CD9CC82A57BC24BDBD93B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Resources</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AD217630379BAC500322A53482CB3F7F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.plug-in</string>
-			<key>name</key>
-			<string>GoogleSignIn.bundle</string>
+			<string>GoogleInterchangeUtilities</string>
 			<key>path</key>
-			<string>Resources/GoogleSignIn.bundle</string>
+			<string>GoogleInterchangeUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2491,11 +2671,24 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>B01079DB3FB1C56ADF93FE35F3FD7DD5</key>
+		<key>B0A0439B17996C75C4CA5D3C9416BCEA</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseDatabase.framework</string>
+			<key>path</key>
+			<string>Frameworks/FirebaseDatabase.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B1262B5051288DC1FF4A068F9F3BC3D0</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>B3F5832E06092C18918BDF1B18505876</string>
+				<string>869645FA0E516574FA77E2CAB12FFDDB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -2504,23 +2697,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B0612195FC29A7F34D26AB72E617A8A5</key>
+		<key>B213B602F4D10AF95495873FA13C2C04</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>CCAA6D1B33F3ECC581B23908628D2BF1</string>
+				<string>12571C7FD8C71AE834659B04E1A903F4</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>FirebaseCore</string>
+			<key>path</key>
+			<string>FirebaseCore</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B2781A35A41CFD843CBB5848EFC63B66</key>
 		<dict>
 			<key>fileRef</key>
-			<string>D8F8281F49EFAE84457E2FFC828B02C1</string>
+			<string>D9BED1B18068A178E776B57252DBEF95</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2531,7 +2726,7 @@
 				</array>
 			</dict>
 		</dict>
-		<key>B390301776FD18755CB91EE5BA6B434A</key>
+		<key>B8E9A583AEEB80FCF088DFE0CF48B3D4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2540,22 +2735,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>GTMMIMEDocument.m</string>
+			<string>GTMNSString+URLArguments.m</string>
 			<key>path</key>
-			<string>Source/GTMMIMEDocument.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B3F5832E06092C18918BDF1B18505876</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/GoogleSymbolUtilities.framework</string>
+			<string>Foundation/GTMNSString+URLArguments.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2575,7 +2757,7 @@
 		<key>BA27C23803CBE87BD9BD3202CB85547B</key>
 		<dict>
 			<key>fileRef</key>
-			<string>9B35372F83BDCE5AFF23E3B4EDA536B3</string>
+			<string>7A0B7D9604222C9A94107D33F87DF522</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -2590,10 +2772,53 @@
 			<key>targetProxy</key>
 			<string>D3BAC7B160FFFD1BD639EBC9BE3F21EE</string>
 		</dict>
+		<key>BC9D65A82437A2656C446D8AA65F9078</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>GTMOAuth2-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BD78329F85138BC76DEB361A6EBD8F15</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Core-Module.h</string>
+			<key>path</key>
+			<string>Headers/ModuleHeaders/Core-Module.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEF730A5AF83BEE891371299E0557E10</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMMIMEDocument.h</string>
+			<key>path</key>
+			<string>Source/GTMMIMEDocument.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>C1569935E8A1A6181EBA7F294211BCBD</key>
 		<dict>
 			<key>fileRef</key>
-			<string>920542DAC4C64110ABC0DE68F66AFCD5</string>
+			<string>893299E0019EF9E051C1D482AFE51446</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2603,36 +2828,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>C17D9E573D86A985671A3F029FB4A3A4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMOAuth2ViewControllerTouch.h</string>
-			<key>path</key>
-			<string>Source/Touch/GTMOAuth2ViewControllerTouch.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>C1EE167C6B2382CF44940B72EB6AA332</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>Analytics-Module.h</string>
-			<key>path</key>
-			<string>Headers/ModuleHeaders/Analytics-Module.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C22DE196BEF372DAB086E14D6C08AD09</key>
 		<dict>
@@ -2647,12 +2842,44 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>C2A98F142CF225CD6F8F0A587A5B5C6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>526E5E787C8419FBD0EBA7804BCB50C4</string>
+				<string>2689C87574EC5376C5804F93D7804F4E</string>
+				<string>BD78329F85138BC76DEB361A6EBD8F15</string>
+				<string>A98A1A60E25D5A45146EC1901A62356F</string>
+				<string>916CFE862171BA952738C559FDCF3F20</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Core</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>C5C9F1913E7C05DD1BD10CFA3756BD22</key>
 		<dict>
 			<key>fileRef</key>
 			<string>589C9059638422D2031A589CF580A2B6</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>C60F8CC23A6E4CE1BEA1F973EA5859FE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.plug-in</string>
+			<key>name</key>
+			<string>GoogleSignIn.bundle</string>
+			<key>path</key>
+			<string>Resources/GoogleSignIn.bundle</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C727BA06C197827BA276C196ED985ABF</key>
 		<dict>
@@ -2667,25 +2894,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C79C9FE3DDC23E6260CCD506BB865F15</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMSessionFetcherLogging.h</string>
-			<key>path</key>
-			<string>Source/GTMSessionFetcherLogging.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>C885F0BDB0D76B2A3F5771814A8BBCC5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>FE6662EE49FA17D1ADC96CC21711BBA7</string>
+			<string>FCE4B99E4F5E9D027BE68040A1C08AF9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2696,20 +2908,7 @@
 				</array>
 			</dict>
 		</dict>
-		<key>C9C11EA18F37FC07D836323D455F688D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>0D677ED45F968AA05A7108A1081424F6</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Resources</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>CACC1E42318DC913F5FE27D04BB4B200</key>
+		<key>CA040100D860ED2E306D4DC28D0B8906</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2718,31 +2917,52 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>SignIn-Module.h</string>
+			<string>GTMNSData+zlib.h</string>
 			<key>path</key>
-			<string>Headers/ModuleHeaders/SignIn-Module.h</string>
+			<string>Foundation/GTMNSData+zlib.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CA3A758AEF665A55EC4E3CBCBD0B4ECF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D9738B26BE59736C3C9484E15F2E6B2C</string>
+				<string>B8E9A583AEEB80FCF088DFE0CF48B3D4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>NSString+URLArguments</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CA4E7560E4312843560A295FAB852700</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>EBA5AE1E5751BC1FEA90889FDD134384</string>
+				<string>91B6D8EBDCF342D798B3E0FC112AB8BD</string>
+				<string>6F1C587E1A7A5D0C065E946995CAFFB9</string>
+				<string>071297495CEB32C9CB88A5FDE4D5A911</string>
+				<string>DAA0D5D093BA82CF58731B4FC41DBA7D</string>
+				<string>02E91AB04F67D59B9EF59107C98F7E76</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/GoogleToolboxForMac</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CC4301A32FB3A4B8D17A1746463DF762</key>
 		<dict>
 			<key>fileRef</key>
-			<string>0D677ED45F968AA05A7108A1081424F6</string>
+			<string>E561345AD468EFA63E7C054279CDF96C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>CCAA6D1B33F3ECC581B23908628D2BF1</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleInterchangeUtilities.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/GoogleInterchangeUtilities.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CCBB5C2CF86E262C0F15DAC9E1EC9771</key>
 		<dict>
@@ -2763,6 +2983,19 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>CF5CB41275271805903006A8E74C69B9</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAnalytics.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D00D561A9516105F548C2D40E307ACB2</key>
 		<dict>
@@ -2792,47 +3025,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>D1216C9D2821D46FDA98718700706854</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GGLSignIn.framework</string>
-			<key>path</key>
-			<string>Frameworks/GGLSignIn.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D127AD20363074BCA4C297504C3E7F66</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMSessionUploadFetcher.m</string>
-			<key>path</key>
-			<string>Source/GTMSessionUploadFetcher.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D2500E56B1BDE1EF2D6C42E0585081A2</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FE6E72DF6E7255F3F039C083C05BE031</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D3BAC7B160FFFD1BD639EBC9BE3F21EE</key>
 		<dict>
 			<key>containerPortal</key>
@@ -2845,21 +3037,6 @@
 			<string>D468777BEC2DE5127A16239373FFD11F</string>
 			<key>remoteInfo</key>
 			<string>GTMOAuth2</string>
-		</dict>
-		<key>D3F54F17481155AA689930194473465D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMSessionFetcherLogging.m</string>
-			<key>path</key>
-			<string>Source/GTMSessionFetcherLogging.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -2902,23 +3079,6 @@
 				<string>402419F2ED878A4462313A839B948519</string>
 			</array>
 		</dict>
-		<key>D44C9BF475A1FFC59A7CE37E18AFA2AB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>667DE381A2619DDC03B560B6940F35A9</string>
-				<string>733A1F970525FFAF4F84EAAE5A4591CC</string>
-				<string>3BFF4F92D3FB37F37998F81AC2CA35AA</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GTMSessionFetcher</string>
-			<key>path</key>
-			<string>GTMSessionFetcher</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D468777BEC2DE5127A16239373FFD11F</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -2947,43 +3107,10 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>D6428E9966D731B07862E3B11C863D5B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GTMOAuth2-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D65E792569C2BB563AA48CDC313145F4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>34BAC924347964DF6E08333D37E10F33</string>
-				<string>72D5D8521D7CC6824B1A005ACF9CCDBF</string>
-				<string>81123A4F9D37E5287C673B955BD5B503</string>
-				<string>42F65A9CDC70FAC4A316974FC1FDF2C1</string>
-				<string>9FBC02EDAEC9CDCB42D292F5475A00C9</string>
-				<string>00B9D71D37EE35F9FCDAECECFAF886DC</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleToolboxForMac</string>
-			<key>path</key>
-			<string>GoogleToolboxForMac</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D680C5DC49B16626A1AEA93A2C5D10F1</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A5ECAAB9653330CE94D826005FB71DC9</string>
+			<string>A9F2A3E26A011C7527EE898830E56EA7</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3016,18 +3143,22 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>D726FA99DFB9E7DF6B35FBB43D46C67F</key>
+		<key>D9738B26BE59736C3C9484E15F2E6B2C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMNSString+URLArguments.h</string>
 			<key>path</key>
-			<string>GTMOAuth2.modulemap</string>
+			<string>Foundation/GTMNSString+URLArguments.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D8F8281F49EFAE84457E2FFC828B02C1</key>
+		<key>D9BED1B18068A178E776B57252DBEF95</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3042,55 +3173,57 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DC44697C3AF8456561FB2931D110D680</key>
+		<key>DAA0D5D093BA82CF58731B4FC41DBA7D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>Info.plist</string>
+			<string>GoogleToolboxForMac-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DC963EF450E1F9DC1E31BF4C02EB4F21</key>
+		<key>DC4519BB65933EA466413DD9B8281A8F</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>GTMOAuth2Authentication.h</string>
 			<key>path</key>
-			<string>Info.plist</string>
+			<string>Source/GTMOAuth2Authentication.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DDD73FA999FFEB74BFCF2401E49E011E</key>
+		<key>DDE594FA3763795C8316EBD68E5D14B4</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>FAA72966113132799D1CDFF1C7792CDE</string>
-				<string>44D99591AF0C3132B7584E5520698197</string>
-				<string>16708F8CDC30A6763F12368D282D72F8</string>
-				<string>33F9E4A1FDE1F2953EE998BADFD0CAB2</string>
-				<string>431B7E18B6E16871823C19AEAD3C9703</string>
-				<string>0E09CCB73B085443C56BE31E5C42FE8C</string>
-				<string>3D03FD18D31FF8B190535E3D3C2A313B</string>
-				<string>64C0F6E8FCC44CE86F314C3AB13E2FEC</string>
-				<string>1CF38FA213BE91240295D2BC87D8CC50</string>
-				<string>EF370D692035B095D66AF1CAFADDDD05</string>
-				<string>3C4A49F04933275EB53FE02D52310B16</string>
-				<string>D65E792569C2BB563AA48CDC313145F4</string>
-				<string>DF0CB4D9C07B76D26B912C4B64A3B7D7</string>
-				<string>D44C9BF475A1FFC59A7CE37E18AFA2AB</string>
+				<string>03900658453B03515129CAFBC9908D29</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Pods</string>
+			<string>Core</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DDF723C9DF5FC7019BAC940902B2C37C</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseInstanceID.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3114,28 +3247,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>DF0CB4D9C07B76D26B912C4B64A3B7D7</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>38EB5AEC71A0231BEF8C54D60082B07C</string>
-				<string>98ECAAAEAB5DCCBEAA924145758DE42F</string>
-				<string>F388B890F4D90C266B37030DA0700528</string>
-				<string>365F2C08CD4FE2DF8232F4F82BD3B7B5</string>
-				<string>C17D9E573D86A985671A3F029FB4A3A4</string>
-				<string>3AB6710384CC4F6B6C7645FB44846207</string>
-				<string>C9C11EA18F37FC07D836323D455F688D</string>
-				<string>1CF3250869E5FC56157EF5E4E3DE0B8F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GTMOAuth2</string>
-			<key>path</key>
-			<string>GTMOAuth2</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>DF13DA7BCA692889DA36A3AB29D4E123</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -3151,30 +3262,17 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>E2B55C14E17E339C871B44594C291D53</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>45906AC4FC08F524417CC0B4594C9238</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>E2E303FFECDBB0C5FEBD26BF2FE1520F</key>
 		<dict>
 			<key>fileRef</key>
-			<string>48FA0BD84CCCC85C81684B58674256D4</string>
+			<string>A0ECF5E3E960BCECB98BEE83E3A89FC1</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
 		<key>E3587E2F2FEAAC7D49B01E33D5157295</key>
 		<dict>
 			<key>fileRef</key>
-			<string>919C570EE6EA3636FAAE7236F13AE458</string>
+			<string>D9738B26BE59736C3C9484E15F2E6B2C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3188,7 +3286,7 @@
 		<key>E37A842AC05F7F226DB2222EB1692572</key>
 		<dict>
 			<key>fileRef</key>
-			<string>46E4F96CE2A9842B6A4E7674019CD081</string>
+			<string>30D7914C3976F24552DE0ADFBBFAA0AC</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3199,25 +3297,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>E3BB21AA2E1029A3EA52A23521BAE7D2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>GTMGatherInputStream.m</string>
-			<key>path</key>
-			<string>Source/GTMGatherInputStream.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>E43D00019157C99C018AFE2CB775E98D</key>
 		<dict>
 			<key>fileRef</key>
-			<string>98ECAAAEAB5DCCBEAA924145758DE42F</string>
+			<string>E6D9E30D971A827128D0F12DED78ECD2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3226,44 +3309,33 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>E4A9D854B61ADB5908BB13D969D72B2A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GTMOAuth2-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>E4DB3A8F9BCF93B4E265FF518E284D71</key>
 		<dict>
 			<key>fileRef</key>
-			<string>B390301776FD18755CB91EE5BA6B434A</string>
+			<string>A069F6CD7B8688760690CC70C21FDC9C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>E6A426520A997EB960E1A8B3868D111D</key>
+		<key>E561345AD468EFA63E7C054279CDF96C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>GTMOAuth2ViewTouch.xib</string>
 			<key>path</key>
-			<string>GTMSessionFetcher.xcconfig</string>
+			<string>Source/Touch/GTMOAuth2ViewTouch.xib</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E7318B5CFF94383AA8E418CDAA702ACB</key>
+		<key>E5A4AF3C73B4F923DAF6D5E7389A6473</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>4EB842AC9A06BA46565AB4EAF0A959B7</string>
+				<string>741755615C762C9E8C56F3DCBD48CDFC</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -3272,17 +3344,49 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>E6D9E30D971A827128D0F12DED78ECD2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>GTMOAuth2Authentication.m</string>
+			<key>path</key>
+			<string>Source/GTMOAuth2Authentication.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E73AB073E10E2235FA435095E4E22CDB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>990AABBB685FC9EB420DF0DA5C586FF1</string>
+				<string>9CB8E5227C9CAD20FE479988179318C2</string>
+				<string>70D6139F8F38B58195A2D5431D92D550</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GTMSessionFetcher</string>
+			<key>path</key>
+			<string>GTMSessionFetcher</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>E7861030A15A3168976EDD4A96AC5E42</key>
 		<dict>
 			<key>fileRef</key>
-			<string>384CF0AFD5964365FFABD003E95C282C</string>
+			<string>9E16DF9445E1B81952F10D9DC0B7888D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
 		<key>E8BD55836A2DF88AC954C41D0702EDF6</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3AB6710384CC4F6B6C7645FB44846207</string>
+			<string>2EEB332074BD15B3AB71F7BC206538DB</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3291,7 +3395,7 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>E9CE980D146DD63E5128D06145893A15</key>
+		<key>E9DC1E6A85486D0222A919FEFCCCBB2D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3299,25 +3403,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMDebugSelectorValidation.h</string>
 			<key>path</key>
-			<string>DebugUtils/GTMDebugSelectorValidation.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>EB065040B10A865CC5093EC360D34AEF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMSessionUploadFetcher.h</string>
-			<key>path</key>
-			<string>Source/GTMSessionUploadFetcher.h</string>
+			<string>GTMSessionFetcher-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3328,30 +3415,28 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>EBB3553A084B91CD7FB9AD5D0F5FF9C7</key>
+		<key>EBA5AE1E5751BC1FEA90889FDD134384</key>
 		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseCore.framework</string>
 			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseCore.framework</string>
+			<string>GoogleToolboxForMac.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EE327E403CBB5E5021F440772E972A5C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>58DFBDF1A5B768DAD1B298774BEEC277</string>
+			<string>6F1C587E1A7A5D0C065E946995CAFFB9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
 		<key>EE6A04EFC3247F7BFD14AEE244AB3787</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C79C9FE3DDC23E6260CCD506BB865F15</string>
+			<string>555DB226AB38CBE5ABAE897A7FA81B3B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3362,26 +3447,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>EF370D692035B095D66AF1CAFADDDD05</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E2B55C14E17E339C871B44594C291D53</string>
-				<string>AB2A3B1376BC272A205574988DC1EE28</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleSignIn</string>
-			<key>path</key>
-			<string>GoogleSignIn</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>F08E0DD97D4D2D079322A6E06B5CD37C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3CF9DBEAF4F28DB3CC2577BEA7F2FDB0</string>
+			<string>75FE451513D37730101426EF6A1CFF89</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3393,7 +3462,7 @@
 		<key>F117CDA64FF333D2C8E2E3D685870C08</key>
 		<dict>
 			<key>fileRef</key>
-			<string>4806141361752732B60D704A735523CF</string>
+			<string>CA040100D860ED2E306D4DC28D0B8906</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3418,21 +3487,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F388B890F4D90C266B37030DA0700528</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>GTMOAuth2SignIn.h</string>
-			<key>path</key>
-			<string>Source/GTMOAuth2SignIn.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>F41860725370BE4A73D6AD7E8F7EE630</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3446,10 +3500,23 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>F424BF233501076CE9C80E24937462AA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>DDF723C9DF5FC7019BAC940902B2C37C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>F6498C02655C4E58AD3013140A40A328</key>
 		<dict>
 			<key>fileRef</key>
-			<string>8AA2A4D96495A02315A886F4AE552E33</string>
+			<string>97367D898606247489E43D5E865EF884</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3460,55 +3527,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>F8F9B7A649D8054E0917DB103072403A</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>C1EE167C6B2382CF44940B72EB6AA332</string>
-				<string>7C987B58287B4971EBE562AEA89D60C3</string>
-				<string>7211D0F41107249EC248AC6193642443</string>
-				<string>CACC1E42318DC913F5FE27D04BB4B200</string>
-				<string>E7318B5CFF94383AA8E418CDAA702ACB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Core</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F948838CF48E90A959EF09510612A25C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>GTMSessionFetcher-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FAA72966113132799D1CDFF1C7792CDE</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>597F0F769E7C3B1BC569F67BFFDB2EB2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Firebase</string>
-			<key>path</key>
-			<string>Firebase</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>FAFB2DEC2C1CF4E607BD6E810FAA01A0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>D127AD20363074BCA4C297504C3E7F66</string>
+			<string>896E0BEFA54F05D9C30B5FE4C8F2EE86</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -3542,46 +3564,20 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>FC6B99788B7AAB99E4D9145AFB3D0F25</key>
+		<key>FC900EC03BFDBFBA542CFBB4A485D670</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>GTMOAuth2.xcconfig</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FD7819650A77515B551355DB3D9C91A7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4A64F29266C93700A340E70B49CAFFEA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-fno-objc-arc</string>
-			</dict>
-		</dict>
-		<key>FDF680D83AD5F31FEE82D8C6FD230BF6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E4A9D854B61ADB5908BB13D969D72B2A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>FE6662EE49FA17D1ADC96CC21711BBA7</key>
+		<key>FCE4B99E4F5E9D027BE68040A1C08AF9</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3596,16 +3592,42 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FE6E72DF6E7255F3F039C083C05BE031</key>
+		<key>FD7819650A77515B551355DB3D9C91A7</key>
 		<dict>
+			<key>fileRef</key>
+			<string>B8E9A583AEEB80FCF088DFE0CF48B3D4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fno-objc-arc</string>
+			</dict>
+		</dict>
+		<key>FDF680D83AD5F31FEE82D8C6FD230BF6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>01BFB5E862E755C5DCC59C71C7E83CE2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>FE23AAA36B8A2685C50B9C78DFDA5312</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseAuth.framework</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseAuth.framework</string>
+			<string>GTMSessionFetcher.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3621,6 +3643,26 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>FF8B49A203D2D0E012B6078C240EF428</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>388E53761A3E642319C47F64EA869809</string>
+				<string>2689603406F4FF611E35D7525C89CB01</string>
+				<string>7B653DDF5A8B600027D5D295437EE835</string>
+				<string>5500148761197F93222F3B9CB5712731</string>
+				<string>CA3A758AEF665A55EC4E3CBCBD0B4ECF</string>
+				<string>CA4E7560E4312843560A295FAB852700</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleToolboxForMac</string>
+			<key>path</key>
+			<string>GoogleToolboxForMac</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>

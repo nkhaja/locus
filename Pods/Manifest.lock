@@ -8,6 +8,9 @@ PODS:
   - Firebase/Database (3.9.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.0)
+  - Firebase/Storage (3.9.0):
+    - Firebase/Core
+    - FirebaseStorage (= 1.0.4)
   - FirebaseAnalytics (3.5.1):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
@@ -24,6 +27,9 @@ PODS:
   - FirebaseDatabase (3.1.0):
     - FirebaseAnalytics (~> 3.4)
   - FirebaseInstanceID (1.0.8)
+  - FirebaseStorage (1.0.4):
+    - FirebaseAnalytics (~> 3.4)
+    - GTMSessionFetcher/Core (~> 1.1)
   - Google/Core (3.0.3):
     - FirebaseAnalytics (~> 3.2)
   - Google/SignIn (3.0.3):
@@ -61,6 +67,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Storage
   - Google/SignIn
 
 SPEC CHECKSUMS:
@@ -70,6 +77,7 @@ SPEC CHECKSUMS:
   FirebaseCore: d0ed25f27b6f9158eccc439f1be6f92e81207e28
   FirebaseDatabase: 3ebb2edb6007c3f0f87b248f3fa212bde56a1468
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  FirebaseStorage: c50aa353bf484072704e73b4aff1bd47adb735c4
   Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
@@ -79,6 +87,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
 
-PODFILE CHECKSUM: 1ba3c81a5852d84ca6ea1573a3925df399ccd03f
+PODFILE CHECKSUM: 9a76f459ca3785f8fedb45f2c42ee8ebe0ce6c85
 
 COCOAPODS: 1.0.1
