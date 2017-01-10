@@ -32,10 +32,6 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func signUp(){
         let nameAlert = UIAlertController(title: "Welcome to Locus!", message: "What is your name?", preferredStyle: .alert)
