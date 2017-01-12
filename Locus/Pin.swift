@@ -14,6 +14,7 @@ class Pin {
     var title: String = ""
     var description:String = ""
     var ownerId: String = ""
+    var iconName: String = "default"
     var privacy: Privacy = .pub
 //    var permissions: [String]?
     var imageRef: FIRStorageReference?

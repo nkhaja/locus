@@ -55,7 +55,7 @@ class User{
             })
         }
     
-    func getPinWithId(pinId: String, completion: ((Pin) -> Void)?) {
+    func getPinWithId(pinId: String, completion: @escaping ((Pin) -> Void)) {
         let thisPinRef = FIRDatabase.database().reference(withPath: "pins").child(pinId)
         thisPinRef.observe(.value, with:{ snapshot in
             let newPin = Pin(snapshot: snapshot, ownerId: self.id)
@@ -65,6 +65,18 @@ class User{
         
     }
 
+//    func toAnyObject() -> NSDictionary{
+//        
+//        
+//        
+//        
+//        return [
+//            "name": name,
+//            "uid": 
+//
+//        ]
+//    }
+    
 }
 
 

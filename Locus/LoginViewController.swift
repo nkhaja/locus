@@ -13,6 +13,10 @@ import Firebase
 class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     var userRef:FIRDatabaseReference?
+    var nameAlert:UIAlertController?
+    var nameTakenAlert:UIAlertController
+    var nameFormatAlert:UIAlertController
+
     
     
     override func viewDidLoad() {
@@ -31,10 +35,26 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         }
     
     }
+    
+    func getUserName(){
+        
+        if let id = FIRAuth.auth()?.currentUser?.uid{
+            let nameQuery = userRef!.child(id)
+            
+            nameQuery.observe(.value, with: { snapshot in
+                if snapshot.hasChildren(){
+                    self.performSegue(withIdentifier: "map", sender: self)
+                }
+                else{
+                    self.present(self.nameAlert!, animated: true, completion: nil)
+                }
+            })
+        }
+    }
 
     
     func signUp(){
-        let nameAlert = UIAlertController(title: "Welcome to Locus!", message: "What is your name?", preferredStyle: .alert)
+         nameAlert = UIAlertController(title: "Welcome to Locus!", message: "What is your name?", preferredStyle: .alert)
         let nameFormatAlert = UIAlertController(title: "Name Error", message: "", preferredStyle: .alert)
         let nameTakenAlert = UIAlertController(title: "Please select another name", message: "Sorry that username has already been taken", preferredStyle: .alert)
         
@@ -107,6 +127,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
                 // ...
                 return
             }
+            
+            
             self.performSegue(withIdentifier: "toMap", sender: self)
         }
     }

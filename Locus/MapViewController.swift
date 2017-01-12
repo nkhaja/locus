@@ -22,9 +22,11 @@ class MapViewController: UIViewController {
     // Location Variables
     
     @IBOutlet weak var mapView: LocusMapView!
+    var thisUser: User?
     var locationManager =  CLLocationManager()
     var currentPosition: CLLocation?
     var resultSearchController: UISearchController?
+    var thisUserID: String = FIRAuth.auth()!.currentUser!.uid
     
 
 
@@ -34,6 +36,14 @@ class MapViewController: UIViewController {
         setupLocation()
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
+        
+        
+        let thisUserQuery = FIRDatabase.database().reference(withPath: "users/\(thisUserID)")
+        thisUserQuery.observe(.value, with: { snapshot in
+            self.thisUser = User(snapshot: snapshot)
+        })
+
+    
     }
     
     
