@@ -12,7 +12,7 @@ import Firebase
 class User{
     var name:String
     var id: String
-    var friendRefs: [String]?
+    var friendIds: [String] = []
     var pinIds: [String] = []
     var pins: [Pin] = []
     var reference: FIRDatabaseReference?
@@ -34,8 +34,8 @@ class User{
         
         else{self.name = ""}
         
-        if let friendData = snapshotValue["friendRefs"]{
-            self.friendRefs = friendData as? [String]
+        if let friendData = snapshotValue["friendIds"]{
+            self.friendIds = friendData as! [String]
         }
         
         if let pinIdData = snapshotValue["pinRefs"]{
@@ -65,17 +65,17 @@ class User{
         
     }
 
-//    func toAnyObject() -> NSDictionary{
-//        
-//        
-//        
-//        
-//        return [
-//            "name": name,
-//            "uid": 
-//
-//        ]
-//    }
+    func toAnyObject() -> NSDictionary{
+        
+    
+        return [
+            "name": name,
+            "id": id,
+            "friendIds": friendIds,
+            "pinIds": pinIds
+
+        ]
+    }
     
 }
 

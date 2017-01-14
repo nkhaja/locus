@@ -18,9 +18,7 @@ protocol HandleMapSearch {
 
 class MapViewController: UIViewController {
     
-    
     // Location Variables
-    
     @IBOutlet weak var mapView: LocusMapView!
     var thisUser: User?
     var locationManager =  CLLocationManager()
@@ -28,6 +26,10 @@ class MapViewController: UIViewController {
     var resultSearchController: UISearchController?
     var thisUserID: String = FIRAuth.auth()!.currentUser!.uid
     
+    //Pin Variables
+    var selectedAnnotation: MKAnnotation?
+    var selectedPin: Pin?
+    var pins: [Pin] = []
 
 
     override func viewDidLoad() {
@@ -39,6 +41,7 @@ class MapViewController: UIViewController {
         
         
         let thisUserQuery = FIRDatabase.database().reference(withPath: "users/\(thisUserID)")
+        let pinQueary = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
         thisUserQuery.observe(.value, with: { snapshot in
             self.thisUser = User(snapshot: snapshot)
         })
@@ -46,7 +49,26 @@ class MapViewController: UIViewController {
     
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "buildPin"{
+            if let build = segue.destination as? BuildPinViewController{
+                
+                
+                build.placeName = "\(selectedAnnotation!.title),\(selectedAnnotation!.subtitle)"
+                build.location = selectedAnnotation?.coordinate
+            }
+        }
+    }
     
+    func dropPins(){
+        for p in self.pins{
+            let point = LocusPointAnnotation()
+            point.coordinate = p.coordinate!
+            point.custom = true
+            self.mapView.addAnnotation(point)
+        }
+  
+    }
     
     
     
@@ -89,6 +111,7 @@ class MapViewController: UIViewController {
     
     @IBAction func signOutButton(_ sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -128,6 +151,15 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
+        if let locusAnnotation = annotation as? LocusPointAnnotation {
+            if locusAnnotation.custom{
+                //return custom annotation view here
+            }
+        }
+
+        
+
+        
         
         //else build a condition for clustering pins
       
@@ -138,6 +170,7 @@ extension MapViewController: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
+
         let btnHeight = view.frame.height * 0.8
         let smallSquare = CGSize(width: btnHeight, height: btnHeight)
         
@@ -152,14 +185,12 @@ extension MapViewController: MKMapViewDelegate{
 
         
         drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
-        
-
         pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
 
-        self.performSegue(withIdentifier: "pinIt", sender: self)
+//        self.performSegue(withIdentifier: "pinIt", sender: self)
         view.leftCalloutAccessoryView = drive
         view.rightCalloutAccessoryView = pinIt
-        
+        self.selectedAnnotation = view.annotation
     }
     
     func goBuildPin(){
@@ -174,7 +205,7 @@ extension MapViewController: HandleMapSearch {
     func dropPinZoomIn(placemark: MKPlacemark) {
         mapView.selectedMark = placemark
         
-        let annotation = MKPointAnnotation()
+        let annotation = LocusPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
         if let city = placemark.locality,
