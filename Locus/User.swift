@@ -14,6 +14,7 @@ class User{
     var id: String
     var friendIds: [String] = []
     var pinIds: [String] = []
+    var albumIds: [String] = []
     var pins: [Pin] = []
     var reference: FIRDatabaseReference?
     
@@ -65,18 +66,25 @@ class User{
         
     }
 
+    
     func toAnyObject() -> NSDictionary{
+        
+        var pinIdDict: [String:String] = [:]
+        var albumIdDict: [String:String] = [:]
+        var friendIdDict: [String:String] = [:]
+        pinIds.map({pinIdDict[$0] = $0})
+        albumIds.map({albumIdDict[$0] = $0})
+        friendIds.map({friendIdDict[$0] = $0})
         
     
         return [
             "name": name,
             "id": id,
-            "friendIds": friendIds,
-            "pinIds": pinIds
-
+            "friendIds": friendIdDict,
+            "pinIds": pinIdDict,
+            "albumIds": albumIdDict
         ]
     }
-    
 }
 
 

@@ -63,7 +63,7 @@ class MapViewController: UIViewController {
     func dropPins(){
         for p in self.pins{
             let point = LocusPointAnnotation()
-            point.coordinate = p.coordinate!
+            point.coordinate = p.coordinate
             point.custom = true
             self.mapView.addAnnotation(point)
         }

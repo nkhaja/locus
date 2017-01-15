@@ -38,7 +38,12 @@ class BuildPinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setup
         setupKeyboard()
+        setupImageGesture()
+        
+        
+        //Setup if pre-existing pin
         if let pin = self.pin{
             self.pinImage.image = pin.image!
             let thisIcon = UIImage(named: pin.iconName)
@@ -53,15 +58,18 @@ class BuildPinViewController: UIViewController {
             self.iconName = pin.iconName
         }
         
+        //Setup if new pin
         else{
             self.iconButton.setImage(#imageLiteral(resourceName: "redGooglePin"), for: .normal)
             placeNameTextField.text! = self.placeName
             dateLabel.text! = Date().toString()
             albumLabel.text! = "No Album Selected"
         }
-        
-
-        // Do any additional setup after loading the view.
+    }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func makePin(pin:Pin) -> Pin{
@@ -72,6 +80,7 @@ class BuildPinViewController: UIViewController {
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
         
+        //Pin is gettings its first or new album
         if pin.albumId != selectedAlbumId{
             if let id = selectedAlbumId{
                 pin.albumId = id
@@ -80,13 +89,6 @@ class BuildPinViewController: UIViewController {
         
         return pin
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-
-    
     
     
     @IBAction func selectIconButton(_ sender: UIButton) {
@@ -102,6 +104,8 @@ class BuildPinViewController: UIViewController {
         
         let userId = FIRAuth.auth()!.currentUser?.uid
         let albumQuery = ref.child("albums").queryOrdered(byChild: "ownerId").queryEqual(toValue: userId)
+        
+        //Query gets all albums belonging to this user
         albumQuery.observe(.value, with: { snapshot in
             for item in snapshot.children{
                 let snap = item as! FIRDataSnapshot
@@ -111,7 +115,6 @@ class BuildPinViewController: UIViewController {
             }
             self.performSegue(withIdentifier: "pickAlbum", sender: self)
         })
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,15 +172,112 @@ class BuildPinViewController: UIViewController {
     @IBAction func unwindFromAlbum(segue:UIStoryboardSegue) {
         
     }
+}
+
+
+//Handle keyboard
+
+//Extension for accessing camera with gestures
+extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+   
+    func setupImageGesture(){
+        let tapImage = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.pinImage.isUserInteractionEnabled = true
+        self.pinImage.addGestureRecognizer(tapImage)
+    }
+    
+    
+    //Present media picking options
+    func imageTapped() {
+        let cameraAlert = UIAlertController(title: "Select a source", message: "Where would you like to get your photos from?", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
+            self.openMedia(source: .camera)
+        }
+        
+        let galleryAction = UIAlertAction(title: "Gallery", style: .default) { action in
+            self.openMedia(source: .photoLibrary)
+        }
+        
+        cameraAlert.addAction(cameraAction)
+        cameraAlert.addAction(galleryAction)
+        
+        self.present(cameraAlert, animated: true, completion: nil)
+    }
+    
+    //Open either camera or gallery
+    func openMedia(source: UIImagePickerControllerSourceType){
+        if UIImagePickerController.isSourceTypeAvailable(source){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = source
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func requestSavingToGallery(image:UIImage?){
+        let saveAlert = UIAlertController(title: "Save this image?", message: nil, preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { action in
+            if let image = image{
+                self.saveToGallery(image: image)
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        saveAlert.addAction(saveAction)
+        saveAlert.addAction(cancel)
+        
+        if image != nil{
+            present(saveAlert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    //TODO: PICK UP HERE
+    func saveToGallery(image:UIImage){
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        let alert = UIAlertController(title: "Save Completion",
+                                      message: "Your Image has been saved to Photo Library!",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+
+    }
+    
+    
     
 
+        
+        
+    
+    
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+//        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            self.pinImage.image = image
+//        }
+        
+        picker.dismiss(animated: true) {
+            if let image =  info[UIImagePickerControllerOriginalImage] as? UIImage{
+                self.pinImage.image = image
+                self.requestSavingToGallery(image: image)
+            }
+        }
+    }
+    
+    
+
+    
 
     
     
 }
 
-
-//Handle keyboard
 
 extension BuildPinViewController {
     
@@ -210,5 +310,7 @@ extension BuildPinViewController {
     func keyboardWillHide(notification: Notification) {
         adjustInsetForKeyboardShow(show: false, notification: notification)
     }
+    
+
 }
 

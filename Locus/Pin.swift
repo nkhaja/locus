@@ -21,7 +21,7 @@ class Pin {
     var date: Date = Date()
     var albumName = ""
     var albumId = ""
-    var coordinate: CLLocationCoordinate2D?
+    var coordinate: CLLocationCoordinate2D
 
     var imageRef: FIRStorageReference?
     var image: UIImage?
@@ -62,16 +62,14 @@ class Pin {
         }
         
         if let imageRefData = snapshotValue["imageRef"]{
-            self.imageRef = imageRefData as! FIRStorageReference
+            self.imageRef = (imageRefData as! FIRStorageReference)
         }
         
-        if let latData = snapshotValue["lat"], let lonData = snapshotValue["lon"]{
-            let lat = latData as! CLLocationDegrees
-            let lon = latData as! CLLocationDegrees
-            self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        }
+        let lat = snapshotValue["lat"] as! CLLocationDegrees
+        let lon = snapshotValue["lon"] as! CLLocationDegrees
+        self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
 
-        
+
         if let dateData = snapshotValue["date"]{
             let dateString = dateData as! String
             let dateFormatter = DateFormatter()
@@ -79,32 +77,39 @@ class Pin {
             self.date = dateFormatter.date(from: dateString)!
         }
         
-    
-        
-        
+        self.imageRef = storage.child(id!)
     }
     
     func save(newAlbum: String?){
+        // previously saved object
         if let ref = self.reference{
             ref.setValue(self)
+            
+            //pin has an image to store
             if let image = self.image{
-                let upload = imageRef?.put(image.toData())
+                imageRef!.put(image.toData())
             }
             //saveImageHere
         }
+        //object being saved for the first time
         else{
             let pinRef = FIRDatabase.database().reference().child("pins").childByAutoId()
             pinRef.observe(.childAdded, with: { snapshot in
                 self.id = snapshot.key
                 self.imageRef = self.storage.child(snapshot.key)
+                
+                //pin has an image to store
                 if let image = self.image{
                     self.imageRef!.put(image.toData())
                 }
             })
             
+            //There is a new album being assigned (inlcuding first assignment)
             if let newAlbum = newAlbum {
                 changeAlbum(oldAlbumKey: self.albumId, newAlbumKey: newAlbum)
             }
+            
+            //Save to Firebase
             pinRef.setValue(self)
         }
         
@@ -113,7 +118,10 @@ class Pin {
         //save image here instead?
     }
     
+    
+    //Remove reference in old album, move to new album, assign new album Id to this pin
     func changeAlbum(oldAlbumKey: String, newAlbumKey: String) {
+        
         let firebaseAlbums = FIRDatabase.database().reference().child("albums")
         let oldRef = firebaseAlbums.child(oldAlbumKey).child("pinIds").child(self.id!)
         oldRef.removeValue()
@@ -126,10 +134,8 @@ class Pin {
     }
     
 
-    
+    // get the image for this pin
     func getImage(completion: @escaping (UIImage) -> Void){
-        
-        let imagesRef = FIRStorage.storage().reference(withPath: "images")
         
         if let imageRef = self.imageRef {
             imageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
@@ -144,6 +150,22 @@ class Pin {
         }
         
 
+    }
+    
+   func toAnyObject() -> NSDictionary {
+        return [
+            "title": title,
+            "placeName": placeName,
+            "story": story,
+            "ownerId": ownerId,
+            "iconName": iconName,
+            "privacy": privacy.rawValue,
+            "date": date.toString(),
+            "albumName": albumName,
+            "albumId": albumName,
+            "lat": coordinate.latitude,
+            "lon": coordinate.longitude
+        ]
     }
     
     

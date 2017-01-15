@@ -12,7 +12,7 @@ import Firebase
 class Album{
     var name: String
     var ownerId: String
-    var description: String?
+    var description: String = ""
     var pinIds:[String] = []
     var pins: [Pin] = []
     
@@ -49,10 +49,18 @@ class Album{
         }
     }
     
-    
-    //getAllPins
-    //getPinsWith Ids
-    
+
+    func toAnyObject() -> NSDictionary{
+        return[
+        
+        "name":name,
+        "ownerId":ownerId,
+        "description": description,
+        
+        
+        
+        ]
+    }
     
     
     
