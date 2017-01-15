@@ -8,17 +8,38 @@
 
 import UIKit
 
-protocol dateViewDelegate {
-    func getSelectedDate()
+protocol DateViewDelegate {
+    func getSelectedDate(date:Date)
 }
 
 class DateView: UIView {
-
+    
+    var selectedDate: Date = Date()
+    var delegate: DateViewDelegate?
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBAction func pickDateButton(_ sender: Any) {
-        
-        
+    
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        self.datePicker.date = Date()
+        self.selectedDate = Date()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    @IBAction func pickDateButton(_ sender: Any) {
+    }
+    
+    
+    @IBAction func submitButton(_ sender: UIButton) {
+        self.selectedDate = datePicker.date
+        if let delegate = delegate{
+            delegate.getSelectedDate(date: selectedDate)
+        }
+    }
+    
 
 }

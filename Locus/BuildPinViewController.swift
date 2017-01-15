@@ -19,6 +19,10 @@ class BuildPinViewController: UIViewController {
     var thisUserId:String = FIRAuth.auth()!.currentUser!.uid
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     var iconName: String = "default"
+    
+    // Vars for pickerView transitions
+    var albumData: [(String, String)] = []
+    var selectedAlbumId: String?
 
     
     @IBOutlet weak var pinImage: UIImageView!
@@ -33,6 +37,7 @@ class BuildPinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupKeyboard()
         if let pin = self.pin{
             self.pinImage.image = pin.image!
@@ -67,12 +72,20 @@ class BuildPinViewController: UIViewController {
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
         
+        if pin.albumId != selectedAlbumId{
+            if let id = selectedAlbumId{
+                pin.albumId = id
+            }
+        }
+        
         return pin
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+
     
     
     
@@ -81,20 +94,58 @@ class BuildPinViewController: UIViewController {
     }
     
     @IBAction func dateButton(_ sender: UIButton) {
-        //Get the date view
+        performSegue(withIdentifier: "pickDate", sender: self)
     }
     
     @IBAction func albumButton(_ sender: UIButton) {
-        //get the album view
+        
+        
+        let userId = FIRAuth.auth()!.currentUser?.uid
+        let albumQuery = ref.child("albums").queryOrdered(byChild: "ownerId").queryEqual(toValue: userId)
+        albumQuery.observe(.value, with: { snapshot in
+            for item in snapshot.children{
+                let snap = item as! FIRDataSnapshot
+                let key = snap.key
+                let name = snap.value(forKey: "name") as! String
+                self.albumData.append((key,name))
+            }
+            self.performSegue(withIdentifier: "pickAlbum", sender: self)
+        })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pickDate" {
+            if let pickDate = segue.destination as? DateController{
+                
+                if let pin = pin{
+                    pickDate.datePicker.date = pin.date
+                    pickDate.selectedDate = pin.date
+                }
+                
+                else{
+                    pickDate.selectedDate = Date()
+                }
+            }
+            
+            else if let pickAlbum = segue.destination as? AlbumController{
+                if let pin = pin{
+                    pickAlbum.selectedAlbumId = pin.albumId
+                    pickAlbum.selectedAlbumName = pin.albumName
+                }
+            }
+        }
     }
     
 
+    
+    
     @IBAction func savePin(_ sender: UIButton) {
         
         
         if let pin = self.pin{
             let updatedPin = makePin(pin: pin)
-            updatedPin.save()
+            updatedPin.save(newAlbum: nil)
             //TODO: change to Any Object
             
         }
@@ -103,11 +154,21 @@ class BuildPinViewController: UIViewController {
             let title = titleTextField.text
             let pinToBuild = Pin(title: title!, ownerId: self.thisUserId, coordinate: location)
             let newPin = makePin(pin:pinToBuild)
-            newPin.save()
+            newPin.save(newAlbum: nil)
         }
         
     }
     
+    
+    
+    @IBAction func unwindFromDate(segue:UIStoryboardSegue) {
+        print("got called")
+    
+    }
+    
+    @IBAction func unwindFromAlbum(segue:UIStoryboardSegue) {
+        
+    }
     
 
 
@@ -149,38 +210,5 @@ extension BuildPinViewController {
     func keyboardWillHide(notification: Notification) {
         adjustInsetForKeyboardShow(show: false, notification: notification)
     }
- 
-    
-//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-//        return changePicBtn
-//    }
-//    
-//    func scrollViewDidZoom(scrollView: UIScrollView) {
-//        updateConstraintsForSize(size: view.bounds.size)
-//    }
-//    
-//    
-//    private func updateMinZoomScaleForSize(size: CGSize) {
-//        let widthScale = size.width / changePicBtn.bounds.width
-//        let heightScale = size.height / changePicBtn.bounds.height
-//        let minScale = min(widthScale, heightScale)
-//        
-//        scrollView.minimumZoomScale = minScale
-//        scrollView.zoomScale = minScale
-//    }
-//    
-//    private func updateConstraintsForSize(size: CGSize) {
-//        
-//        let yOffset = max(0, (size.height - changePicBtn.frame.height) / 2)
-//        imageBtnTopConstraint.constant = yOffset
-//        imageBtnBottomConstraint.constant = yOffset
-//        
-//        let xOffset = max(0, (size.width - changePicBtn.frame.width) / 2)
-//        imageBtnLeadingConstraint.constant = xOffset
-//        imageBtnTrailingConstraint.constant = xOffset
-//        
-//        view.layoutIfNeeded()
-//    }
-    
 }
 

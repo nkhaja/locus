@@ -84,7 +84,7 @@ class Pin {
         
     }
     
-    func save(){
+    func save(newAlbum: String?){
         if let ref = self.reference{
             ref.setValue(self)
             if let image = self.image{
@@ -101,13 +101,28 @@ class Pin {
                     self.imageRef!.put(image.toData())
                 }
             })
+            
+            if let newAlbum = newAlbum {
+                changeAlbum(oldAlbumKey: self.albumId, newAlbumKey: newAlbum)
+            }
             pinRef.setValue(self)
-
-            
-            
         }
         
+    
+        
         //save image here instead?
+    }
+    
+    func changeAlbum(oldAlbumKey: String, newAlbumKey: String) {
+        let firebaseAlbums = FIRDatabase.database().reference().child("albums")
+        let oldRef = firebaseAlbums.child(oldAlbumKey).child("pinIds").child(self.id!)
+        oldRef.removeValue()
+        
+        // TODO: This solution is stupid. Think of something better
+        let newRef = firebaseAlbums.child(newAlbumKey).child("pinIds").child(self.id!)
+        newRef.setValue(self.id)
+        
+        self.albumId = newAlbumKey
     }
     
 
