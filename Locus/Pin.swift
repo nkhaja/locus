@@ -16,7 +16,7 @@ class Pin {
     var placeName: String = ""
     var story:String = ""
     var ownerId: String = ""
-    var iconName: String = "default"
+    var iconName: String = "redGooglePin"
     var privacy: Privacy = .pub
     var date: Date = Date()
     var albumName = ""
@@ -104,10 +104,12 @@ class Pin {
                 }
             })
             
-            //There is a new album being assigned (inlcuding first assignment)
+            //There is a new album being assigned
             if let newAlbum = newAlbum {
                 changeAlbum(oldAlbumKey: self.albumId, newAlbumKey: newAlbum)
             }
+            
+           
             
             //Save to Firebase
             pinRef.setValue(self)

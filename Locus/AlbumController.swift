@@ -30,11 +30,16 @@ class AlbumController: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    @IBAction func closeButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pickedAlbum"{
             if let build = segue.destination as? BuildPinViewController{
                 build.selectedAlbumId = selectedAlbumId
-                build.albumLabel.text! = selectedAlbumName!
+                build.albumTextField.text! = selectedAlbumName!
             }
         }
     }

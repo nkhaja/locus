@@ -12,8 +12,8 @@ class DateController: UIViewController {
     
     var selectedDate: Date = Date()
 
-    @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,8 @@ class DateController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func buttonFunc(){
+    
+    @IBAction func submitButton(_ sender: UIButton) {
         selectedDate = datePicker.date
         performSegue(withIdentifier: "unwindFromDate", sender: self)
     }

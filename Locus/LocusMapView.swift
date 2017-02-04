@@ -23,7 +23,11 @@ class LocusMapView: MKMapView {
         mapCamera.heading = 45
         
         self.camera = mapCamera
-        self.delegate?.mapView!(self, regionDidChangeAnimated: true)
+        
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+        
+        self.isUserInteractionEnabled = true
+        
     }
     
     func getDirections(){
@@ -31,6 +35,57 @@ class LocusMapView: MKMapView {
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapItem.openInMaps(launchOptions: launchOptions)
     }
+    
+    
+    
+    func handleTap(sender:UILongPressGestureRecognizer){
+        print("long pressing map")
+        let point = sender.location(in: self)
+        let coordinate = self.convert(point, toCoordinateFrom: self)
+        let annotation = LocusPointAnnotation()
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        annotation.coordinate = coordinate
+        
+        
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if error != nil{
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
+            }
+            
+            if placemarks!.count > 0{
+                let placemark = placemarks![0]
+                annotation.title = placemark.name //+ ", " + pm.subThoroughfare!
+                if let city = placemark.locality, let state = placemark.administrativeArea{
+                    annotation.subtitle = "\(city) \(state)"
+                }
+            }
+            
+            else{
+                annotation.title = "Unregistered Location"
+            }
+            
+            for a in self.annotations{
+                let la = a as? LocusPointAnnotation
+                if let la = la{
+                    if !la.custom {
+                        self.removeAnnotation(la)
+                    }
+                }
+            }
+            
+            self.addAnnotation(annotation)
+            self.selectAnnotation(annotation, animated: true)
+        }
+
+        
+        
+    }
+    
+    
+    func clearNonCustomAnnotations(){
+        
+    }
+    
     
 
 

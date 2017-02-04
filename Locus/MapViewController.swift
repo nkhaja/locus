@@ -13,7 +13,10 @@ import MapKit
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
+    
 }
+
+
 
 
 class MapViewController: UIViewController {
@@ -38,6 +41,7 @@ class MapViewController: UIViewController {
         setupLocation()
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
+        self.mapView.setup()
         
         
         let thisUserQuery = FIRDatabase.database().reference(withPath: "users/\(thisUserID)")
@@ -45,9 +49,12 @@ class MapViewController: UIViewController {
         thisUserQuery.observe(.value, with: { snapshot in
             self.thisUser = User(snapshot: snapshot)
         })
-
-    
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "buildPin"{
@@ -116,6 +123,7 @@ class MapViewController: UIViewController {
 }
 
 
+
 extension MapViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -151,9 +159,13 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
+        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") as? MKPinAnnotationView
+        
         if let locusAnnotation = annotation as? LocusPointAnnotation {
             if locusAnnotation.custom{
-                //return custom annotation view here
+                
+                //Do stuff to customize the view that goes here
+                return pinView
             }
         }
 
@@ -162,8 +174,8 @@ extension MapViewController: MKMapViewDelegate{
         
         
         //else build a condition for clustering pins
-      
-        return nil
+        pinView?.animatesDrop = true
+        return pinView
     }
     
     

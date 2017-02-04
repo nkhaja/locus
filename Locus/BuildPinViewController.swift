@@ -14,11 +14,11 @@ class BuildPinViewController: UIViewController {
 
 
     var pin: Pin?
-    var placeName: String!
+    var placeName: String?
     var location: CLLocationCoordinate2D!
     var thisUserId:String = FIRAuth.auth()!.currentUser!.uid
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
-    var iconName: String = "default"
+    var iconName: String = "redGooglePin"
     
     // Vars for pickerView transitions
     var albumData: [(String, String)] = []
@@ -30,7 +30,8 @@ class BuildPinViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var albumLabel: UILabel!
+//    @IBOutlet weak var albumLabel: UILabel!
+    @IBOutlet weak var albumTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var iconButton: UIButton!
     
@@ -52,7 +53,7 @@ class BuildPinViewController: UIViewController {
             self.titleTextField.text! = pin.title
             self.placeNameTextField.text! = pin.placeName
             self.dateLabel.text! = pin.date.toString()
-            self.albumLabel.text! = pin.albumName
+            self.albumTextField.text! = pin.albumName
             self.storyTextView.text! = pin.story
             self.placeName = pin.placeName
             self.iconName = pin.iconName
@@ -61,9 +62,9 @@ class BuildPinViewController: UIViewController {
         //Setup if new pin
         else{
             self.iconButton.setImage(#imageLiteral(resourceName: "redGooglePin"), for: .normal)
-            placeNameTextField.text! = self.placeName
+            placeNameTextField.text! = self.placeName!
             dateLabel.text! = Date().toString()
-            albumLabel.text! = "No Album Selected"
+            albumTextField.text! = "No Album Selected"
         }
     }
     
@@ -72,10 +73,10 @@ class BuildPinViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func makePin(pin:Pin) -> Pin{
+    func makePin(pin:Pin) -> Pin {
         pin.title = titleTextField.text!
         pin.placeName = placeNameTextField.text!
-        pin.albumName = albumLabel.text!
+        pin.albumName = albumTextField.text!
         pin.date = dateLabel.text!.toDate()
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
@@ -98,6 +99,8 @@ class BuildPinViewController: UIViewController {
     @IBAction func dateButton(_ sender: UIButton) {
         performSegue(withIdentifier: "pickDate", sender: self)
     }
+    
+    
     
     @IBAction func albumButton(_ sender: UIButton) {
         
@@ -149,7 +152,7 @@ class BuildPinViewController: UIViewController {
         if let pin = self.pin{
             let updatedPin = makePin(pin: pin)
             updatedPin.save(newAlbum: nil)
-            //TODO: change to Any Object
+            // TODO: change to Any Object
             
         }
         
@@ -178,6 +181,7 @@ class BuildPinViewController: UIViewController {
 //Handle keyboard
 
 //Extension for accessing camera with gestures
+
 extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
     func setupImageGesture(){
@@ -199,8 +203,11 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
             self.openMedia(source: .photoLibrary)
         }
         
+        let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        
         cameraAlert.addAction(cameraAction)
         cameraAlert.addAction(galleryAction)
+        cameraAlert.addAction(cancelAction)
         
         self.present(cameraAlert, animated: true, completion: nil)
     }
@@ -257,24 +264,16 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
     
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-
-//        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//            self.pinImage.image = image
-//        }
         
         picker.dismiss(animated: true) {
             if let image =  info[UIImagePickerControllerOriginalImage] as? UIImage{
                 self.pinImage.image = image
-                self.requestSavingToGallery(image: image)
+                if picker.sourceType == .camera{
+                    self.requestSavingToGallery(image: image)
+                }
             }
         }
     }
-    
-    
-
-    
-
-    
     
 }
 
@@ -310,7 +309,11 @@ extension BuildPinViewController {
     func keyboardWillHide(notification: Notification) {
         adjustInsetForKeyboardShow(show: false, notification: notification)
     }
-    
+}
 
+
+protocol TouchActivatedMedia {
+   
+    
 }
 
