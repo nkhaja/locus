@@ -51,18 +51,17 @@ class MapViewController: UIViewController {
         })
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "buildPin"{
             if let build = segue.destination as? BuildPinViewController{
-                
-                
-                build.placeName = "\(selectedAnnotation!.title),\(selectedAnnotation!.subtitle)"
-                build.location = selectedAnnotation?.coordinate
+                if let title = selectedAnnotation!.title, let subtitle = selectedAnnotation!.subtitle{
+                    build.placeName = "\(title ?? ""), \(subtitle ?? "")"
+                    build.location = selectedAnnotation?.coordinate
+                }
+
             }
         }
     }
@@ -225,6 +224,7 @@ extension MapViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         
+        mapView.clearAnnotations()
         mapView.addAnnotation(annotation)
         
         //refactor the lines below into their own function

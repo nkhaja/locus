@@ -31,6 +31,7 @@
 		BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */; };
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
 		BD365DFD1E21BDC4005BD9BE /* CustomCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */; };
+		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPinViewController.swift; sourceTree = "<group>"; };
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
 		BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCallout.xib; sourceTree = "<group>"; };
+		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Locus/LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				BD2DE4FA1E0F22070078AC9A /* map.storyboard */,
 				BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */,
 				BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */,
+				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
 				BD1A7AFE1E06081F001E290B /* Info.plist */,
@@ -309,6 +312,7 @@
 				BD30E13F1E282FB3007D82F7 /* CustomAnnotationView.swift in Sources */,
 				BD30E13B1E280D4A007D82F7 /* Album.swift in Sources */,
 				BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */,
+				BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */,
 				BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */,
 				BD30BFE01E2AC8610040B2E6 /* DateController.swift in Sources */,
 				BD30E13D1E282407007D82F7 /* Helper.swift in Sources */,

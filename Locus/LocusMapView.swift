@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class LocusMapView: MKMapView {
+class LocusMapView: MKMapView, Clearable {
     var selectedMark:MKPlacemark?
     
     func setup(){
@@ -64,28 +64,17 @@ class LocusMapView: MKMapView {
                 annotation.title = "Unregistered Location"
             }
             
-            for a in self.annotations{
-                let la = a as? LocusPointAnnotation
-                if let la = la{
-                    if !la.custom {
-                        self.removeAnnotation(la)
-                    }
-                }
-            }
-            
+
+            self.clearAnnotations()
             self.addAnnotation(annotation)
             self.selectAnnotation(annotation, animated: true)
         }
 
         
-        
     }
     
     
-    func clearNonCustomAnnotations(){
-        
-    }
-    
+
     
 
 

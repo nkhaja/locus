@@ -37,7 +37,7 @@ class DateController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindFromDate"{
             if let build = segue.destination as? BuildPinViewController{
-                build.dateLabel.text! = selectedDate.toString()
+//                build.dateLabel.text! = selectedDate.toString()
             }
         }
     }

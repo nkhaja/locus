@@ -29,7 +29,8 @@ class BuildPinViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var placeNameTextField: UITextField!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateTextField: UITextField!
+    
 //    @IBOutlet weak var albumLabel: UILabel!
     @IBOutlet weak var albumTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
@@ -41,7 +42,12 @@ class BuildPinViewController: UIViewController {
         
         //Setup
         setupKeyboard()
-        setupImageGesture()
+        setupGestures()
+        
+        
+        //Set datePicker as Input for dateTextfield
+        dateTextField.delegate = self
+        
         
         
         //Setup if pre-existing pin
@@ -52,20 +58,27 @@ class BuildPinViewController: UIViewController {
             
             self.titleTextField.text! = pin.title
             self.placeNameTextField.text! = pin.placeName
-            self.dateLabel.text! = pin.date.toString()
+            self.dateTextField.text! = pin.date.toString()
             self.albumTextField.text! = pin.albumName
             self.storyTextView.text! = pin.story
             self.placeName = pin.placeName
             self.iconName = pin.iconName
+            
         }
         
         //Setup if new pin
         else{
             self.iconButton.setImage(#imageLiteral(resourceName: "redGooglePin"), for: .normal)
             placeNameTextField.text! = self.placeName!
-            dateLabel.text! = Date().toString()
+            dateTextField.text! = Date().toString()
             albumTextField.text! = "No Album Selected"
         }
+        
+        self.iconButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     
@@ -77,9 +90,14 @@ class BuildPinViewController: UIViewController {
         pin.title = titleTextField.text!
         pin.placeName = placeNameTextField.text!
         pin.albumName = albumTextField.text!
-        pin.date = dateLabel.text!.toDate()
+        pin.date = dateTextField.text!.toDate()
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
+        pin.image = pinImage.image
+        
+        if albumTextField.text == "No Album Selected"{
+            pin.albumName = ""
+        }
         
         //Pin is gettings its first or new album
         if pin.albumId != selectedAlbumId{
@@ -93,14 +111,11 @@ class BuildPinViewController: UIViewController {
     
     
     @IBAction func selectIconButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "seeIcons", sender: self)
+        performSegue(withIdentifier: String(describing: IconCollectionController.self), sender: self)
     }
     
-    @IBAction func dateButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "pickDate", sender: self)
-    }
-    
-    
+
+
     
     @IBAction func albumButton(_ sender: UIButton) {
         
@@ -162,16 +177,15 @@ class BuildPinViewController: UIViewController {
             let newPin = makePin(pin:pinToBuild)
             newPin.save(newAlbum: nil)
         }
+    }
+    
+    
+    
+    @IBAction func unwindFromIconSelection(segue: UIStoryboardSegue){
         
     }
     
-    
-    
-    @IBAction func unwindFromDate(segue:UIStoryboardSegue) {
-        print("got called")
-    
-    }
-    
+
     @IBAction func unwindFromAlbum(segue:UIStoryboardSegue) {
         
     }
@@ -184,10 +198,21 @@ class BuildPinViewController: UIViewController {
 
 extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
-    func setupImageGesture(){
+    func setupGestures(){
         let tapImage = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        
+//        let tapScreen = UITapGestureRecognizer
         self.pinImage.isUserInteractionEnabled = true
         self.pinImage.addGestureRecognizer(tapImage)
+        
+        
+        let tapView = UITapGestureRecognizer(target: self, action: #selector(closeKeyBoard))
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapView)
+    }
+    
+    func closeKeyBoard(){
+        self.view.endEditing(true)
     }
     
     
@@ -252,7 +277,6 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
-
     }
     
     
@@ -276,6 +300,26 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
 }
+
+extension BuildPinViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == self.dateTextField {
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+            textField.addTarget(self, action: #selector(dateChanged(sender:)), for: .valueChanged)
+        }
+    }
+    
+    
+    func dateChanged(sender:UIDatePicker){
+        self.dateTextField.text = sender.date.toString()
+        // TODO: add an invisible view to click on to escape keyboard
+    }
+        
+    
+}
+
 
 
 extension BuildPinViewController {
@@ -309,11 +353,5 @@ extension BuildPinViewController {
     func keyboardWillHide(notification: Notification) {
         adjustInsetForKeyboardShow(show: false, notification: notification)
     }
-}
-
-
-protocol TouchActivatedMedia {
-   
-    
 }
 

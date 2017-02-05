@@ -8,11 +8,32 @@
 
 import Foundation
 import UIKit
+import MapKit
 
-class Helper{
+class Helper {
     
+    
+}
 
+
+protocol Clearable {
     
+    // meant to clear non-custom annotations (i.e. pins used to sample locations)
+    func clearAnnotations()
+}
+
+extension Clearable where Self: MKMapView {
+    func clearAnnotations(){
+        for a in self.annotations{
+            let la = a as? LocusPointAnnotation
+            if let la = la{
+                if !la.custom {
+                    self.removeAnnotation(la)
+                }
+            }
+        }
+        
+    }
 }
 
 

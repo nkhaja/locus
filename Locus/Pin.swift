@@ -83,26 +83,26 @@ class Pin {
     func save(newAlbum: String?){
         // previously saved object
         if let ref = self.reference{
-            ref.setValue(self)
+            ref.setValue(self.toAnyObject())
             
             //pin has an image to store
-            if let image = self.image{
-                imageRef!.put(image.toData())
+            if let image = self.image, let imageRef = imageRef{
+                imageRef.put(image.toData())
             }
             //saveImageHere
         }
         //object being saved for the first time
         else{
             let pinRef = FIRDatabase.database().reference().child("pins").childByAutoId()
-            pinRef.observe(.childAdded, with: { snapshot in
-                self.id = snapshot.key
-                self.imageRef = self.storage.child(snapshot.key)
-                
-                //pin has an image to store
-                if let image = self.image{
-                    self.imageRef!.put(image.toData())
-                }
-            })
+            
+            self.id = pinRef.key
+            self.imageRef = self.storage.child(self.id!)
+            if let image = self.image{
+                self.imageRef!.put(image.toData())
+                // TODO: a second condition to avoid uploading unchanged pics
+            }
+            
+            
             
             //There is a new album being assigned
             if let newAlbum = newAlbum {
@@ -112,7 +112,7 @@ class Pin {
            
             
             //Save to Firebase
-            pinRef.setValue(self)
+            pinRef.setValue(self.toAnyObject())
         }
         
     
@@ -165,8 +165,8 @@ class Pin {
             "date": date.toString(),
             "albumName": albumName,
             "albumId": albumName,
-            "lat": coordinate.latitude,
-            "lon": coordinate.longitude
+            "lat": String(coordinate.latitude),
+            "lon": String(coordinate.longitude)
         ]
     }
     
