@@ -19,7 +19,7 @@ protocol HandleMapSearch {
 
 
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController{
     
     // Location Variables
     @IBOutlet weak var mapView: LocusMapView!
@@ -248,11 +248,8 @@ extension MapViewController: HandleMapSearch {
     }
 }
 
-extension MapViewController: KhajaPhotoLibraryDelegate {
-    func getImagesAndMetaData(info: [(image: UIImage, metaData: [String : Any])]) {
-        print("cjese")
+extension MapViewController: Mappable{
+    func getSelectedGpsPhotos(metaPhotos: MetaPhotoStorage) {
+        print("wohoo!")
     }
-    
-    
-    
 }

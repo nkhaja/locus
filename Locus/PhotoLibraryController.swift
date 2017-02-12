@@ -11,8 +11,12 @@ protocol KhajaPhotoLibraryDelegate: class{
     func getImagesAndMetaData(info: [(image: UIImage, metaData: [String:Any])])
 }
 
-protocol mappable {
-    func getImagesWithGps()
+protocol GeoTaggedLibrary: class{
+    func getImagesWithGps(completion: @escaping (MetaPhotoStorage) -> ())
+}
+
+protocol Mappable: class {
+    func getSelectedGpsPhotos(metaPhotos: MetaPhotoStorage)
 }
 
 
@@ -20,77 +24,33 @@ protocol mappable {
 import UIKit
 import Photos
 
-class PhotoLibraryController: UIViewController, mappable {
+class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
 
     
-    var images = [UIImage]()
-    var metaPhotoStorage: MetaPhotoStorage!
-    var contentImages = [CIImage]()
+//    var images = [UIImage]()
+    var metaPhotoStorage: MetaPhotoStorage = MetaPhotoStorage()
     var properties = [[String:Any]]()
     var selectedImage: UIImage?
     var multiSelect: Bool = false
     var selectedIndexes: [Int:Bool] = [:]
-    weak var delegate: KhajaPhotoLibraryDelegate?
+    weak var delegate: Mappable?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.metaPhotoStorage = getImagesWithGps()
+        getImagesWithGps { [unowned self] metaPhotos in
+            self.metaPhotoStorage = metaPhotos
+            self.collectionView.reloadData()
+        }
+        
+        
+        
         submitButton.isHidden = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
     }
-    
-    
-    func retrievePhotos(){
-        //Declare a singleton of PHImangeManger class
-        let imgManager = PHImageManager.default()
-        
-        //requestion options determine media type, and quality
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
-        requestOptions.isNetworkAccessAllowed = true
-        
-        
-        let fetchOptions = PHFetchOptions()
-        
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        
-        
-        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        
-        if fetchResult.count > 0{
-            let size = CGSize(width: 200, height: 200)
-            for i in 0..<fetchResult.count {
-                imgManager.requestImage(for: fetchResult.object(at: i),
-                                        targetSize: size,
-                                        contentMode: .aspectFit,
-                                        options: requestOptions,
-                                        resultHandler: { image, info in
-                                            
-                                            self.images.append(image!)
-                })
-                
-                let asset = fetchResult.object(at: i)
-                let options = PHContentEditingInputRequestOptions()
-                options.isNetworkAccessAllowed = true
-                asset.requestContentEditingInput(with: options, completionHandler: { contentEditingInput, info in
-                    
-                    
-                    let fullImage = CIImage(contentsOf: contentEditingInput!.fullSizeImageURL!)
-                    self.properties.append(fullImage!.properties)
-                    print(fullImage!.properties)
-                })
-                
-            }
-        }
-            
-        else{
-            print("no images found")
-        }
-    }
+
     
     func multiSelectPressed(){
         multiSelect = !multiSelect
@@ -102,12 +62,19 @@ class PhotoLibraryController: UIViewController, mappable {
     
     @IBAction func submitButton(_ sender: UIButton) {
         
-        var info = [(image: UIImage, metaData: [String:Any])]()
+        var metaPhotos = MetaPhotoStorage()
+        
+        //return new metaPhotoStorage with only desired photos
         for key in selectedIndexes.keys {
-            info.append((images[key], properties[key]))
+            let metaPhoto = metaPhotoStorage.metaPhotos[key]
+            metaPhotos.storePhoto(metaPhoto: metaPhoto)
         }
         
-        print(info.count)
+        if let delegate = delegate{
+            delegate.getSelectedGpsPhotos(metaPhotos: metaPhotos)
+        }
+        
+        
     }
     
     
@@ -126,13 +93,15 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return images.count
+        return metaPhotoStorage.metaPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AssetCollectionCell.self), for: indexPath) as! AssetCollectionCell
         
         let row = indexPath.row
+        
+        let metaPhotos = metaPhotoStorage.metaPhotos
         
         if multiSelect {
             cell.checkBox.isHidden = false
@@ -163,19 +132,20 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         }
         
         
-        cell.imageView.image = images[row]
+        cell.imageView.image = metaPhotos[row].image
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let gps = properties[indexPath.row]["{GPS}"] as? [String:Any]{
+        let metaPhotos = metaPhotoStorage.metaPhotos
+        if let gps = metaPhotos[indexPath.row].data!["{GPS}"] as? [String:Any]{
             if let longitude = gps["Longitude"] as? Double{
                 print(longitude)
             }
         }
         
         let row = indexPath.row
-        selectedImage = images[row]
+        selectedImage = metaPhotoStorage.metaPhotos[row].image
         
         if multiSelect{
             //this item has been selected before
@@ -222,7 +192,9 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
 
 // Currenlty repeating activity with asset getting; refactor
 
-extension mappable {
+
+
+extension GeoTaggedLibrary {
     
     func hasCoordinates(image:CIImage) -> Bool{
         var hasLongitude = false
@@ -253,9 +225,11 @@ extension mappable {
     }
     
     
-    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions) -> MetaPhotoStorage{
+    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, completion: @escaping (MetaPhotoStorage) -> ()){
         
         var output = MetaPhotoStorage()
+        var output_dispatch = DispatchGroup()
+        
 
         
         //Options for retrieving meta data
@@ -275,10 +249,13 @@ extension mappable {
             
             
             let asset = fetchResult.object(at: i)
+            
+            output_dispatch.enter()
             asset.requestContentEditingInput(with: editingOtions, completionHandler: { contentEditingInput, info in
                 
                 // Makes a CImage
-                if let image = self.makeImage(contentEditingInput: contentEditingInput){
+                let cImage = self.makeImage(contentEditingInput: contentEditingInput)
+                if let image = cImage{
                     //Checks if GPS exists using properties of CIImage
                     if self.hasCoordinates(image: image){
                         thisMetaPhoto.data = image.properties
@@ -301,14 +278,20 @@ extension mappable {
                                                 output.storePhoto(metaPhoto: thisMetaPhoto)
                     })
                 }
+                
+                output_dispatch.leave()
             })
         }
         
-        return output
+        output_dispatch.notify(queue: DispatchQueue.main) { 
+            completion(output)
+        }
+        
+
     }
     
     
-    func getImagesWithGps() -> MetaPhotoStorage? {
+    func getImagesWithGps(completion: @escaping (MetaPhotoStorage) -> ()){
         // Declare a singleton of PHImangeManger class
         let imgManager = PHImageManager.default()
         
@@ -328,11 +311,13 @@ extension mappable {
         
         
         if fetchResult.count > 0 {
-            return fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions)
+             fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions, completion: { metaPhotos in
+                completion(metaPhotos)
+             })
         }
         
         else{
-            return nil
+            return
         }
     }
 }
@@ -341,12 +326,12 @@ extension mappable {
 
         
 struct MetaPhotoStorage{
-    var metaPhotos : [(image: UIImage, meta: [String:Any])] = []
+    var metaPhotos = [MetaPhoto]()
     
     mutating func storePhoto(metaPhoto: MetaPhoto){
         if let image = metaPhoto.image, let meta = metaPhoto.data{
-            let pair = (image: image, meta: meta)
-            metaPhotos.append(pair)
+            let metaPhoto = MetaPhoto(image: image, data: meta)
+            metaPhotos.append(metaPhoto)
         }
     }
 }
