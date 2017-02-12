@@ -11,15 +11,22 @@ protocol KhajaPhotoLibraryDelegate: class{
     func getImagesAndMetaData(info: [(image: UIImage, metaData: [String:Any])])
 }
 
+protocol mappable {
+    func getImagesWithGps()
+}
+
+
+
 import UIKit
 import Photos
 
-class PhotoLibraryController: UIViewController {
+class PhotoLibraryController: UIViewController, mappable {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
 
     
     var images = [UIImage]()
+    var metaPhotoStorage: MetaPhotoStorage!
     var contentImages = [CIImage]()
     var properties = [[String:Any]]()
     var selectedImage: UIImage?
@@ -30,8 +37,8 @@ class PhotoLibraryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        retrievePhotos()
-        
+        self.metaPhotoStorage = getImagesWithGps()
+        submitButton.isHidden = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
     }
     
@@ -101,7 +108,6 @@ class PhotoLibraryController: UIViewController {
         }
         
         print(info.count)
-        //        print(info)
     }
     
     
@@ -211,3 +217,143 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     }
 }
 
+
+
+
+// Currenlty repeating activity with asset getting; refactor
+
+extension mappable {
+    
+    func hasCoordinates(image:CIImage) -> Bool{
+        var hasLongitude = false
+        var hasLatitude = false
+        
+        let properties = image.properties
+        if let gps = properties["{GPS}"] as? [String:Any]{
+            if (gps["Longitude"] as? Double) != nil{
+                hasLongitude = true
+            }
+            if (gps["Latitude"] as? Double) != nil{
+                hasLatitude = true
+            }
+        }
+        
+        return hasLatitude && hasLongitude
+    }
+    
+    // Its a waste to make the image just for meta-data, find a better way
+    func makeImage(contentEditingInput: PHContentEditingInput?) -> CIImage?{
+        if let url = contentEditingInput?.fullSizeImageURL{
+            let fullImage = CIImage(contentsOf: url)
+            if let fullImage = fullImage{
+                return fullImage
+            }
+        }
+        return nil
+    }
+    
+    
+    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions) -> MetaPhotoStorage{
+        
+        var output = MetaPhotoStorage()
+
+        
+        //Options for retrieving meta data
+        let editingOtions = PHContentEditingInputRequestOptions()
+        editingOtions.isNetworkAccessAllowed = true
+        
+        for i in 0..<fetchResult.count {
+            
+            
+            // the photo-properties tuple for this pair if there are GPS coordinates available
+            var thisMetaPhoto = MetaPhoto()
+            
+            // tells us whether this photos has GPS data
+            var gpsPhotoIndex = false
+            
+        
+            
+            
+            let asset = fetchResult.object(at: i)
+            asset.requestContentEditingInput(with: editingOtions, completionHandler: { contentEditingInput, info in
+                
+                // Makes a CImage
+                if let image = self.makeImage(contentEditingInput: contentEditingInput){
+                    //Checks if GPS exists using properties of CIImage
+                    if self.hasCoordinates(image: image){
+                        thisMetaPhoto.data = image.properties
+                        gpsPhotoIndex = true
+                    }
+                }
+                
+                if gpsPhotoIndex{
+                    
+                    // desired size of returned images
+                    let size = CGSize(width: 200, height: 200)
+                    
+                    // Only returning photos with image data, Request the image of given quality sychronously
+                    imgManager.requestImage(for: asset,
+                                            targetSize: size,
+                                            contentMode: .aspectFit,
+                                            options: requestOptions,
+                                            resultHandler: { image, info in
+                                               thisMetaPhoto.image = image
+                                                output.storePhoto(metaPhoto: thisMetaPhoto)
+                    })
+                }
+            })
+        }
+        
+        return output
+    }
+    
+    
+    func getImagesWithGps() -> MetaPhotoStorage? {
+        // Declare a singleton of PHImangeManger class
+        let imgManager = PHImageManager.default()
+        
+        // Requestion options determine media type, and quality
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+        requestOptions.deliveryMode = .highQualityFormat
+        requestOptions.isNetworkAccessAllowed = true
+        
+        // Options for retrieving photos
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        
+        
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        
+        if fetchResult.count > 0 {
+            return fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions)
+        }
+        
+        else{
+            return nil
+        }
+    }
+}
+
+
+
+        
+struct MetaPhotoStorage{
+    var metaPhotos : [(image: UIImage, meta: [String:Any])] = []
+    
+    mutating func storePhoto(metaPhoto: MetaPhoto){
+        if let image = metaPhoto.image, let meta = metaPhoto.data{
+            let pair = (image: image, meta: meta)
+            metaPhotos.append(pair)
+        }
+    }
+}
+
+struct MetaPhoto {
+    var image: UIImage?
+    var data: [String:Any]?
+    
+    
+}

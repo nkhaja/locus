@@ -60,7 +60,7 @@
                     <connections>
                         <outlet property="mapView" destination="k6O-LB-GKl" id="CJE-bQ-ZXl"/>
                         <segue destination="K4y-s3-duB" kind="presentation" identifier="buildPin" id="E83-uJ-KW2"/>
-                        <segue destination="xqg-De-0Bv" kind="show" identifier="library" id="hQ4-FV-NqY"/>
+                        <segue destination="xqg-De-0Bv" kind="show" identifier="photoLibrary" id="hQ4-FV-NqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -198,7 +198,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ssk-yL-pmB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbf-Kz-EyC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fbf-Kz-EyC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -219,10 +219,10 @@
             </objects>
             <point key="canvasLocation" x="2569" y="-123"/>
         </scene>
-        <!--photoLibrary-->
+        <!--PhotoLibrary-->
         <scene sceneID="tdZ-3t-kkE">
             <objects>
-                <viewControllerPlaceholder storyboardName="photoLibrary" id="xqg-De-0Bv" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="PhotoLibrary" id="xqg-De-0Bv" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbV-E9-Gbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2598" y="-470"/>

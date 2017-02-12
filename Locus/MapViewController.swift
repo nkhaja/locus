@@ -63,6 +63,10 @@ class MapViewController: UIViewController {
                 }
             }
             
+
+        }
+        
+        else if segue.identifier == "photoLibrary"{
             if let photoLib = segue.destination as? PhotoLibraryController {
                 photoLib.delegate = self
             }
