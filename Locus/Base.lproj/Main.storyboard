@@ -221,10 +221,10 @@
             </objects>
             <point key="canvasLocation" x="34" y="0.0"/>
         </scene>
-        <!--map-->
+        <!--Map-->
         <scene sceneID="Uom-yu-Aqw">
             <objects>
-                <viewControllerPlaceholder storyboardName="map" id="npX-tO-Ddq" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Map" id="npX-tO-Ddq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="O7a-04-zUI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZn-el-9or" userLabel="First Responder" sceneMemberID="firstResponder"/>

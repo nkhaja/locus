@@ -316,8 +316,6 @@ extension BuildPinViewController: UITextFieldDelegate{
         self.dateTextField.text = sender.date.toString()
         // TODO: add an invisible view to click on to escape keyboard
     }
-        
-    
 }
 
 

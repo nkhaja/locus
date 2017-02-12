@@ -36,6 +36,14 @@
                                     <action selector="signOutButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="YCK-0f-F21"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xni-VO-BE4">
+                                <rect key="frame" x="282" y="117" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AddImages"/>
+                                <connections>
+                                    <action selector="addImages:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pq2-2f-dxu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -52,6 +60,7 @@
                     <connections>
                         <outlet property="mapView" destination="k6O-LB-GKl" id="CJE-bQ-ZXl"/>
                         <segue destination="K4y-s3-duB" kind="presentation" identifier="buildPin" id="E83-uJ-KW2"/>
+                        <segue destination="xqg-De-0Bv" kind="show" identifier="library" id="hQ4-FV-NqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -208,7 +217,15 @@
                 <viewControllerPlaceholder storyboardIdentifier="EditPinVC" storyboardName="EditPin" id="K4y-s3-duB" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tA-QF-isX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562" y="-126"/>
+            <point key="canvasLocation" x="2569" y="-123"/>
+        </scene>
+        <!--photoLibrary-->
+        <scene sceneID="tdZ-3t-kkE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="photoLibrary" id="xqg-De-0Bv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XbV-E9-Gbq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2598" y="-470"/>
         </scene>
     </scenes>
     <resources>

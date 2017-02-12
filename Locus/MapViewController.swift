@@ -61,7 +61,10 @@ class MapViewController: UIViewController {
                     build.placeName = "\(title ?? ""), \(subtitle ?? "")"
                     build.location = selectedAnnotation?.coordinate
                 }
-
+            }
+            
+            if let photoLib = segue.destination as? PhotoLibraryController {
+                photoLib.delegate = self
             }
         }
     }
@@ -119,6 +122,13 @@ class MapViewController: UIViewController {
         GIDSignIn.sharedInstance().signOut()
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func addImages(_ sender: Any) {
+        performSegue(withIdentifier: "photoLibrary", sender: self)
+
+    }
+    
+    
 }
 
 
@@ -232,5 +242,13 @@ extension MapViewController: HandleMapSearch {
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
     }
+}
+
+extension MapViewController: KhajaPhotoLibraryDelegate {
+    func getImagesAndMetaData(info: [(image: UIImage, metaData: [String : Any])]) {
+        print("cjese")
+    }
+    
+    
     
 }
