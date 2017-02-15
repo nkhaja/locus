@@ -7,12 +7,8 @@
 //
 
 
-protocol KhajaPhotoLibraryDelegate: class{
-    func getImagesAndMetaData(info: [(image: UIImage, metaData: [String:Any])])
-}
-
 protocol GeoTaggedLibrary: class{
-    func getImagesWithGps(completion: @escaping (MetaPhotoStorage) -> ())
+    func getImagesWithGps(completion: @escaping ([GpsPhoto]) -> ())
 }
 
 protocol Mappable: class {
@@ -30,7 +26,8 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
 
     
 //    var images = [UIImage]()
-    var metaPhotoStorage: MetaPhotoStorage = MetaPhotoStorage()
+//    var metaPhotoStorage: MetaPhotoStorage = MetaPhotoStorage()
+    var gpsPhotos = [GpsPhoto]()
     var properties = [[String:Any]]()
     var selectedImage: UIImage?
     var multiSelect: Bool = false
@@ -40,8 +37,8 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImagesWithGps { [unowned self] metaPhotos in
-            self.metaPhotoStorage = metaPhotos
+        getImagesWithGps { [unowned self] gpsPhotos in
+            self.gpsPhotos = gpsPhotos
             self.collectionView.reloadData()
         }
         
@@ -61,30 +58,10 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     
     @IBAction func submitButton(_ sender: UIButton) {
+    
         
-        var photoStorage = [GpsPhoto]()
-        
-        //return new metaPhotoStorage with only desired photos
-        for key in selectedIndexes.keys {
-            // Items below are guaranteed to exist at this point
-            if selectedIndexes[key]! {
-                
-                let metaPhoto = metaPhotoStorage.metaPhotos[key]
-                let gps = metaPhoto.data!["{GPS}"] as! [String:Any]
-                let lat = gps["Latitude"] as! CLLocationDegrees
-                let lon = gps["Longitude"] as! CLLocationDegrees
-                let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                
-                let gpsPhoto = GpsPhoto(image: metaPhoto.image!, location: location)
-                photoStorage.append(gpsPhoto)
-                
-            }
-
-
-        }
-        
-        if delegate != nil  && photoStorage.count > 0{
-            delegate!.getSelectedGpsPhotos(gpsPhotos: photoStorage)
+        if delegate != nil  && gpsPhotos.count > 0{
+            delegate!.getSelectedGpsPhotos(gpsPhotos: self.gpsPhotos)
         }
         
         self.navigationController?.popViewController(animated: true)
@@ -108,7 +85,7 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return metaPhotoStorage.metaPhotos.count
+        return gpsPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -116,7 +93,6 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         
         let row = indexPath.row
         
-        let metaPhotos = metaPhotoStorage.metaPhotos
         
         if multiSelect {
             cell.checkBox.isHidden = false
@@ -147,20 +123,14 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         }
         
         
-        cell.imageView.image = metaPhotos[row].image
+        cell.imageView.image = gpsPhotos[row].image
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let metaPhotos = metaPhotoStorage.metaPhotos
-        if let gps = metaPhotos[indexPath.row].data!["{GPS}"] as? [String:Any]{
-            if let longitude = gps["Longitude"] as? Double{
-                print(longitude)
-            }
-        }
         
         let row = indexPath.row
-        selectedImage = metaPhotoStorage.metaPhotos[row].image
+        selectedImage = gpsPhotos[row].image
         
         if multiSelect{
             //this item has been selected before
@@ -240,10 +210,10 @@ extension GeoTaggedLibrary {
     }
     
     
-    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, completion: @escaping (MetaPhotoStorage) -> ()){
+    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, completion: @escaping ([GpsPhoto]) -> ()){
         
-        var output = MetaPhotoStorage()
-        var output_dispatch = DispatchGroup()
+        var output = [GpsPhoto]()
+        let output_dispatch = DispatchGroup()
         
 
         
@@ -252,50 +222,33 @@ extension GeoTaggedLibrary {
         editingOtions.isNetworkAccessAllowed = true
         
         for i in 0..<fetchResult.count {
-            
-            
-            // the photo-properties tuple for this pair if there are GPS coordinates available
-            var thisMetaPhoto = MetaPhoto()
-            
-            // tells us whether this photos has GPS data
-            var gpsPhotoIndex = false
-            
-        
-            
-            
+
             let asset = fetchResult.object(at: i)
-            
             output_dispatch.enter()
-            asset.requestContentEditingInput(with: editingOtions, completionHandler: { contentEditingInput, info in
-                
-                // Makes a CImage
-                let cImage = self.makeImage(contentEditingInput: contentEditingInput)
-                if let image = cImage{
-                    //Checks if GPS exists using properties of CIImage
-                    if self.hasCoordinates(image: image){
-                        thisMetaPhoto.data = image.properties
-                        gpsPhotoIndex = true
-                    }
-                }
-                
-                if gpsPhotoIndex{
-                    
-                    // desired size of returned images
-                    let size = CGSize(width: 200, height: 200)
-                    
-                    // Only returning photos with image data, Request the image of given quality sychronously
-                    imgManager.requestImage(for: asset,
-                                            targetSize: size,
-                                            contentMode: .aspectFit,
-                                            options: requestOptions,
-                                            resultHandler: { image, info in
-                                               thisMetaPhoto.image = image
-                                                output.storePhoto(metaPhoto: thisMetaPhoto)
-                    })
-                }
+   
+            
+            // desired size of returned images
+            let size = CGSize(width: 200, height: 200)
+            
+            // Only returning photos with image data, Request the image of given quality sychronously
+            imgManager.requestImage(for: asset,
+                                    targetSize: size,
+                                    contentMode: .aspectFit,
+                                    options: requestOptions,
+                                    resultHandler: { image, info in
+                                        
+                                        if let coordinate = asset.location?.coordinate, let image = image{
+                                            let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                                            let gpsPhoto = GpsPhoto(image: image, location: location2d)
+                                            output.append(gpsPhoto)
+                                        }
+                                        
+
+            })
+            
                 
                 output_dispatch.leave()
-            })
+        
         }
         
         output_dispatch.notify(queue: DispatchQueue.main) { 
@@ -306,7 +259,7 @@ extension GeoTaggedLibrary {
     }
     
     
-    func getImagesWithGps(completion: @escaping (MetaPhotoStorage) -> ()){
+    func getImagesWithGps(completion: @escaping ([GpsPhoto]) -> ()){
         // Declare a singleton of PHImangeManger class
         let imgManager = PHImageManager.default()
         
@@ -320,14 +273,12 @@ extension GeoTaggedLibrary {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
-        
-        
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
         
         if fetchResult.count > 0 {
-             fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions, completion: { metaPhotos in
-                completion(metaPhotos)
+             fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions, completion: { gpsPhotos in
+                completion(gpsPhotos)
              })
         }
         
@@ -337,28 +288,8 @@ extension GeoTaggedLibrary {
     }
 }
 
-
-
-        
-struct MetaPhotoStorage{
-    var metaPhotos = [MetaPhoto]()
-    
-    mutating func storePhoto(metaPhoto: MetaPhoto){
-        if let image = metaPhoto.image, let meta = metaPhoto.data{
-            let metaPhoto = MetaPhoto(image: image, data: meta)
-            metaPhotos.append(metaPhoto)
-        }
-    }
-}
-
-struct MetaPhoto {
-    var image: UIImage?
-    var data: [String:Any]?
-}
-
-
 // refactor metaPhotos to GPS photos time permitting
-struct GpsPhoto{
+struct GpsPhoto {
     var image: UIImage
     var location: CLLocationCoordinate2D
 }
