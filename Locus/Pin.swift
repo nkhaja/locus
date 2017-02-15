@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 import MapKit
 
+// TODO: Prevent location collisions
+
 class Pin {
     
     var title: String = ""
@@ -34,6 +36,13 @@ class Pin {
         self.title = title
         self.ownerId = ownerId
         self.coordinate = coordinate
+    }
+    
+    // For initializing GPSimages in batches out of the library
+    init(ownerId:String, coordinate: CLLocationCoordinate2D, image: UIImage){
+        self.ownerId = ownerId
+        self.coordinate = coordinate
+        self.image = image
     }
     
     init(snapshot: FIRDataSnapshot, ownerId: String?){
@@ -83,7 +92,9 @@ class Pin {
     func save(newAlbum: String?){
         // previously saved object
         if let ref = self.reference{
+            
             ref.setValue(self.toAnyObject())
+         
             
             //pin has an image to store
             if let image = self.image, let imageRef = imageRef{
@@ -111,7 +122,16 @@ class Pin {
             
            
             
-            //Save to Firebase
+            
+            if self.placeName == "" {
+                
+                reverseGeoLocation(coordinate: coordinate){ [unowned self] place in
+                    self.placeName = place
+                    pinRef.setValue(self.toAnyObject())
+                }
+                return
+            }
+            
             pinRef.setValue(self.toAnyObject())
         }
         
@@ -152,6 +172,30 @@ class Pin {
         }
         
 
+    }
+    
+    
+    func reverseGeoLocation(coordinate: CLLocationCoordinate2D, completion: @escaping (String) -> ()) {
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if error != nil{
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
+            }
+            
+            if placemarks!.count > 0{
+                let placemark = placemarks![0]
+                var name = placemark.name! //+ ", " + pm.subThoroughfare!
+                if let city = placemark.locality, let state = placemark.administrativeArea{
+                    name = name + ", \(city) \(state)"
+                }
+                
+                completion(name)
+            }
+                
+            else{
+                completion("Unregistered Location")
+            }
+        }
     }
     
    func toAnyObject() -> NSDictionary {

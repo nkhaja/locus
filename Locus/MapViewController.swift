@@ -73,8 +73,10 @@ class MapViewController: UIViewController{
         }
     }
     
-    func dropPins(){
-        for p in self.pins{
+    func dropPins(pins:[Pin]){
+        
+        // TODO: setup system where only pins not on map are added to it; instead of clearing and putting on.
+        for p in pins{
             let point = LocusPointAnnotation()
             point.coordinate = p.coordinate
             point.custom = true
@@ -178,7 +180,11 @@ extension MapViewController: MKMapViewDelegate{
             if locusAnnotation.custom{
                 
                 //Do stuff to customize the view that goes here
-                return pinView
+                pinView?.image = #imageLiteral(resourceName: "redGooglePin")
+            }
+            
+            else{
+                pinView?.annotation = annotation
             }
         }
 
@@ -249,7 +255,22 @@ extension MapViewController: HandleMapSearch {
 }
 
 extension MapViewController: Mappable{
-    func getSelectedGpsPhotos(metaPhotos: MetaPhotoStorage) {
-        print("wohoo!")
+    
+    func getSelectedGpsPhotos(gpsPhotos: [GpsPhoto]) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        var newPins = [Pin]()
+        for photo in gpsPhotos{
+            
+            let newPin = Pin(ownerId: uid!, coordinate: photo.location, image: photo.image)
+            newPin.save(newAlbum: nil)
+            
+            // TODO: Reduncancy asking to be fixed
+            thisUser?.pins.append(newPin)
+            newPins.append(newPin)
+        }
+        
+        self.dropPins(pins: newPins)
+
+        
     }
 }

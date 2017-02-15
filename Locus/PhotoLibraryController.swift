@@ -16,7 +16,7 @@ protocol GeoTaggedLibrary: class{
 }
 
 protocol Mappable: class {
-    func getSelectedGpsPhotos(metaPhotos: MetaPhotoStorage)
+    func getSelectedGpsPhotos(gpsPhotos: [GpsPhoto])
 }
 
 
@@ -62,17 +62,32 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     @IBAction func submitButton(_ sender: UIButton) {
         
-        var metaPhotos = MetaPhotoStorage()
+        var photoStorage = [GpsPhoto]()
         
         //return new metaPhotoStorage with only desired photos
         for key in selectedIndexes.keys {
-            let metaPhoto = metaPhotoStorage.metaPhotos[key]
-            metaPhotos.storePhoto(metaPhoto: metaPhoto)
+            // Items below are guaranteed to exist at this point
+            if selectedIndexes[key]! {
+                
+                let metaPhoto = metaPhotoStorage.metaPhotos[key]
+                let gps = metaPhoto.data!["{GPS}"] as! [String:Any]
+                let lat = gps["Latitude"] as! CLLocationDegrees
+                let lon = gps["Longitude"] as! CLLocationDegrees
+                let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                
+                let gpsPhoto = GpsPhoto(image: metaPhoto.image!, location: location)
+                photoStorage.append(gpsPhoto)
+                
+            }
+
+
         }
         
-        if let delegate = delegate{
-            delegate.getSelectedGpsPhotos(metaPhotos: metaPhotos)
+        if delegate != nil  && photoStorage.count > 0{
+            delegate!.getSelectedGpsPhotos(gpsPhotos: photoStorage)
         }
+        
+        self.navigationController?.popViewController(animated: true)
         
         
     }
@@ -339,6 +354,11 @@ struct MetaPhotoStorage{
 struct MetaPhoto {
     var image: UIImage?
     var data: [String:Any]?
-    
-    
+}
+
+
+// refactor metaPhotos to GPS photos time permitting
+struct GpsPhoto{
+    var image: UIImage
+    var location: CLLocationCoordinate2D
 }
