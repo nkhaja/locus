@@ -28,7 +28,6 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
 //    var images = [UIImage]()
 //    var metaPhotoStorage: MetaPhotoStorage = MetaPhotoStorage()
     var gpsPhotos = [GpsPhoto]()
-    var properties = [[String:Any]]()
     var selectedImage: UIImage?
     var multiSelect: Bool = false
     var selectedIndexes: [Int:Bool] = [:]
@@ -37,7 +36,7 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImagesWithGps { [unowned self] gpsPhotos in
+        getImagesWithGps { gpsPhotos in
             self.gpsPhotos = gpsPhotos
             self.collectionView.reloadData()
         }
@@ -58,10 +57,16 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     
     @IBAction func submitButton(_ sender: UIButton) {
-    
+        var photosToSend = [GpsPhoto]()
+        
+        for (key, value) in selectedIndexes {
+            if value{
+                photosToSend.append(self.gpsPhotos[key])
+            }
+        }
         
         if delegate != nil  && gpsPhotos.count > 0{
-            delegate!.getSelectedGpsPhotos(gpsPhotos: self.gpsPhotos)
+            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
         }
         
         self.navigationController?.popViewController(animated: true)

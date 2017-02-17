@@ -15,7 +15,7 @@ class User{
     var friendIds: [String] = []
     var pinIds: [String] = []
     var albumIds: [String] = []
-    var pins: [Pin] = []
+    var pins = [String:Pin]()
     var reference: FIRDatabaseReference?
     
     init(name:String, id:String){
@@ -44,14 +44,16 @@ class User{
         }
     }
     
-    func getAllPins(){
+    func getAllPins(completion: @escaping () -> ()){
         
         let pinRef = FIRDatabase.database().reference(withPath: "pins")
         pinRef.observe(.value, with: { snapshot in
             for item in snapshot.children{
                 let pinData = item as! FIRDataSnapshot
                 let newPin = Pin(snapshot: pinData, ownerId: self.id)
-                self.pins.append(newPin)
+//                self.pins.append(newPin)
+                self.pins[snapshot.key] = newPin
+                completion()
             }
             })
         }
@@ -60,7 +62,9 @@ class User{
         let thisPinRef = FIRDatabase.database().reference(withPath: "pins").child(pinId)
         thisPinRef.observe(.value, with:{ snapshot in
             let newPin = Pin(snapshot: snapshot, ownerId: self.id)
-            self.pins.append(newPin)
+//            self.pins.append(newPin)
+            self.pins[snapshot.key] = newPin
+            
             completion(newPin)
         })
         

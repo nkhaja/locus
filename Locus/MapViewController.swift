@@ -32,7 +32,6 @@ class MapViewController: UIViewController{
     //Pin Variables
     var selectedAnnotation: MKAnnotation?
     var selectedPin: Pin?
-    var pins: [Pin] = []
 
 
     override func viewDidLoad() {
@@ -44,11 +43,16 @@ class MapViewController: UIViewController{
         self.mapView.setup()
         
         
-        let thisUserQuery = FIRDatabase.database().reference(withPath: "users/\(thisUserID)")
-        let pinQueary = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
+        let thisUserQuery = FIRDatabase.database().reference(withPath: "users").child(thisUserID)
+        let pinQuery = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
+        
         thisUserQuery.observe(.value, with: { snapshot in
             self.thisUser = User(snapshot: snapshot)
+            self.thisUser!.getAllPins(){  Void in
+                self.dropPins(pins: Array(self.thisUser!.pins.values))
+            }
         })
+        
     }
     
 
@@ -80,6 +84,10 @@ class MapViewController: UIViewController{
             let point = LocusPointAnnotation()
             point.coordinate = p.coordinate
             point.custom = true
+            point.date = p.date.toString()
+            point.name = "Hard-Coded"
+            point.pinImage = p.image
+            point.pinId = p.id
             self.mapView.addAnnotation(point)
         }
   
@@ -174,17 +182,34 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
-        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin") as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
+        
+//        let customReuse = "custom"
         if let locusAnnotation = annotation as? LocusPointAnnotation {
-            if locusAnnotation.custom{
+            if locusAnnotation.custom {
                 
-                //Do stuff to customize the view that goes here
-                pinView?.image = #imageLiteral(resourceName: "redGooglePin")
+                //Do stuff to customize the view
+               
+                if pinView == nil {
+                    
+                    let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
+                    
+                    customAnnotationView.frame.size = CGSize(width: 30, height: 30)
+                    customAnnotationView.image = #imageLiteral(resourceName: "redGooglePin")
+                    customAnnotationView.canShowCallout = false
+                
+                    return customAnnotationView
+                    
+                }
             }
             
             else{
+                pinView = pinView as? MKPinAnnotationView
                 pinView?.annotation = annotation
+                pinView?.canShowCallout = true
+                
+                return pinView
             }
         }
 
@@ -193,35 +218,65 @@ extension MapViewController: MKMapViewDelegate{
         
         
         //else build a condition for clustering pins
-        pinView?.animatesDrop = true
+//        pinView?.animatesDrop = true
         return pinView
     }
     
     
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
+        if view.isKind(of: MKAnnotationView.self){
+            
+            let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+            let customView = xib?[0] as! CustomCalloutView
+            
+            
+            let customAnnotation = view.annotation as! LocusPointAnnotation
+            
+            customView.dateLabel.text = customAnnotation.date
+            customView.nameLabel.text = customAnnotation.name
+            customView.pinImageView.image = customAnnotation.pinImage
+            customView.pinId = customAnnotation.pinId
+            
+            let thisPin = thisUser?.pins[customView.pinId]
+            thisPin?.getImage(completion: { image in
+                customView.pinImageView.image = image
+            })
+   
+            
+            
+            customView.frame.size = CGSize(width: 150, height: 150)
+            customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
+            
+            view.addSubview(customView)
 
-        let btnHeight = view.frame.height * 0.8
-        let smallSquare = CGSize(width: btnHeight, height: btnHeight)
+        }
         
-        let drive = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-        let pinIt = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
-        
-        drive.contentMode = .scaleAspectFit
-        pinIt.contentMode = .scaleAspectFit
-        
-        drive.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
-        pinIt.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+        else {
+            
+            let btnHeight = view.frame.height * 0.8
+            let smallSquare = CGSize(width: btnHeight, height: btnHeight)
+            
+            let drive = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            let pinIt = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
+            
+            drive.contentMode = .scaleAspectFit
+            pinIt.contentMode = .scaleAspectFit
+            
+            drive.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+            pinIt.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+            
+            
+            drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
+            pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
+            
+            //        self.performSegue(withIdentifier: "pinIt", sender: self)
+            view.leftCalloutAccessoryView = drive
+            view.rightCalloutAccessoryView = pinIt
+            self.selectedAnnotation = view.annotation
+            
+        }
 
-        
-        drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
-        pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
-
-//        self.performSegue(withIdentifier: "pinIt", sender: self)
-        view.leftCalloutAccessoryView = drive
-        view.rightCalloutAccessoryView = pinIt
-        self.selectedAnnotation = view.annotation
     }
     
     func goBuildPin(){
@@ -263,10 +318,11 @@ extension MapViewController: Mappable{
             
             let newPin = Pin(ownerId: uid!, coordinate: photo.location, image: photo.image)
             newPin.save(newAlbum: nil)
-            
-            // TODO: Reduncancy asking to be fixed
-            thisUser?.pins.append(newPin)
             newPins.append(newPin)
+            
+            // TODO: Redundancy asking to be fixed
+            // TODO: Setup a listener for changes to user's pins
+//            thisUser?.pins.append(newPin)
         }
         
         self.dropPins(pins: newPins)

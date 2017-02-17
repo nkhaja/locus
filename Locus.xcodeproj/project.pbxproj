@@ -27,16 +27,18 @@
 		BD30E1381E28015D007D82F7 /* LoginViewController-Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30E1371E28015D007D82F7 /* LoginViewController-Alerts.swift */; };
 		BD30E13B1E280D4A007D82F7 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30E13A1E280D4A007D82F7 /* Album.swift */; };
 		BD30E13D1E282407007D82F7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30E13C1E282407007D82F7 /* Helper.swift */; };
-		BD30E13F1E282FB3007D82F7 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30E13E1E282FB3007D82F7 /* CustomAnnotationView.swift */; };
+		BD30E13F1E282FB3007D82F7 /* LocusPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30E13E1E282FB3007D82F7 /* LocusPointAnnotation.swift */; };
 		BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */; };
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
-		BD365DFD1E21BDC4005BD9BE /* CustomCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */; };
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 		BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */; };
 		BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */; };
 		BD94ACE01E503B8200AFCB99 /* AssetCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDF1E503B8200AFCB99 /* AssetCollectionCell.swift */; };
 		BD94ACE31E503C2A00AFCB99 /* PhotoLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD94ACE11E503C2A00AFCB99 /* PhotoLibrary.storyboard */; };
+		BD94AD071E5552B600AFCB99 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */; };
+		BD94AD0B1E5663D600AFCB99 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */; };
+		BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,16 +66,18 @@
 		BD30E1371E28015D007D82F7 /* LoginViewController-Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LoginViewController-Alerts.swift"; path = "Locus/LoginViewController-Alerts.swift"; sourceTree = "<group>"; };
 		BD30E13A1E280D4A007D82F7 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		BD30E13C1E282407007D82F7 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		BD30E13E1E282FB3007D82F7 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomAnnotationView.swift; path = Locus/CustomAnnotationView.swift; sourceTree = "<group>"; };
+		BD30E13E1E282FB3007D82F7 /* LocusPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocusPointAnnotation.swift; path = Locus/LocusPointAnnotation.swift; sourceTree = "<group>"; };
 		BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPinViewController.swift; sourceTree = "<group>"; };
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
-		BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCallout.xib; sourceTree = "<group>"; };
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Locus/LoginViewController.swift; sourceTree = "<group>"; };
 		BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryController.swift; sourceTree = "<group>"; };
 		BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeImageController.swift; sourceTree = "<group>"; };
 		BD94ACDF1E503B8200AFCB99 /* AssetCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionCell.swift; sourceTree = "<group>"; };
 		BD94ACE21E503C2A00AFCB99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoLibrary.storyboard; sourceTree = "<group>"; };
+		BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,13 +138,13 @@
 				BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */,
 				BD1A7AF41E06081F001E290B /* SecondViewController.swift */,
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
+				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD1A7AF61E06081F001E290B /* Main.storyboard */,
 				BD2DE4FA1E0F22070078AC9A /* Map.storyboard */,
 				BD94ACE11E503C2A00AFCB99 /* PhotoLibrary.storyboard */,
-				BD365DFC1E21BDC4005BD9BE /* CustomCallout.xib */,
 				BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */,
-				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
+				BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */,
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
 				BD1A7AFE1E06081F001E290B /* Info.plist */,
@@ -168,7 +172,9 @@
 				BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */,
 				BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */,
 				BD2DE4FD1E131E110078AC9A /* LocusMapView.swift */,
-				BD30E13E1E282FB3007D82F7 /* CustomAnnotationView.swift */,
+				BD30E13E1E282FB3007D82F7 /* LocusPointAnnotation.swift */,
+				BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */,
+				BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -256,11 +262,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD365DFD1E21BDC4005BD9BE /* CustomCallout.xib in Resources */,
 				BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */,
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* Map.storyboard in Resources */,
 				BD1A7AFA1E06081F001E290B /* Assets.xcassets in Resources */,
+				BD94AD0B1E5663D600AFCB99 /* CustomCalloutView.xib in Resources */,
 				BD94ACE31E503C2A00AFCB99 /* PhotoLibrary.storyboard in Resources */,
 				BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */,
 				BD1A7AF81E06081F001E290B /* Main.storyboard in Resources */,
@@ -327,13 +333,15 @@
 				BD2D6D1C1E294CAC00F6F4BB /* DateView.swift in Sources */,
 				BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */,
 				BD1A7B051E06084A001E290B /* User.swift in Sources */,
+				BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */,
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
 				BD2DE4FE1E131E110078AC9A /* LocusMapView.swift in Sources */,
 				BD2DE5001E13268D0078AC9A /* LocationSearchController.swift in Sources */,
+				BD94AD071E5552B600AFCB99 /* CustomCalloutView.swift in Sources */,
 				BD94ACE01E503B8200AFCB99 /* AssetCollectionCell.swift in Sources */,
 				BD30E1381E28015D007D82F7 /* LoginViewController-Alerts.swift in Sources */,
 				BD1A7AF51E06081F001E290B /* SecondViewController.swift in Sources */,
-				BD30E13F1E282FB3007D82F7 /* CustomAnnotationView.swift in Sources */,
+				BD30E13F1E282FB3007D82F7 /* LocusPointAnnotation.swift in Sources */,
 				BD30E13B1E280D4A007D82F7 /* Album.swift in Sources */,
 				BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */,
 				BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */,

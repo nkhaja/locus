@@ -11,4 +11,8 @@ import MapKit
 
 class LocusPointAnnotation: MKPointAnnotation {
     var custom: Bool = false
+    var pinImage: UIImage?
+    var name: String!
+    var date: String!
+    var pinId: String!
 }

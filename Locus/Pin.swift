@@ -74,9 +74,11 @@ class Pin {
             self.imageRef = (imageRefData as! FIRStorageReference)
         }
         
-        let lat = snapshotValue["lat"] as! CLLocationDegrees
-        let lon = snapshotValue["lon"] as! CLLocationDegrees
-        self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let lat = snapshotValue["lat"] as! String
+
+        
+        let lon = snapshotValue["lon"] as! String
+        self.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat)!, longitude: CLLocationDegrees(lon)!)
 
 
         if let dateData = snapshotValue["date"]{
@@ -104,9 +106,13 @@ class Pin {
         }
         //object being saved for the first time
         else{
-            let pinRef = FIRDatabase.database().reference().child("pins").childByAutoId()
-            
+            let db = FIRDatabase.database().reference()
+            let pinRef = db.child("pins").childByAutoId()
             self.id = pinRef.key
+            let userRef = db.child("users").child(ownerId).child("pinIds").child(self.id!)
+            
+            userRef.setValue(true)
+            
             self.imageRef = self.storage.child(self.id!)
             if let image = self.image{
                 self.imageRef!.put(image.toData())
@@ -125,7 +131,7 @@ class Pin {
             
             if self.placeName == "" {
                 
-                reverseGeoLocation(coordinate: coordinate){ [unowned self] place in
+                reverseGeoLocation(coordinate: coordinate){ place in
                     self.placeName = place
                     pinRef.setValue(self.toAnyObject())
                 }
@@ -170,8 +176,6 @@ class Pin {
                 }
             }
         }
-        
-
     }
     
     
