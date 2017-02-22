@@ -31,6 +31,8 @@
 		BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */; };
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
+		BD4B01A01E595C4F00250551 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* FriendsViewController.swift */; };
+		BD4B01A21E595E6200250551 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* FriendTableViewCell.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 		BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */; };
 		BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */; };
@@ -70,6 +72,8 @@
 		BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPinViewController.swift; sourceTree = "<group>"; };
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
+		BD4B019F1E595C4F00250551 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		BD4B01A11E595E6200250551 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Locus/LoginViewController.swift; sourceTree = "<group>"; };
 		BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryController.swift; sourceTree = "<group>"; };
 		BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeImageController.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
 				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
+				BD4B019F1E595C4F00250551 /* FriendsViewController.swift */,
+				BD4B01A11E595E6200250551 /* FriendTableViewCell.swift */,
 				BD1A7AF61E06081F001E290B /* Main.storyboard */,
 				BD2DE4FA1E0F22070078AC9A /* Map.storyboard */,
 				BD94ACE11E503C2A00AFCB99 /* PhotoLibrary.storyboard */,
@@ -335,6 +341,7 @@
 				BD1A7B051E06084A001E290B /* User.swift in Sources */,
 				BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */,
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
+				BD4B01A21E595E6200250551 /* FriendTableViewCell.swift in Sources */,
 				BD2DE4FE1E131E110078AC9A /* LocusMapView.swift in Sources */,
 				BD2DE5001E13268D0078AC9A /* LocationSearchController.swift in Sources */,
 				BD94AD071E5552B600AFCB99 /* CustomCalloutView.swift in Sources */,
@@ -344,6 +351,7 @@
 				BD30E13F1E282FB3007D82F7 /* LocusPointAnnotation.swift in Sources */,
 				BD30E13B1E280D4A007D82F7 /* Album.swift in Sources */,
 				BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */,
+				BD4B01A01E595C4F00250551 /* FriendsViewController.swift in Sources */,
 				BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */,
 				BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */,
 				BD30BFE01E2AC8610040B2E6 /* DateController.swift in Sources */,

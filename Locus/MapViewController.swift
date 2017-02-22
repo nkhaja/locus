@@ -66,8 +66,6 @@ class MapViewController: UIViewController{
                     build.location = selectedAnnotation?.coordinate
                 }
             }
-            
-
         }
         
         else if segue.identifier == "photoLibrary"{
@@ -128,6 +126,13 @@ class MapViewController: UIViewController{
     
     func customizePin(){
         
+    }
+    
+    
+    func panTo(coordinate: CLLocationCoordinate2D, mapView: MKMapView){
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(coordinate, span)
+        mapView.setRegion(region, animated: true)
     }
     
     
@@ -213,12 +218,6 @@ extension MapViewController: MKMapViewDelegate{
             }
         }
 
-        
-
-        
-        
-        //else build a condition for clustering pins
-//        pinView?.animatesDrop = true
         return pinView
     }
     
@@ -238,7 +237,7 @@ extension MapViewController: MKMapViewDelegate{
             customView.pinImageView.image = customAnnotation.pinImage
             customView.pinId = customAnnotation.pinId
             
-            let thisPin = thisUser?.pins[customView.pinId]
+            let thisPin = thisUser?.pins[customView.pinId!]
             thisPin?.getImage(completion: { image in
                 customView.pinImageView.image = image
             })
@@ -249,6 +248,7 @@ extension MapViewController: MKMapViewDelegate{
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
             
             view.addSubview(customView)
+            self.panTo(coordinate: thisPin!.coordinate, mapView: self.mapView)
 
         }
         
