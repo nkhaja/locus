@@ -12,13 +12,14 @@ import Firebase
 class User{
     var name:String
     var id: String
-    var friendIds: [String:Bool] = [:]
     var pinIds: [String: Bool] = [:]
     var albumIds: [String] = []
     var pins = [String:Pin]()
     var following = [String: Bool]() // a list of userIDs for users this person is following
+    var permissionsWaiting = [String:String]()
     var reference: FIRDatabaseReference?
     var accountPrivacy: AccountPrivacy = .permission
+    
     
     init(name:String, id:String){
         self.name = name
@@ -37,8 +38,8 @@ class User{
         
         else{self.name = ""}
         
-        if let friendData = snapshotValue["friendIds"]{
-            self.friendIds = friendData as! [String:Bool]
+        if let followingData = snapshotValue["following"]{
+            self.following = followingData as! [String:Bool]
         }
         
         if let pinIdData = snapshotValue["pinRefs"]{
@@ -80,26 +81,14 @@ class User{
         return [
             "name": name,
             "id": id,
-            "friendIds": friendIds,
+            "following": following,
             "pinIds": pinIds,
             "albumIds": albumIdDict,
-            "accountPrivacy": accountPrivacy.rawValue
+            "accountPrivacy": accountPrivacy.rawValue,
+            "permissionsWaiting": permissionsWaiting
         ]
     }
 }
-
-
-
-//class Permission {
-//    var fromUser: String
-//    var toUser: String
-//    
-//    init(fromUser:String, toUser: String){
-//        self.fromUser = fromUser
-//        self.toUser = toUser
-//    }
-//
-//}
 
 
 enum Privacy:Int {
