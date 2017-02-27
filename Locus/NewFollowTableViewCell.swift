@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendTableViewCell: UITableViewCell {
+class NewFollowTableViewCell: UITableViewCell {
 
     @IBOutlet weak var friendImageView: UIImageView!
     @IBOutlet weak var friendName: UILabel!

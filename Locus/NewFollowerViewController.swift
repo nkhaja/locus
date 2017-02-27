@@ -12,7 +12,7 @@ import Firebase
 
 // TODO: Updating the tableView immediately. Don't rely on FB to make the changes.
 
-class FriendsViewController: UIViewController {
+class NewFollowerViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -47,7 +47,7 @@ class FriendsViewController: UIViewController {
 }
 
 
-extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
+extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -65,7 +65,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FriendTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! NewFollowTableViewCell
         
         if indexPath.section == 0 {
             let rowUserId = pendingFollowees[indexPath.row]
@@ -160,7 +160,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension FriendsViewController: UITextFieldDelegate {
+extension NewFollowerViewController: UITextFieldDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         

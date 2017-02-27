@@ -11,10 +11,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Second-->
+        <!--Friend Pins View Controller-->
+        <scene sceneID="ZOL-L2-eOq">
+            <objects>
+                <viewController id="9K4-Pd-UKy" customClass="FriendPinsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vRM-Oo-9Um"/>
+                        <viewControllerLayoutGuide type="bottom" id="MBm-2U-g4n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o58-uL-e4z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3RP-zu-5KS">
+                                <rect key="frame" x="0.0" y="84" width="375" height="534"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-sz-0fx">
+                                <rect key="frame" x="0.0" y="84" width="375" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MBm-2U-g4n" firstAttribute="top" secondItem="3RP-zu-5KS" secondAttribute="bottom" id="773-BV-NJH"/>
+                            <constraint firstAttribute="trailing" secondItem="3RP-zu-5KS" secondAttribute="trailing" id="Fnp-Xf-sCi"/>
+                            <constraint firstItem="bWp-sz-0fx" firstAttribute="leading" secondItem="o58-uL-e4z" secondAttribute="leading" id="NKF-In-TKP"/>
+                            <constraint firstAttribute="trailing" secondItem="bWp-sz-0fx" secondAttribute="trailing" id="PWu-8o-Qkr"/>
+                            <constraint firstItem="bWp-sz-0fx" firstAttribute="top" secondItem="vRM-Oo-9Um" secondAttribute="bottom" constant="20" id="WWt-xu-zqu"/>
+                            <constraint firstItem="3RP-zu-5KS" firstAttribute="leading" secondItem="o58-uL-e4z" secondAttribute="leading" id="hSz-BM-hc2"/>
+                            <constraint firstItem="3RP-zu-5KS" firstAttribute="top" secondItem="vRM-Oo-9Um" secondAttribute="bottom" constant="20" id="zwI-pm-iB3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yU3-VW-flc">
+                        <nil key="title"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdg-x4-yBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.60000000000002" y="1016.9415292353824"/>
+        </scene>
+        <!--FriendsViewController-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="FriendsViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" userLabel="FriendsViewController" customClass="FriendsViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -35,13 +77,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0G-F2-ZRo">
-                                                    <rect key="frame" x="16" y="12" width="300" height="25.5"/>
+                                                    <rect key="frame" x="16" y="12" width="300" height="25"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZBd-r0-tz5">
-                                                    <rect key="frame" x="329.5" y="2" width="37.5" height="45"/>
+                                                    <rect key="frame" x="330" y="2" width="37" height="45"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -257,6 +299,7 @@
                     <connections>
                         <segue destination="npX-tO-Ddq" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="RL7-ch-e2i" kind="relationship" relationship="viewControllers" id="n8S-VB-9CT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -271,7 +314,26 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZn-el-9or" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="869" y="-318"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="C1e-Cz-eDO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RL7-ch-e2i" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="nyn-EH-HNb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kiv-75-Exw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9K4-Pd-UKy" kind="relationship" relationship="rootViewController" id="72m-5j-4Gi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OrJ-pU-tus" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="1016.9415292353824"/>
         </scene>
     </scenes>
     <resources>

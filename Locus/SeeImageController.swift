@@ -8,8 +8,6 @@
 
 import UIKit
 
-import UIKit
-
 class SeeImageController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!

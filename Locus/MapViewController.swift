@@ -13,17 +13,14 @@ import MapKit
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
-    
 }
 
 
-
-
-class MapViewController: UIViewController{
+class MapViewController: UIViewController {
     
     // Location Variables
     @IBOutlet weak var mapView: LocusMapView!
-    var thisUser: User?
+//    var thisUser: User?
     var locationManager =  CLLocationManager()
     var currentPosition: CLLocation?
     var resultSearchController: UISearchController?
@@ -43,16 +40,16 @@ class MapViewController: UIViewController{
         self.mapView.setup()
         
         
-        let thisUserQuery = FIRDatabase.database().reference(withPath: "users").child(thisUserID)
-        let pinQuery = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
-        
-        thisUserQuery.observe(.value, with: { snapshot in
-            self.thisUser = User(snapshot: snapshot)
-            self.thisUser!.getAllPins(){  Void in
-                self.dropPins(pins: Array(self.thisUser!.pins.values))
+        FirebaseService.updateUser(id: thisUserID) {
+            
+            ThisUser.instance?.getAllPins {
+                self.dropPins(pins: Array(ThisUser.instance!.pins.values))
             }
-        })
+        }
         
+        // Refactor this
+        let pinQuery = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
+
     }
     
 
@@ -88,14 +85,12 @@ class MapViewController: UIViewController{
             point.pinId = p.id
             self.mapView.addAnnotation(point)
         }
-  
     }
     
     
     
     
-    //Setup Functions
-    
+    // MARK: Setup Functions
     func setupLocation(){
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -146,8 +141,6 @@ class MapViewController: UIViewController{
         performSegue(withIdentifier: "photoLibrary", sender: self)
 
     }
-    
-    
 }
 
 
@@ -237,7 +230,7 @@ extension MapViewController: MKMapViewDelegate{
             customView.pinImageView.image = customAnnotation.pinImage
             customView.pinId = customAnnotation.pinId
             
-            let thisPin = thisUser?.pins[customView.pinId!]
+            let thisPin = ThisUser.instance?.pins[customView.pinId!]
             thisPin?.getImage(completion: { image in
                 customView.pinImageView.image = image
             })
@@ -320,13 +313,10 @@ extension MapViewController: Mappable{
             newPin.save(newAlbum: nil)
             newPins.append(newPin)
             
-            // TODO: Redundancy asking to be fixed
-            // TODO: Setup a listener for changes to user's pins
-//            thisUser?.pins.append(newPin)
         }
         
         self.dropPins(pins: newPins)
 
-        
+
     }
 }

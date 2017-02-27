@@ -11,6 +11,10 @@ target 'Locus' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'
 	pod 'Google/SignIn'
+	pod 'SDWebImage', '~>3.8'
+	pod 'FirebaseUI/Storage'
+
+
 
 
 

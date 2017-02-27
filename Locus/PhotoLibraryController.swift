@@ -186,35 +186,6 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
 
 extension GeoTaggedLibrary {
     
-    func hasCoordinates(image:CIImage) -> Bool{
-        var hasLongitude = false
-        var hasLatitude = false
-        
-        let properties = image.properties
-        if let gps = properties["{GPS}"] as? [String:Any]{
-            if (gps["Longitude"] as? Double) != nil{
-                hasLongitude = true
-            }
-            if (gps["Latitude"] as? Double) != nil{
-                hasLatitude = true
-            }
-        }
-        
-        return hasLatitude && hasLongitude
-    }
-    
-    // Its a waste to make the image just for meta-data, find a better way
-    func makeImage(contentEditingInput: PHContentEditingInput?) -> CIImage?{
-        if let url = contentEditingInput?.fullSizeImageURL{
-            let fullImage = CIImage(contentsOf: url)
-            if let fullImage = fullImage{
-                return fullImage
-            }
-        }
-        return nil
-    }
-    
-    
     func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, completion: @escaping ([GpsPhoto]) -> ()){
         
         var output = [GpsPhoto]()
@@ -241,7 +212,6 @@ extension GeoTaggedLibrary {
                                     contentMode: .aspectFit,
                                     options: requestOptions,
                                     resultHandler: { image, info in
-                                        
                                         if let coordinate = asset.location?.coordinate, let image = image{
                                             let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                                             let gpsPhoto = GpsPhoto(image: image, location: location2d)
