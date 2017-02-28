@@ -45,7 +45,7 @@
 		BD94AD071E5552B600AFCB99 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */; };
 		BD94AD0B1E5663D600AFCB99 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */; };
 		BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */; };
-		BDA2B7FA1E5E9B4D00F1BC74 /* FollowingUsersControlling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersControlling.swift */; };
+		BDA2B7FA1E5E9B4D00F1BC74 /* FollowingUsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */; };
 		BDA2B7FC1E5EBCF700F1BC74 /* ListPinsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA2B7FB1E5EBCF700F1BC74 /* ListPinsController.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,7 +92,7 @@
 		BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
-		BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersControlling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingUsersControlling.swift; sourceTree = "<group>"; };
+		BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingUsersController.swift; sourceTree = "<group>"; };
 		BDA2B7FB1E5EBCF700F1BC74 /* ListPinsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPinsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +159,7 @@
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */,
 				BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */,
-				BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersControlling.swift */,
+				BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */,
 				BD2E86661E63BE1F000C7EBA /* PinsOfFollowingController.swift */,
 				BD2E86681E63CA5D000C7EBA /* FollowersPinCell.swift */,
 				BD2E86621E6397E1000C7EBA /* Constants.swift */,
@@ -362,7 +362,7 @@
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
 				BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */,
 				BD2DE4FE1E131E110078AC9A /* LocusMapView.swift in Sources */,
-				BDA2B7FA1E5E9B4D00F1BC74 /* FollowingUsersControlling.swift in Sources */,
+				BDA2B7FA1E5E9B4D00F1BC74 /* FollowingUsersController.swift in Sources */,
 				BD2DE5001E13268D0078AC9A /* LocationSearchController.swift in Sources */,
 				BD2E86631E6397E1000C7EBA /* Constants.swift in Sources */,
 				BD94AD071E5552B600AFCB99 /* CustomCalloutView.swift in Sources */,

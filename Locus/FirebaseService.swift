@@ -20,6 +20,9 @@ struct FirebaseService {
         })
     }
     
+    
+    // Mark: Follower Functions
+    
     static func getFollowerData(id:String, completion: @escaping (String) -> ()){
         let query = FirConst.userRef.queryOrdered(byChild: "id").queryEqual(toValue: id)
         
@@ -30,6 +33,31 @@ struct FirebaseService {
         })
     }
     
+    static func getPendingRequests(user: User, completion: @escaping ([(String,String)]) -> ()){
+        
+        let output_dispatch = DispatchGroup()
+        
+        var userInfo = [(id:String, name:String)]()
+        
+        for key in user.permissionsWaiting.keys {
+            output_dispatch.enter()
+            FirConst.userRef.child(key).observe(.value, with: { snapshot in
+                let user = User(snapshot: snapshot)
+                userInfo.append((user.id, user.name))
+            })
+            
+            output_dispatch.leave()
+        }
+        
+        output_dispatch.notify(queue: .main) { 
+            completion(userInfo)
+        }
+        
+        
+    }
+    
+    
+    // MARK: Pin Functions
     static func getPinsForUser(id:String, completion: @escaping ([Pin]) -> ()){
         let query = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryOrdered(byChild: id)
         

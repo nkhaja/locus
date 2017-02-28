@@ -16,7 +16,7 @@ class User{
     var albumIds: [String] = []
     var pins = [String:Pin]()
     var following = [String: Bool]() // a list of userIDs for users this person is following
-    var permissionsWaiting = [String:String]()
+    var permissionsWaiting = [String:Bool]()
     var reference: FIRDatabaseReference?
     var accountPrivacy: AccountPrivacy = .permission
     
@@ -44,6 +44,14 @@ class User{
         
         if let pinIdData = snapshotValue["pinRefs"]{
             self.pinIds = pinIdData as! [String:Bool]
+        }
+        
+        if let permissionsData = snapshotValue[FirConst.permissionsWaiting]{
+            self.permissionsWaiting = permissionsData as! [String:Bool]
+        }
+        
+        if let privacyData = snapshotValue[FirConst.privacy]{
+            self.accountPrivacy = AccountPrivacy(rawValue: privacyData as! Int)!
         }
     }
     
