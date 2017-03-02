@@ -1,14 +1,14 @@
 //
-//  FollowersPinCell.swift
+//  MyPinCell.swift
 //  Locus
 //
-//  Created by Nabil K on 2017-02-26.
+//  Created by Nabil K on 2017-03-02.
 //  Copyright © 2017 MakeSchool. All rights reserved.
 //
 
 import UIKit
 
-class FollowersPinCell: UICollectionViewCell {
+class MyPinCell: UICollectionViewCell {
     
     var overlayButtonView: OverlayButtonView!
     var indexPath: IndexPath?
@@ -22,5 +22,6 @@ class FollowersPinCell: UICollectionViewCell {
         pinImageView.sd_cancelCurrentImageLoad()
         pinImageView.image = nil
     }
-
+    
+    
 }

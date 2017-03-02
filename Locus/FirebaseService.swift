@@ -87,7 +87,7 @@ struct FirebaseService {
     
     // MARK: Pin Functions
     static func getPinsForUser(id:String, local: Bool, completion: @escaping ([Pin]) -> ()){
-        let query = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryOrdered(byChild: id)
+        let query = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryEqual(toValue: id)
         
         var pins = [Pin]()
         query.observe(.value, with: { snapshot in

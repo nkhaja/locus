@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="340" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f89-xV-0Bf">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="f89-xV-0Bf">
                                 <rect key="frame" x="0.0" y="0.0" width="340" height="892"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syd-Zb-erw" userLabel="Container View">
@@ -39,13 +39,13 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LDI-l8-hgK">
-                                                <rect key="frame" x="8" y="355.5" width="324" height="150"/>
+                                                <rect key="frame" x="8" y="356" width="324" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R1H-hR-vVg" userLabel="LocationTextField">
-                                                <rect key="frame" x="8" y="209" width="269.5" height="43"/>
+                                                <rect key="frame" x="8" y="209" width="270" height="43"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -58,7 +58,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhj-Eg-FI9" userLabel="albumButton">
-                                                <rect key="frame" x="280" y="317.5" width="52" height="30"/>
+                                                <rect key="frame" x="280" y="318" width="52" height="30"/>
                                                 <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="albumButton:" destination="HqQ-E4-nb9" eventType="touchUpInside" id="oRg-TT-mH0"/>
@@ -171,7 +171,7 @@
         <scene sceneID="kKN-QQ-0OX">
             <objects>
                 <collectionViewController id="uEE-FX-WeW" customClass="IconCollectionController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="rnm-Un-ybr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="rnm-Un-ybr">
                         <rect key="frame" x="0.0" y="0.0" width="340" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

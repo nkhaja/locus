@@ -15,6 +15,12 @@ protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
 }
 
+protocol LocusMapDelegate {
+    
+    func zoomTo(coordinate: CLLocationCoordinate2D)
+    
+}
+
 
 class MapViewController: UIViewController {
     

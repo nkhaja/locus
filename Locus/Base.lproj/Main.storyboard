@@ -196,7 +196,7 @@
         <!--Item-->
         <scene sceneID="sq7-wp-26w">
             <objects>
-                <viewController id="XCa-zF-dUq" customClass="MyPinsViewController" sceneMemberID="viewController">
+                <viewController id="XCa-zF-dUq" customClass="MyPinsController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DxB-os-BOn"/>
                         <viewControllerLayoutGuide type="bottom" id="yH5-sE-MCU"/>
@@ -215,13 +215,27 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TD1-0M-SfN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="TD1-0M-SfN" customClass="MyPinCell" customModule="Locus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="40T-gd-tD6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="40T-gd-tD6" secondAttribute="trailing" id="Y34-Hl-bMH"/>
+                                            <constraint firstItem="40T-gd-tD6" firstAttribute="top" secondItem="TD1-0M-SfN" secondAttribute="top" id="h77-rT-UoA"/>
+                                            <constraint firstItem="40T-gd-tD6" firstAttribute="leading" secondItem="TD1-0M-SfN" secondAttribute="leading" id="har-Ia-c7q"/>
+                                            <constraint firstAttribute="bottom" secondItem="40T-gd-tD6" secondAttribute="bottom" id="snE-7Q-WR8"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="pinImageView" destination="40T-gd-tD6" id="xmm-Um-xii"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -238,7 +252,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="XCa-zF-dUq" id="CYF-UV-LLd"/>
+                                    <outlet property="delegate" destination="XCa-zF-dUq" id="BQ4-2n-omb"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -254,6 +268,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="beY-f1-P0N"/>
+                    <connections>
+                        <outlet property="collectionView" destination="y65-md-iev" id="Ini-9u-wul"/>
+                        <outlet property="searchTextField" destination="1vD-Qa-dwC" id="s9U-aG-RKK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCR-d5-StE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

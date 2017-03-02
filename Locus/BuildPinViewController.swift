@@ -16,9 +16,10 @@ class BuildPinViewController: UIViewController {
     var pin: Pin?
     var placeName: String?
     var location: CLLocationCoordinate2D!
-    var thisUserId:String = FIRAuth.auth()!.currentUser!.uid
+    var thisUserId:String = ThisUser.instance!.id
     var ref: FIRDatabaseReference = FIRDatabase.database().reference()
     var iconName: String = "redGooglePin"
+    let datePicker = UIDatePicker()
     
     // Vars for pickerView transitions
     var albumData: [(String, String)] = []
@@ -139,7 +140,7 @@ class BuildPinViewController: UIViewController {
         if segue.identifier == "pickDate" {
             if let pickDate = segue.destination as? DateController{
                 
-                if let pin = pin{
+                if let pin = pin {
                     pickDate.datePicker.date = pin.date
                     pickDate.selectedDate = pin.date
                 }
@@ -209,6 +210,9 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
         let tapView = UITapGestureRecognizer(target: self, action: #selector(closeKeyBoard))
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(tapView)
+        
+        // gesture for dateTextPicker Keyboard
+        
     }
     
     func closeKeyBoard(){
@@ -303,17 +307,31 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
 extension BuildPinViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.dateTextField {
-            let datePicker = UIDatePicker()
+
             datePicker.datePickerMode = .date
             textField.inputView = datePicker
-            textField.addTarget(self, action: #selector(dateChanged(sender:)), for: .valueChanged)
+            datePicker.addTarget(self, action: #selector(dateChanged(sender:)), for: .valueChanged)
+
+            
+            
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.dateTextField.text = datePicker.date.toString()
+        textField.resignFirstResponder()
+        
+        return true
     }
     
     
     func dateChanged(sender:UIDatePicker){
         self.dateTextField.text = sender.date.toString()
         // TODO: add an invisible view to click on to escape keyboard
+    }
+    
+    func dropTextField(){
+        dateTextField.resignFirstResponder()
     }
 }
 
