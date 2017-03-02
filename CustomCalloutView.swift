@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-protocol customCalloutDelegate{
+protocol CustomCalloutDelegate: class{
     func viewDetails()
 }
 
@@ -17,6 +17,7 @@ protocol customCalloutDelegate{
 class CustomCalloutView: UIView {
     
     var pinId: String!
+    weak var delegate: CustomCalloutDelegate?
     
     @IBOutlet weak var pinImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -25,6 +26,17 @@ class CustomCalloutView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(triggerDelegate))
+        self.addGestureRecognizer(tap)
+    }
+    
+    func triggerDelegate(){
+        if let delegate = delegate{
+            delegate.viewDetails()
+        }
+        
     }
     
 

@@ -17,11 +17,14 @@ class LocationSearchTable : UITableViewController {
 
 extension LocationSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }
+        
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchBarText
         request.region = mapView.region
+        
         let search = MKLocalSearch(request: request)
         search.start { response, _ in
             guard let response = response else {

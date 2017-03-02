@@ -33,7 +33,9 @@ struct FirebaseService {
         })
     }
     
-    static func getPendingRequests(user: User, completion: @escaping ([(String,String)]) -> ()){
+    
+    // TODO: Test this functionality
+    static func getPendingRequests(user: User, completion: @escaping ([(id:String,name:String)]) -> ()){
         
         let output_dispatch = DispatchGroup()
         
@@ -52,13 +54,39 @@ struct FirebaseService {
         output_dispatch.notify(queue: .main) { 
             completion(userInfo)
         }
+    }
+    
+    
+    static func getUsersFollowing(user:User, completion: @escaping ([Identity]) -> ()){
         
+        let output_dispatch = DispatchGroup()
+        var identities = [Identity]()
         
+        for key in user.following.keys {
+            
+            output_dispatch.enter()
+            
+            
+            FirConst.userRef.child(key).observeSingleEvent(of: .value, with: { snapshot in
+                let snapshotValue = snapshot.value as! [String:Any]
+                let name = snapshotValue["name"] as! String
+                let identity = Identity(name: name, id: key)
+                
+                identities.append(identity)
+                
+                output_dispatch.leave()
+            })
+        }
+        
+        output_dispatch.notify(queue: .main) { 
+            completion(identities)
+        }
+
     }
     
     
     // MARK: Pin Functions
-    static func getPinsForUser(id:String, completion: @escaping ([Pin]) -> ()){
+    static func getPinsForUser(id:String, local: Bool, completion: @escaping ([Pin]) -> ()){
         let query = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryOrdered(byChild: id)
         
         var pins = [Pin]()
@@ -67,7 +95,12 @@ struct FirebaseService {
                 
                 let pinData = pinSnap as! FIRDataSnapshot
                 let pin = Pin(snapshot: pinData, ownerId: nil)
-                if pin.privacy != .personal{
+                
+                if local {
+                    pins.append(pin)
+                }
+                
+                else if pin.privacy != .personal {
                     pins.append(pin)
                 }
             }
@@ -86,5 +119,9 @@ struct FirebaseService {
         })
     }
     
-    
+}
+
+struct Identity{
+    var name: String
+    var id: String
 }

@@ -32,38 +32,6 @@ class NewFollowerViewController: UIViewController {
             self.pendingFollowees = userInfo
             print("assigned not issue")
         }
-        
-        
-        
-//        FirConst.userRef.observe(.value, with: { snapshot in
-//            for snap in snapshot.children {
-//                let data = snap as! FIRDataSnapshot
-//                let user = User(snapshot: data)
-//                
-//                if user.accountPrivacy != .private{
-//                    fil
-//                }
-//            }
-//        
-//        
-//        })
-        
-//        ThisUser.instance?.reference!.child("following").observe(.value, with: { snapshot in
-//            if let followingData = snapshot.value {
-//                ThisUser.instance!.following = followingData as! [String:Bool]
-//                self.tableView.reloadData()
-//            }
-//        })
-//        
-//        ThisUser.instance?.reference!.child("permissionsWaiting").observe(.value, with: { snapshot in
-//            if let permissionData = snapshot.value{
-//                ThisUser.instance!.permissionsWaiting = permissionData as! [String:String]
-//                self.pendingFollowees = Array(ThisUser.instance!.permissionsWaiting.keys)
-//                self.tableView.reloadData()
-//            }
-//        })
-        
-        
     }
     
     

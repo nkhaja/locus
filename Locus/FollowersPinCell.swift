@@ -18,7 +18,6 @@ class FollowersPinCell: UICollectionViewCell {
         super.prepareForReuse()
         pinImageView.sd_cancelCurrentImageLoad()
         pinImageView.image = nil
-        
     }
     
 }

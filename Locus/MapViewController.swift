@@ -196,6 +196,7 @@ extension MapViewController: MKMapViewDelegate{
                     customAnnotationView.frame.size = CGSize(width: 30, height: 30)
                     customAnnotationView.image = #imageLiteral(resourceName: "redGooglePin")
                     customAnnotationView.canShowCallout = false
+                    customAnnotationView.pinId = locusAnnotation.pinId
                 
                     return customAnnotationView
                     
@@ -203,11 +204,18 @@ extension MapViewController: MKMapViewDelegate{
             }
             
             else{
-                pinView = pinView as? MKPinAnnotationView
-                pinView?.annotation = annotation
-                pinView?.canShowCallout = true
                 
-                return pinView
+                if pinView == nil{
+                    let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+                    standardPin.canShowCallout = true
+                    standardPin.animatesDrop = true
+                    return standardPin
+                }
+                
+                else{
+                    return pinView
+                }
+                
             }
         }
 
@@ -216,26 +224,33 @@ extension MapViewController: MKMapViewDelegate{
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let customAnnotation = view.annotation as? LocusPointAnnotation else {return}
         
-        if view.isKind(of: MKAnnotationView.self){
+        if customAnnotation.custom {
             
+            self.mapView.selectedMark = MKPlacemark(coordinate: customAnnotation.coordinate)
+
             let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
             let customView = xib?[0] as! CustomCalloutView
             
-            
-            let customAnnotation = view.annotation as! LocusPointAnnotation
-            
+            // Set Fields for customView
             customView.dateLabel.text = customAnnotation.date
             customView.nameLabel.text = customAnnotation.name
             customView.pinImageView.image = customAnnotation.pinImage
             customView.pinId = customAnnotation.pinId
             
-            let thisPin = ThisUser.instance?.pins[customView.pinId!]
+            let thisPin = ThisUser.instance?.pins[customAnnotation.pinId]
+            
+            // load image for selected pin
+            customView.pinImageView.sd_setImage(with: thisPin!.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
+
+
+            
+            
             thisPin?.getImage(completion: { image in
                 customView.pinImageView.image = image
             })
    
-            
             
             customView.frame.size = CGSize(width: 150, height: 150)
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
@@ -267,9 +282,23 @@ extension MapViewController: MKMapViewDelegate{
             view.leftCalloutAccessoryView = drive
             view.rightCalloutAccessoryView = pinIt
             self.selectedAnnotation = view.annotation
+            view.canShowCallout = true
+        
             
         }
 
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        guard let deselectedAnnotation = view as? CustomAnnotationView else {return}
+        
+        for sub in view.subviews {
+            if let selectedView = sub as? CustomCalloutView{
+                if selectedView.pinId == deselectedAnnotation.pinId{
+                    selectedView.removeFromSuperview()
+                }
+            }
+        }
     }
     
     func goBuildPin(){
@@ -316,7 +345,16 @@ extension MapViewController: Mappable{
         }
         
         self.dropPins(pins: newPins)
-
-
     }
+}
+
+
+extension MapViewController: CustomCalloutDelegate {
+    
+    func viewDetails() {
+        print("completed!")
+    }
+    
+    
+    
 }

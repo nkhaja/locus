@@ -14,8 +14,8 @@ class FollowingUsersController: UIViewController {
     @IBOutlet weak var searchField: UITextField!
     
     var thisUser:User?
-    lazy var filteredFollowing = [String]()
-    var following = [String]()
+    lazy var filteredFollowing = [Identity]()
+    var following = [Identity]()
 
 
 
@@ -23,18 +23,55 @@ class FollowingUsersController: UIViewController {
         super.viewDidLoad()
         // TODO: better way to do this?
         
-        
-        for id in ThisUser.instance!.following.keys{
-            FirebaseService.getFollowerData(id: id, completion: { name in
-                self.following.append(name)
-                self.tableView.reloadData()
-            })
-        }
+        FirebaseService.getUsersFollowing(user: ThisUser.instance!, completion: { [weak self] identities in
+            
+            guard self != nil else{
+                return
+            }
+ 
+            
+            self?.following = identities
+            self?.filteredFollowing = self!.following
+            self?.tableView.reloadData()
+        })
 
-        
-        searchField.delegate = self
         filteredFollowing = following
     }
+    
+    
+    func setupUsersPins(id: String) {
+        FirebaseService.getPinsForUser(id: id, local: false) { pins in
+            for p in pins {
+                
+            }
+        }
+    }
+    
+    @IBAction func searchFieldEdited(_ sender: Any) {
+        
+        // Show all options if filtering on
+        guard let text = searchField.text
+            else {
+                filteredFollowing = following
+                return
+        }
+        
+        if text == "" {
+            filteredFollowing = following
+            return
+        }
+        
+        filteredFollowing = following.filter {
+            $0.name.hasPrefix(searchField.text!)
+        }
+        
+        self.tableView.reloadData()
+        
+    }
+    
+    
+    
+    
 }
 
 extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
@@ -52,40 +89,22 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FollowingUserCell
         
         // inner argument returns an id, that hashes to a name from the outer dict
-        cell.textLabel?.text = filteredFollowing[indexPath.row]
+        cell.nameLabel.text = filteredFollowing[indexPath.row].name
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let idForRow = filteredFollowing[indexPath.row]
+        let idForRow = filteredFollowing[indexPath.row].id
         
         
         
         //segue to next controller here
-        
         // pass detailed data about this user to next controller
     }
     
 }
 
-
-
-
-extension FollowingUsersController: UITextFieldDelegate {
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        filteredFollowing = following.filter{
-            $0.contains(string)
-        }
-        
-        self.tableView.reloadData()
-        return true
-    }
-    
-    
-}

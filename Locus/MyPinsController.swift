@@ -1,33 +1,28 @@
 //
-//  PinsOfFollowingController.swift
+//  MyPinsController.swift
 //  Locus
 //
-//  Created by Nabil K on 2017-02-26.
+//  Created by Nabil K on 2017-03-01.
 //  Copyright © 2017 MakeSchool. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
-import FirebaseStorageUI
 
-class PinsOfFollowingController: UIViewController {
-    
-    var pins = [Pin]()
-    var id: String!
+class MyPinsController: UIViewController {
+
     @IBOutlet weak var collectionView: UICollectionView!
-
+    var pins = [Pin]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // get the pins for this user
-        
-        FirebaseService.getPinsForUser(id: id, local: false, completion: { pins in
+        FirebaseService.getPinsForUser(id: ThisUser.instance!.id, local: true) { [weak self] pins in
             
-            self.pins = pins
-    
-        })
-        
-        
+            self?.pins = pins
+            self?.collectionView.reloadData()
+            
+            
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -36,31 +31,39 @@ class PinsOfFollowingController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }
 
 
-extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pins.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FollowersPinCell
+        
         let thisPin = pins[indexPath.row]
         
         
-        cell.pinImageView.sd_setImage(with: thisPin.imageRef!, placeholderImage: nil, completion: { image, error, cache, ref in
-            
-            guard error == nil
-                else{return}
-        })
-
+        if let imageSource = thisPin.imageRef{
+            cell.pinImageView.sd_setImage(with: imageSource)
+        }
         
         return cell
     }
+    
+    
+    
+    
+    
+    
+    
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // show details of this pin
@@ -80,5 +83,5 @@ extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionVie
         return 1.0
     }
     
- 
 }
+

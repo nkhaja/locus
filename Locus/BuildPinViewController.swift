@@ -278,20 +278,19 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-    
-    
-    
 
-        
-        
     
     
-
+    // TODO: Enable GPS autofill for images taken on the spot
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         picker.dismiss(animated: true) {
             if let image =  info[UIImagePickerControllerOriginalImage] as? UIImage{
                 self.pinImage.image = image
+                let metaData = info[UIImagePickerControllerMediaMetadata]
+                print(metaData)
+                
+                
                 if picker.sourceType == .camera{
                     self.requestSavingToGallery(image: image)
                 }
