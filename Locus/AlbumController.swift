@@ -39,7 +39,7 @@ class AlbumController: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == "pickedAlbum"{
             if let build = segue.destination as? BuildPinViewController{
                 build.selectedAlbumId = selectedAlbumId
-                build.albumTextField.text! = selectedAlbumName!
+//                build.albumTextField.text! = selectedAlbumName!
             }
         }
     }

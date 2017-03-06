@@ -33,13 +33,16 @@ class BuildPinViewController: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     
 //    @IBOutlet weak var albumLabel: UILabel!
-    @IBOutlet weak var albumTextField: UITextField!
+//    @IBOutlet weak var albumTextField: UITextField!
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var iconButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        titleTextField.delegate = self
+        placeNameTextField.delegate = self
         
         //Setup
         setupKeyboard()
@@ -53,14 +56,15 @@ class BuildPinViewController: UIViewController {
         
         //Setup if pre-existing pin
         if let pin = self.pin{
-            self.pinImage.image = pin.image!
+            self.pinImage.image = pin.image
+            
             let thisIcon = UIImage(named: pin.iconName)
             self.iconButton.setImage(thisIcon, for: .normal)
             
             self.titleTextField.text! = pin.title
             self.placeNameTextField.text! = pin.placeName
             self.dateTextField.text! = pin.date.toString()
-            self.albumTextField.text! = pin.albumName
+//            self.albumTextField.text! = pin.albumName
             self.storyTextView.text! = pin.story
             self.placeName = pin.placeName
             self.iconName = pin.iconName
@@ -72,7 +76,7 @@ class BuildPinViewController: UIViewController {
             self.iconButton.setImage(#imageLiteral(resourceName: "redGooglePin"), for: .normal)
             placeNameTextField.text! = self.placeName!
             dateTextField.text! = Date().toString()
-            albumTextField.text! = "No Album Selected"
+//            albumTextField.text! = "No Album Selected"
         }
         
         self.iconButton.imageView?.contentMode = .scaleAspectFit
@@ -88,17 +92,18 @@ class BuildPinViewController: UIViewController {
     }
     
     func makePin(pin:Pin) -> Pin {
+        pin.ownerId = ThisUser.instance!.id
         pin.title = titleTextField.text!
         pin.placeName = placeNameTextField.text!
-        pin.albumName = albumTextField.text!
+//        pin.albumName = albumTextField.text!
         pin.date = dateTextField.text!.toDate()
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
-        pin.image = pinImage.image
+        pin.image = Helper.resizeImage(image: pinImage.image!, newWidth: 400)
         
-        if albumTextField.text == "No Album Selected"{
-            pin.albumName = ""
-        }
+//        if albumTextField.text == "No Album Selected"{
+//            pin.albumName = ""
+//        }
         
         //Pin is gettings its first or new album
         if pin.albumId != selectedAlbumId{
@@ -157,7 +162,19 @@ class BuildPinViewController: UIViewController {
                 }
             }
         }
+        
+        else if segue.identifier == "fromBuilder" {
+        
+            if let mapVc = segue.destination as? MapViewController{
+                
+                mapVc.panTo(coordinate: pin!.coordinate, mapView: mapVc.mapView)
+                
+            }
+            
+        }
+        
     }
+    
     
 
     
@@ -176,8 +193,12 @@ class BuildPinViewController: UIViewController {
             let title = titleTextField.text
             let pinToBuild = Pin(title: title!, ownerId: self.thisUserId, coordinate: location)
             let newPin = makePin(pin:pinToBuild)
+            self.pin = newPin
             newPin.save(newAlbum: nil)
         }
+        
+        
+        performSegue(withIdentifier: "fromBuilder", sender: self)
     }
     
     
@@ -252,6 +273,8 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
+    
+    // build the alert asking user if they'd like to save photo to gallery
     func requestSavingToGallery(image:UIImage?){
         let saveAlert = UIAlertController(title: "Save this image?", message: nil, preferredStyle: .alert)
         
@@ -301,7 +324,6 @@ extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationC
             }
         }
     }
-    
 }
 
 extension BuildPinViewController: UITextFieldDelegate{
@@ -311,16 +333,12 @@ extension BuildPinViewController: UITextFieldDelegate{
             datePicker.datePickerMode = .date
             textField.inputView = datePicker
             datePicker.addTarget(self, action: #selector(dateChanged(sender:)), for: .valueChanged)
-
-            
-            
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.dateTextField.text = datePicker.date.toString()
         textField.resignFirstResponder()
-        
         return true
     }
     
@@ -346,6 +364,11 @@ extension BuildPinViewController {
                                                name: NSNotification.Name.UIKeyboardWillShow,
                                                object: nil)
         
+/*        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardDidShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardDidShow,
+                                               object: nil) */
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillHide(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillHide,
@@ -364,6 +387,10 @@ extension BuildPinViewController {
     func keyboardWillShow(notification: Notification) {
         adjustInsetForKeyboardShow(show: true, notification: notification)
     }
+    
+    func keyboardDidShow(notification: Notification){
+    }
+    
     
     func keyboardWillHide(notification: Notification) {
         adjustInsetForKeyboardShow(show: false, notification: notification)

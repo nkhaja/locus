@@ -214,6 +214,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="uzf-QV-cW9">
+                                    <rect key="frame" x="178" y="270" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="TD1-0M-SfN" customClass="MyPinCell" customModule="Locus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -269,6 +273,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="beY-f1-P0N"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="uzf-QV-cW9" id="Cp3-7u-vN5"/>
                         <outlet property="collectionView" destination="y65-md-iev" id="Ini-9u-wul"/>
                         <outlet property="searchTextField" destination="1vD-Qa-dwC" id="s9U-aG-RKK"/>
                     </connections>

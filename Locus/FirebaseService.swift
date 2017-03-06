@@ -90,7 +90,8 @@ struct FirebaseService {
         let query = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryEqual(toValue: id)
         
         var pins = [Pin]()
-        query.observe(.value, with: { snapshot in
+                
+        query.observeSingleEvent(of: .value, with: { snapshot in
             for pinSnap in snapshot.children{
                 
                 let pinData = pinSnap as! FIRDataSnapshot
@@ -117,6 +118,25 @@ struct FirebaseService {
                 completion(newPin)
             }
         })
+    }
+    
+    
+    static func deletePin(for userId: String, pinId: String, completion: @escaping () -> () ){
+        let queryForPin = FirConst.pinRef.child(pinId)
+        let queryForUser = FirConst.userRef.child(userId).child(FirConst.pinIds).child(pinId)
+
+        queryForPin.removeValue()
+        
+        // TODO: Take care of error handling here
+        queryForUser.removeValue { error, ref in
+            if error != nil{
+                print("an error occurred with deleting this information")
+            }
+            
+            completion()
+
+            
+        }
     }
     
 }

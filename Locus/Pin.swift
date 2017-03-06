@@ -66,8 +66,8 @@ class Pin {
             self.iconName = iconName as! String
         }
         
-        if let ownerId = ownerId{
-            self.ownerId = ownerId
+        if let ownerIdData = snapshotValue["ownerId"]{
+            self.ownerId = ownerIdData as! String
         }
         
         if let imageRefData = snapshotValue["imageRef"]{
@@ -93,7 +93,7 @@ class Pin {
     
     func save(newAlbum: String?){
         // previously saved object
-        if let ref = self.reference{
+        if let ref = self.reference {
             
             ref.setValue(self.toAnyObject())
          
@@ -125,8 +125,6 @@ class Pin {
             if let newAlbum = newAlbum {
                 changeAlbum(oldAlbumKey: self.albumId, newAlbumKey: newAlbum)
             }
-            
-           
             
             
             if self.placeName == "" {
@@ -166,8 +164,9 @@ class Pin {
     func getImage(completion: @escaping (UIImage) -> Void){
         
         if let imageRef = self.imageRef {
-            imageRef.data(withMaxSize: 1 * 1024 * 1024) { data, error in
+            imageRef.data(withMaxSize: 2 * 1024 * 1024) { data, error in
                 if let error = error {
+                    print("image too large")
                     // Uh-oh, an error occurred!
                 } else {
                     // Data for "images/island.jpg" is returned
@@ -202,6 +201,15 @@ class Pin {
         }
     }
     
+    
+    func delete(completion: @escaping () -> ()) {
+        
+        FirebaseService.deletePin(for: self.ownerId, pinId: self.id!, completion: {
+            completion()
+        })
+    
+    }
+    
    func toAnyObject() -> NSDictionary {
         return [
             "title": title,
@@ -217,9 +225,4 @@ class Pin {
             "lon": String(coordinate.longitude)
         ]
     }
-    
-    
-    
-    
-    
 }

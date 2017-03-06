@@ -204,7 +204,7 @@ extension GeoTaggedLibrary {
    
             
             // desired size of returned images
-            let size = CGSize(width: 200, height: 200)
+            let size = CGSize(width: 500, height: 500)
             
             // Only returning photos with image data, Request the image of given quality sychronously
             imgManager.requestImage(for: asset,

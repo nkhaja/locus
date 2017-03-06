@@ -64,11 +64,24 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "buildPin"{
             if let build = segue.destination as? BuildPinViewController{
-                if let title = selectedAnnotation!.title, let subtitle = selectedAnnotation!.subtitle{
+                
+                if let title = selectedAnnotation?.title, let subtitle = selectedAnnotation? .subtitle{
                     build.placeName = "\(title ?? ""), \(subtitle ?? "")"
                     build.location = selectedAnnotation?.coordinate
                 }
+            
+                
+                if let editPin = selectedPin {
+                    
+                    build.pin = selectedPin
+                    
+                }
+            
             }
+            
+
+            
+            
         }
         
         else if segue.identifier == "photoLibrary"{
@@ -125,9 +138,6 @@ class MapViewController: UIViewController {
         mapView.delegate = self
     }
     
-    func customizePin(){
-        
-    }
     
     
     func panTo(coordinate: CLLocationCoordinate2D, mapView: MKMapView){
@@ -145,6 +155,9 @@ class MapViewController: UIViewController {
     
     @IBAction func addImages(_ sender: Any) {
         performSegue(withIdentifier: "photoLibrary", sender: self)
+    }
+    
+    @IBAction func unwindFromPinBuilder(segue: UIStoryboardSegue){
 
     }
 }
@@ -189,12 +202,11 @@ extension MapViewController: MKMapViewDelegate{
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
         
-//        let customReuse = "custom"
         if let locusAnnotation = annotation as? LocusPointAnnotation {
             if locusAnnotation.custom {
                 
+                
                 //Do stuff to customize the view
-               
                 if pinView == nil {
                     
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
@@ -206,6 +218,11 @@ extension MapViewController: MKMapViewDelegate{
                 
                     return customAnnotationView
                     
+                }
+                
+                else{
+                    
+                    return pinView
                 }
             }
             
@@ -250,13 +267,6 @@ extension MapViewController: MKMapViewDelegate{
             // load image for selected pin
             customView.pinImageView.sd_setImage(with: thisPin!.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
 
-
-            
-            
-            thisPin?.getImage(completion: { image in
-                customView.pinImageView.image = image
-            })
-   
             
             customView.frame.size = CGSize(width: 150, height: 150)
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
@@ -284,7 +294,6 @@ extension MapViewController: MKMapViewDelegate{
             drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
             pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
             
-            //        self.performSegue(withIdentifier: "pinIt", sender: self)
             view.leftCalloutAccessoryView = drive
             view.rightCalloutAccessoryView = pinIt
             self.selectedAnnotation = view.annotation

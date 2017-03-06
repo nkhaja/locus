@@ -21,7 +21,7 @@ class NewFollowerViewController: UIViewController {
     var pendingFollowees = [(id:String, name:String)]()
     
     // array of ids for people we are following
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchField.delegate = self
@@ -63,8 +63,8 @@ class NewFollowerViewController: UIViewController {
         })
         
     }
-        
-
+    
+    
     
 }
 
@@ -79,7 +79,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         if section == 0 {
             return ThisUser.instance!.permissionsWaiting.keys.count
         }
-        
+            
         else{
             return filteredUsers.count
         }
@@ -89,7 +89,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! NewFollowTableViewCell
         
-
+        
         
         if indexPath.section == 0 {
             cell.friendName.text = pendingFollowees[indexPath.row].name
@@ -109,9 +109,9 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             // put image to indicate user is being followed already
             cell.friendImageView.image = #imageLiteral(resourceName: "checkmark")
         }
-        
             
-        // Put image of pending request
+            
+            // Put image of pending request
         else if rowUser.permissionsWaiting[ThisUser.instance!.id] != nil {
             cell.friendImageView.image = #imageLiteral(resourceName: "sent")
         }
@@ -119,8 +119,8 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         else {
             cell.friendImageView.image = #imageLiteral(resourceName: "add")
         }
-            
-            cell.friendName.text = rowUser.name
+        
+        cell.friendName.text = rowUser.name
         
         
         return cell
@@ -143,7 +143,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             // Are we waiting for acceptance from selected User?
             // Cancel the pending request
             if selectedUser.permissionsWaiting[ThisUser.instance!.id] != nil {
-               
+                
                 // reference to thisUser's request in selected user's data
                 let permisisonRef = selectedUser.reference!.child("permissionsWaiting").child(ThisUser.instance!.id)
                 
@@ -153,7 +153,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
                 
                 
                 
-            // Privacy settings are open, we can follow them immediately
+                // Privacy settings are open, we can follow them immediately
             else if selectedUser.accountPrivacy == .open {
                 ThisUser.instance?.following[selectedUser.id] = true
                 ThisUser.instance?.reference!.child("following").child(selectedUser.id).setValue(true)
@@ -161,7 +161,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             }
                 
                 
-            // We need permission to access their account. Send a request
+                // We need permission to access their account. Send a request
             else if selectedUser.accountPrivacy == .permission {
                 selectedUser.reference?.child("permissionsWaiting").child(ThisUser.instance!.id).setValue(true)
                 
@@ -177,9 +177,9 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             // unfollow the person if you're already following
             // you're not following them. Either request to follow or automatically get follow status
         }
-        
-        // Follow invitations section. Clicking cell accepts invitation to follow.
-        
+            
+            // Follow invitations section. Clicking cell accepts invitation to follow.
+            
         else {
             
             ThisUser.instance?.reference!.child("followees").child(pendingFollowees[indexPath.row].id).setValue(true)
@@ -207,6 +207,6 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension NewFollowerViewController: UITextFieldDelegate {
-
+    
 }
 

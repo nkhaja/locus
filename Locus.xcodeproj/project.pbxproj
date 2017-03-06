@@ -31,6 +31,7 @@
 		BD2E86721E67E5D1000C7EBA /* MyPinsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */; };
 		BD2E86741E67E981000C7EBA /* OverlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86731E67E981000C7EBA /* OverlayButtonView.swift */; };
 		BD2E86791E68A90D000C7EBA /* MyPinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86781E68A90D000C7EBA /* MyPinCell.swift */; };
+		BD2E86991E6D07CC000C7EBA /* PinDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */; };
 		BD30BFE01E2AC8610040B2E6 /* DateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFDF1E2AC8610040B2E6 /* DateController.swift */; };
 		BD30BFE91E2B042E0040B2E6 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */; };
 		BD30BFEA1E2B042E0040B2E6 /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */; };
@@ -84,6 +85,7 @@
 		BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPinsController.swift; sourceTree = "<group>"; };
 		BD2E86731E67E981000C7EBA /* OverlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayButtonView.swift; path = Locus/OverlayButtonView.swift; sourceTree = "<group>"; };
 		BD2E86781E68A90D000C7EBA /* MyPinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPinCell.swift; sourceTree = "<group>"; };
+		BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailController.swift; sourceTree = "<group>"; };
 		BD30BFDF1E2AC8610040B2E6 /* DateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateController.swift; path = Locus/DateController.swift; sourceTree = "<group>"; };
 		BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = Locus/AlbumCell.swift; sourceTree = "<group>"; };
 		BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumController.swift; path = Locus/AlbumController.swift; sourceTree = "<group>"; };
@@ -171,14 +173,15 @@
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD2E86771E689188000C7EBA /* Followers */,
 				BD2E86781E68A90D000C7EBA /* MyPinCell.swift */,
-				BD2E86621E6397E1000C7EBA /* Constants.swift */,
 				BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */,
+				BD2E86621E6397E1000C7EBA /* Constants.swift */,
 				BD1A7AF61E06081F001E290B /* Main.storyboard */,
 				BD2E866F1E67E4C9000C7EBA /* NewFollowers.storyboard */,
 				BD2E866C1E67E4AD000C7EBA /* Followers.storyboard */,
 				BD2DE4FA1E0F22070078AC9A /* Map.storyboard */,
 				BD94ACE11E503C2A00AFCB99 /* PhotoLibrary.storyboard */,
 				BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */,
+				BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */,
 				BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */,
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
@@ -390,6 +393,7 @@
 				BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */,
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
 				BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */,
+				BD2E86991E6D07CC000C7EBA /* PinDetailController.swift in Sources */,
 				BD2DE4FE1E131E110078AC9A /* LocusMapView.swift in Sources */,
 				BDA2B7FA1E5E9B4D00F1BC74 /* FollowingUsersController.swift in Sources */,
 				BD2DE5001E13268D0078AC9A /* LocationSearchController.swift in Sources */,

@@ -10,25 +10,71 @@ import UIKit
 import MapKit
 
 class MyPinsController: UIViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     var pins = [Pin]()
-    var selectedCell: FollowersPinCell?
+    var selectedCell: MyPinCell?
+    var selectedIndexPath: IndexPath?
+    private let refreshControl = UIRefreshControl()
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupCollectionView()
+        loadData()
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(sender:)), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
+        
+        
+//        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins ...", attributes: attributes)
+
+
+        
+        
+        
+
+    }
+    
+    func loadData() {
+        
         FirebaseService.getPinsForUser(id: ThisUser.instance!.id, local: true) { [weak self] pins in
             
             self?.pins = pins
-            self?.collectionView.reloadData()
             
+            self?.refreshControl.endRefreshing()
+            self?.activityIndicator.stopAnimating()
+
+            self?.collectionView.reloadData()
         }
     }
+    
+    func setupCollectionView(){
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        
+    }
+
+    
+    func refreshData(sender: Any) {
+        
+        loadData()
+        
+    }
+    
 }
 
 
@@ -55,17 +101,27 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
             cell.pinImageView.sd_setImage(with: imageSource)
         }
         
+        
         return cell
+        
     }
-
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if let selectedIndexPath = self.selectedIndexPath{
+            
+            let oldCell = collectionView.cellForItem(at: selectedIndexPath) as! MyPinCell
+            
+            oldCell.overlayButtonView.dismiss()
+        }
+        
+        self.selectedIndexPath = indexPath
         
         let cell = collectionView.cellForItem(at: indexPath) as! MyPinCell
         
         // Set overlayView; assign delegate, put on cells view, animate
-        cell.overlayButtonView = OverlayButtonView(frame: cell.frame)
+        cell.overlayButtonView = OverlayButtonView(frame: cell.bounds)
         cell.overlayButtonView.indexPath = indexPath
         cell.overlayButtonView.delegate = self
         cell.addSubview(cell.overlayButtonView)
@@ -94,27 +150,57 @@ extension MyPinsController: OverlayButtonViewDelegate {
     func overlayButtonTriggered(type: OverlayButtonType, indexPath: IndexPath?) {
         
         if let indexPath = indexPath {
-           self.selectedCell = collectionView.cellForItem(at: indexPath) as? FollowersPinCell
-
+            self.selectedCell = collectionView.cellForItem(at: indexPath) as! MyPinCell
+            
+            let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
+            let mapVc = nav.viewControllers[0] as! MapViewController
+            self.tabBarController?.selectedIndex = 0
+            
+            let visitPin = pins[indexPath.row]
+            
             
             switch (type) {
-            
+                
             case .east:
-                print("east tapped")
-               
-
+                visitPin.image = selectedCell?.pinImageView.image
+                mapVc.selectedPin = visitPin
+                mapVc.performSegue(withIdentifier: "buildPin", sender: mapVc)
+                
+                
             case .west:
                 
                 // TODO: horrible, fix it
                 
-                let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
-                let mapVc = nav.viewControllers[0] as! MapViewController
-                self.tabBarController?.selectedIndex = 0
-                mapVc.dropPinZoomIn(placemark: MKPlacemark(coordinate: pins[indexPath.row].coordinate))
+                mapVc.panTo(coordinate: visitPin.coordinate, mapView: mapVc.mapView)
+            
+            
+            case .north:
+                print("north")
+                
+                let storyboard = UIStoryboard(name: "EditPin", bundle: Bundle.main)
+                
+                let pinDetailController = storyboard.instantiateViewController(withIdentifier: "PinDetailController") as! PinDetailController
+                
+                
+                pinDetailController.pin = visitPin
+                
+                self.present(pinDetailController, animated: true, completion: nil)
+                
+               
+            
+            case .south:
+                visitPin.delete(){
+                    
+//                    self.pins.remove(at: indexPath.row)
+                    self.collectionView.reloadData()
+                    
+                }
             }
-        
+            
+            
+            
         }
-
+        
     }
     
     

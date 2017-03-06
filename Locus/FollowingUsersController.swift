@@ -28,7 +28,7 @@ class FollowingUsersController: UIViewController {
             guard self != nil else{
                 return
             }
- 
+            
             
             self?.following = identities
             self?.filteredFollowing = self!.following
