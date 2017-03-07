@@ -26,7 +26,7 @@ class MapViewController: UIViewController {
     
     // Location Variables
     @IBOutlet weak var mapView: LocusMapView!
-//    var thisUser: User?
+
     var locationManager =  CLLocationManager()
     var currentPosition: CLLocation?
     var resultSearchController: UISearchController?
@@ -35,16 +35,25 @@ class MapViewController: UIViewController {
     //Pin Variables
     var selectedAnnotation: MKAnnotation?
     var selectedPin: Pin?
+    
+    var customView: CustomCalloutView!
 
+    // id: Pin -- reference to a followers map you've chosen to overlap with yours.
+    
+    var activeFollowersPins: [String:Pin] = [:]
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+        self.customView = xib?[0] as! CustomCalloutView
+        
         mapView.delegate = self
         setupLocation()
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
         self.mapView.setup()
-        
         
         FirebaseService.updateUser(id: thisUserID) {
             
@@ -79,9 +88,6 @@ class MapViewController: UIViewController {
             
             }
             
-
-            
-            
         }
         
         else if segue.identifier == "photoLibrary"{
@@ -94,6 +100,7 @@ class MapViewController: UIViewController {
     func dropPins(pins:[Pin]){
         
         // TODO: setup system where only pins not on map are added to it; instead of clearing and putting on.
+        
         for p in pins{
             let point = LocusPointAnnotation()
             point.coordinate = p.coordinate
@@ -102,7 +109,13 @@ class MapViewController: UIViewController {
             point.name = "Hard-Coded"
             point.pinImage = p.image
             point.pinId = p.id
+            
+            if p.ownerId != ThisUser.instance!.id{
+                point.foreign = true
+            }
+            
             self.mapView.addAnnotation(point)
+            
         }
     }
     
@@ -111,11 +124,11 @@ class MapViewController: UIViewController {
     
     // MARK: Setup Functions
     func setupLocation(){
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-//        locationManager.startUpdatingLocation()
         
         // SEARCH BAR
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
@@ -126,7 +139,6 @@ class MapViewController: UIViewController {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
-        //searchBar.backgroundColor = MapHelper.hexStringToUIColor("#00a774")
         navigationItem.titleView = resultSearchController?.searchBar
         
         resultSearchController?.hidesNavigationBarDuringPresentation = false
@@ -144,6 +156,38 @@ class MapViewController: UIViewController {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    
+    func overlayFollowerMap(id:String){
+        
+        FirebaseService.getPinsForUser(id: id, local: false) { pins in
+            
+            
+            for p in pins{
+                self.activeFollowersPins[p.id!] = p
+            }
+            
+            self.dropPins(pins: pins)
+        }
+    }
+    
+    func removeFollowerMap(id:String){
+        
+        // clear the maps reference to the pins by clearing dictionary
+        self.activeFollowersPins.removeAll()
+        
+        // remove all annotation associated with the follower for given id
+        for annotation in mapView.annotations {
+            if let locusAnnotation = annotation as? LocusPointAnnotation{
+                
+                if locusAnnotation.foreign{
+                    mapView.removeAnnotation(annotation)
+                }
+            }
+
+        }
+        
     }
     
     
@@ -253,8 +297,7 @@ extension MapViewController: MKMapViewDelegate{
             
             self.mapView.selectedMark = MKPlacemark(coordinate: customAnnotation.coordinate)
 
-            let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
-            let customView = xib?[0] as! CustomCalloutView
+
             
             // Set Fields for customView
             customView.dateLabel.text = customAnnotation.date
@@ -262,17 +305,32 @@ extension MapViewController: MKMapViewDelegate{
             customView.pinImageView.image = customAnnotation.pinImage
             customView.pinId = customAnnotation.pinId
             
-            let thisPin = ThisUser.instance?.pins[customAnnotation.pinId]
+            var thisPin: Pin
+            
+            if customAnnotation.foreign {
+                
+                thisPin = activeFollowersPins[customAnnotation.pinId]!
+            }
+            
+            else{
+                
+                thisPin = ThisUser.instance!.pins[customAnnotation.pinId]!
+
+            }
+            
+            
             
             // load image for selected pin
-            customView.pinImageView.sd_setImage(with: thisPin!.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
+            customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
 
             
             customView.frame.size = CGSize(width: 150, height: 150)
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
             
+
+            
             view.addSubview(customView)
-            self.panTo(coordinate: thisPin!.coordinate, mapView: self.mapView)
+            self.panTo(coordinate: thisPin.coordinate, mapView: self.mapView)
 
         }
         
@@ -361,6 +419,7 @@ extension MapViewController: Mappable{
         
         self.dropPins(pins: newPins)
     }
+    
 }
 
 

@@ -37,6 +37,9 @@ class BuildPinViewController: UIViewController {
     @IBOutlet weak var storyTextView: UITextView!
     @IBOutlet weak var iconButton: UIButton!
     
+    @IBOutlet weak var privacySegmentedControl: UISegmentedControl!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +102,7 @@ class BuildPinViewController: UIViewController {
         pin.date = dateTextField.text!.toDate()
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
+        pin.privacy = Privacy(rawValue: privacySegmentedControl.selectedSegmentIndex)!
         pin.image = Helper.resizeImage(image: pinImage.image!, newWidth: 400)
         
 //        if albumTextField.text == "No Album Selected"{
@@ -140,6 +144,13 @@ class BuildPinViewController: UIViewController {
             self.performSegue(withIdentifier: "pickAlbum", sender: self)
         })
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pickDate" {

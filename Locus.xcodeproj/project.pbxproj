@@ -10,7 +10,6 @@
 		68A476FBA2336E62C2C4CB64 /* Pods_Locus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D2EB2F588420E468AD49DE /* Pods_Locus.framework */; };
 		BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF01E06081F001E290B /* AppDelegate.swift */; };
 		BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF21E06081F001E290B /* MapViewController.swift */; };
-		BD1A7AF51E06081F001E290B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF41E06081F001E290B /* SecondViewController.swift */; };
 		BD1A7AF81E06081F001E290B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD1A7AF61E06081F001E290B /* Main.storyboard */; };
 		BD1A7AFA1E06081F001E290B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD1A7AF91E06081F001E290B /* Assets.xcassets */; };
 		BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */; };
@@ -32,6 +31,9 @@
 		BD2E86741E67E981000C7EBA /* OverlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86731E67E981000C7EBA /* OverlayButtonView.swift */; };
 		BD2E86791E68A90D000C7EBA /* MyPinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86781E68A90D000C7EBA /* MyPinCell.swift */; };
 		BD2E86991E6D07CC000C7EBA /* PinDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */; };
+		BD2E869B1E6DE02E000C7EBA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E869A1E6DE02E000C7EBA /* SignUpViewController.swift */; };
+		BD2E869D1E6DF0D7000C7EBA /* FollowerPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD2E869C1E6DF0D7000C7EBA /* FollowerPreviewCell.xib */; };
+		BD2E869F1E6DF95C000C7EBA /* FollowerPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2E869E1E6DF95C000C7EBA /* FollowerPreviewCell.swift */; };
 		BD30BFE01E2AC8610040B2E6 /* DateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFDF1E2AC8610040B2E6 /* DateController.swift */; };
 		BD30BFE91E2B042E0040B2E6 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */; };
 		BD30BFEA1E2B042E0040B2E6 /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */; };
@@ -63,7 +65,6 @@
 		BD1A7AED1E06081F001E290B /* Locus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1A7AF01E06081F001E290B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD1A7AF21E06081F001E290B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		BD1A7AF41E06081F001E290B /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		BD1A7AF71E06081F001E290B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD1A7AF91E06081F001E290B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD1A7AFC1E06081F001E290B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +87,9 @@
 		BD2E86731E67E981000C7EBA /* OverlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OverlayButtonView.swift; path = Locus/OverlayButtonView.swift; sourceTree = "<group>"; };
 		BD2E86781E68A90D000C7EBA /* MyPinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPinCell.swift; sourceTree = "<group>"; };
 		BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailController.swift; sourceTree = "<group>"; };
+		BD2E869A1E6DE02E000C7EBA /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Locus/SignUpViewController.swift; sourceTree = "<group>"; };
+		BD2E869C1E6DF0D7000C7EBA /* FollowerPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerPreviewCell.xib; sourceTree = "<group>"; };
+		BD2E869E1E6DF95C000C7EBA /* FollowerPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerPreviewCell.swift; sourceTree = "<group>"; };
 		BD30BFDF1E2AC8610040B2E6 /* DateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateController.swift; path = Locus/DateController.swift; sourceTree = "<group>"; };
 		BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = Locus/AlbumCell.swift; sourceTree = "<group>"; };
 		BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumController.swift; path = Locus/AlbumController.swift; sourceTree = "<group>"; };
@@ -167,21 +171,17 @@
 				BD1A7AF21E06081F001E290B /* MapViewController.swift */,
 				BD2E86641E63A01A000C7EBA /* FirebaseService.swift */,
 				BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */,
-				BD1A7AF41E06081F001E290B /* SecondViewController.swift */,
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
 				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD2E86771E689188000C7EBA /* Followers */,
-				BD2E86781E68A90D000C7EBA /* MyPinCell.swift */,
-				BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */,
-				BD2E86621E6397E1000C7EBA /* Constants.swift */,
+				BD2E86A21E6E01FE000C7EBA /* MyPins */,
 				BD1A7AF61E06081F001E290B /* Main.storyboard */,
 				BD2E866F1E67E4C9000C7EBA /* NewFollowers.storyboard */,
 				BD2E866C1E67E4AD000C7EBA /* Followers.storyboard */,
 				BD2DE4FA1E0F22070078AC9A /* Map.storyboard */,
 				BD94ACE11E503C2A00AFCB99 /* PhotoLibrary.storyboard */,
 				BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */,
-				BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */,
 				BD94AD0A1E5663D600AFCB99 /* CustomCalloutView.xib */,
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
@@ -199,6 +199,7 @@
 				BD30E13C1E282407007D82F7 /* Helper.swift */,
 				BD1A7B081E08DA26001E290B /* Pin.swift */,
 				BD30E13A1E280D4A007D82F7 /* Album.swift */,
+				BD2E86621E6397E1000C7EBA /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -222,13 +223,41 @@
 		BD2E86771E689188000C7EBA /* Followers */ = {
 			isa = PBXGroup;
 			children = (
-				BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */,
-				BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */,
 				BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */,
+				BD2E869C1E6DF0D7000C7EBA /* FollowerPreviewCell.xib */,
+				BD2E869E1E6DF95C000C7EBA /* FollowerPreviewCell.swift */,
+				BD2E86A11E6E0173000C7EBA /* NewFollowers */,
+				BD2E86A01E6E0154000C7EBA /* FollowerPins */,
+			);
+			name = Followers;
+			sourceTree = "<group>";
+		};
+		BD2E86A01E6E0154000C7EBA /* FollowerPins */ = {
+			isa = PBXGroup;
+			children = (
 				BD2E86661E63BE1F000C7EBA /* PinsOfFollowingController.swift */,
 				BD2E86681E63CA5D000C7EBA /* FollowersPinCell.swift */,
 			);
-			name = Followers;
+			name = FollowerPins;
+			sourceTree = "<group>";
+		};
+		BD2E86A11E6E0173000C7EBA /* NewFollowers */ = {
+			isa = PBXGroup;
+			children = (
+				BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */,
+				BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */,
+			);
+			name = NewFollowers;
+			sourceTree = "<group>";
+		};
+		BD2E86A21E6E01FE000C7EBA /* MyPins */ = {
+			isa = PBXGroup;
+			children = (
+				BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */,
+				BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */,
+				BD2E86781E68A90D000C7EBA /* MyPinCell.swift */,
+			);
+			name = MyPins;
 			sourceTree = "<group>";
 		};
 		BD30E1391E280C4C007D82F7 /* Login */ = {
@@ -236,6 +265,7 @@
 			children = (
 				BD722D841E0DB63600AE378D /* LoginViewController.swift */,
 				BD30E1371E28015D007D82F7 /* LoginViewController-Alerts.swift */,
+				BD2E869A1E6DE02E000C7EBA /* SignUpViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -315,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD2E869D1E6DF0D7000C7EBA /* FollowerPreviewCell.xib in Resources */,
 				BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */,
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* Map.storyboard in Resources */,
@@ -387,6 +418,7 @@
 				BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */,
 				BD2E866B1E6607C0000C7EBA /* FollowingUserCell.swift in Sources */,
 				BD1A7B091E08DA26001E290B /* Pin.swift in Sources */,
+				BD2E869F1E6DF95C000C7EBA /* FollowerPreviewCell.swift in Sources */,
 				BD2D6D1C1E294CAC00F6F4BB /* DateView.swift in Sources */,
 				BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */,
 				BD1A7B051E06084A001E290B /* User.swift in Sources */,
@@ -402,7 +434,6 @@
 				BD94ACE01E503B8200AFCB99 /* AssetCollectionCell.swift in Sources */,
 				BD2E86651E63A01A000C7EBA /* FirebaseService.swift in Sources */,
 				BD30E1381E28015D007D82F7 /* LoginViewController-Alerts.swift in Sources */,
-				BD1A7AF51E06081F001E290B /* SecondViewController.swift in Sources */,
 				BD30E13F1E282FB3007D82F7 /* LocusPointAnnotation.swift in Sources */,
 				BD30E13B1E280D4A007D82F7 /* Album.swift in Sources */,
 				BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */,
@@ -419,6 +450,7 @@
 				BD2E86791E68A90D000C7EBA /* MyPinCell.swift in Sources */,
 				BD30BFEA1E2B042E0040B2E6 /* AlbumController.swift in Sources */,
 				BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */,
+				BD2E869B1E6DE02E000C7EBA /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

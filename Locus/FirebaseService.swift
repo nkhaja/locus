@@ -24,7 +24,7 @@ struct FirebaseService {
     // Mark: Follower Functions
     
     static func getFollowerData(id:String, completion: @escaping (String) -> ()){
-        let query = FirConst.userRef.queryOrdered(byChild: "id").queryEqual(toValue: id)
+        let query = FirConst.userRef.queryOrdered(byChild: "permissions").queryEqual(toValue: id)
         
         query.observe(.value, with: { snapshot in
             let data = snapshot.value as! [String:Any]
@@ -34,21 +34,24 @@ struct FirebaseService {
     }
     
     
-    // TODO: Test this functionality
-    static func getPendingRequests(user: User, completion: @escaping ([(id:String,name:String)]) -> ()){
+    
+    static func getPendingRequests(ids:[String], completion: @escaping ([Identity]) -> ()){
         
+        var userInfo = [Identity]()
         let output_dispatch = DispatchGroup()
+
         
-        var userInfo = [(id:String, name:String)]()
-        
-        for key in user.permissionsWaiting.keys {
+        for id in ids {
             output_dispatch.enter()
-            FirConst.userRef.child(key).observe(.value, with: { snapshot in
+            FirConst.userRef.child(id).observeSingleEvent(of: .value, with: { snapshot in
                 let user = User(snapshot: snapshot)
-                userInfo.append((user.id, user.name))
+                let identity = Identity(name: user.name, id: user.id)
+                userInfo.append(identity)
+                output_dispatch.leave()
+
             })
+
             
-            output_dispatch.leave()
         }
         
         output_dispatch.notify(queue: .main) { 
@@ -56,6 +59,7 @@ struct FirebaseService {
         }
     }
     
+
     
     static func getUsersFollowing(user:User, completion: @escaping ([Identity]) -> ()){
         
@@ -134,7 +138,6 @@ struct FirebaseService {
             }
             
             completion()
-
             
         }
     }

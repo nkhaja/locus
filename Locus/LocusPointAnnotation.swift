@@ -15,4 +15,5 @@ class LocusPointAnnotation: MKPointAnnotation {
     var name: String!
     var date: String!
     var pinId: String!
+    var foreign: Bool = false
 }

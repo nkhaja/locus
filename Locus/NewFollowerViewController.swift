@@ -18,7 +18,7 @@ class NewFollowerViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var filteredUsers = [User]()
-    var pendingFollowees = [(id:String, name:String)]()
+    lazy var pendingFollowers = [Identity]()
     
     // array of ids for people we are following
     
@@ -28,9 +28,13 @@ class NewFollowerViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        FirebaseService.getPendingRequests(user: ThisUser.instance!) { userInfo in
-            self.pendingFollowees = userInfo
-            print("assigned not issue")
+        let permissionsWaitingIds = Array(ThisUser.instance!.permissionsWaiting.keys)
+        
+        FirebaseService.getPendingRequests(ids: permissionsWaitingIds) { userInfo in
+            
+            self.pendingFollowers = userInfo
+            self.tableView.reloadData()
+
         }
     }
     
@@ -43,6 +47,7 @@ class NewFollowerViewController: UIViewController {
         if text == "" {return}
         
         let query = FirConst.userRef.queryOrdered(byChild: "name").queryStarting(atValue: text)
+        
         query.observe(FIRDataEventType.value, with: { snapshot in
             if snapshot.hasChildren(){
                 for snap in snapshot.children{
@@ -77,7 +82,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return ThisUser.instance!.permissionsWaiting.keys.count
+            return pendingFollowers.count
         }
             
         else{
@@ -92,7 +97,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         
         
         if indexPath.section == 0 {
-            cell.friendName.text = pendingFollowees[indexPath.row].name
+            cell.friendName.text = pendingFollowers[indexPath.row].name
             // image for adding friends
             cell.friendImageView.image = #imageLiteral(resourceName: "add")
             
@@ -182,7 +187,13 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             
         else {
             
-            ThisUser.instance?.reference!.child("followees").child(pendingFollowees[indexPath.row].id).setValue(true)
+            let newFollowerId = pendingFollowers[indexPath.row].id
+            FirConst.userRef.child(newFollowerId).child(FirConst.following).child(ThisUser.instance!.id).setValue(true)
+            ThisUser.instance!.reference!.child(FirConst.permissionsWaiting).child(newFollowerId).removeValue()
+            
+            pendingFollowers.remove(at: indexPath.row)
+            tableView.reloadData()
+            
             
             // The above operationjo triggers a listener to handle remaining logic
             // TODO: Add feature where users can ignore requests
