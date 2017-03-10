@@ -318,6 +318,8 @@ extension MapViewController: MKMapViewDelegate{
 
             }
             
+            self.selectedAnnotation = view.annotation
+            
             
             
             // load image for selected pin
@@ -328,10 +330,11 @@ extension MapViewController: MKMapViewDelegate{
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
             
 
-            
+            // NOTE: ITS ADDING THE SUBVIEW TO THE ANNOTATION!
+
             view.addSubview(customView)
             self.panTo(coordinate: thisPin.coordinate, mapView: self.mapView)
-
+            
         }
         
         else {
@@ -354,6 +357,11 @@ extension MapViewController: MKMapViewDelegate{
             
             view.leftCalloutAccessoryView = drive
             view.rightCalloutAccessoryView = pinIt
+            
+            customView.frame.size = CGSize(width: 150, height: 150)
+
+            
+            view.detailCalloutAccessoryView = customView
             self.selectedAnnotation = view.annotation
             view.canShowCallout = true
         
@@ -426,7 +434,15 @@ extension MapViewController: Mappable{
 extension MapViewController: CustomCalloutDelegate {
     
     func viewDetails() {
-        print("completed!")
+        
+        // present the detail VC when the pin image is selected
+        
+       let detailVc =  Helper.instantiateController(storyboardName: "Edit", controllerName: String(describing: PinDetailController.self), bundle: nil) as! PinDetailController
+        
+        detailVc.pin = selectedPin!
+        
+        present(detailVc, animated: true, completion: nil)
+        
     }
     
     

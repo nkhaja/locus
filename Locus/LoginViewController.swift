@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         if let id = FIRAuth.auth()?.currentUser?.uid{
             self.usernameQuery = userRef?.child("\(id)")
             usernameQuery!.observe(.value, with: { snapshot in
+                
                 if snapshot.hasChild("name"){
                     self.performSegue(withIdentifier: "map", sender: self)
                 }

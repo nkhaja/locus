@@ -21,7 +21,17 @@ class Helper {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        
         return newImage!
+    }
+    
+    
+    static func instantiateController(storyboardName: String, controllerName: String, bundle: Bundle?) -> UIViewController{
+        
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        let vc = storyboard.instantiateViewController(withIdentifier: storyboardName)
+        
+        return vc
     }
     
     

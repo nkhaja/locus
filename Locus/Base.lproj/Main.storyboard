@@ -89,7 +89,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="map" id="inb-Rh-VYn"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="map" id="aRv-Ux-3Ll"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3i9-3R-10I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -329,7 +329,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="XCa-zF-dUq" id="BQ4-2n-omb"/>
+                                    <action selector="searchFieldEditingChanged:" destination="XCa-zF-dUq" eventType="editingChanged" id="HPT-n5-dos"/>
+                                    <outlet property="delegate" destination="XCa-zF-dUq" id="A0i-Ys-r8T"/>
                                 </connections>
                             </textField>
                         </subviews>

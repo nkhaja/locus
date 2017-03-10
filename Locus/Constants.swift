@@ -40,10 +40,16 @@ struct FirConst {
     static let ownerId = "ownerId"
     static let albumName = "albumName"
     static let albumId = "albumId"
+    
+    //Flags
+    
+    static let flagRef = ref.child("flags")
+    
 }
 
 
 struct ThisUser {
+    
     static var instance: User?
     static var thisUserId = FIRAuth.auth()?.currentUser!.uid
 

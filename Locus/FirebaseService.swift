@@ -142,6 +142,15 @@ struct FirebaseService {
         }
     }
     
+    
+    
+    // Flag Operation
+    
+    static func saveFlag(flag:Flag){
+        FirConst.flagRef.childByAutoId().setValue(flag.toAnyObject())
+    }
+    
+    
 }
 
 struct Identity{

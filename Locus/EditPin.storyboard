@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="f89-xV-0Bf">
-                                <rect key="frame" x="0.0" y="0.0" width="340" height="864.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="340" height="865"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syd-Zb-erw" userLabel="Container View">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="600"/>
@@ -39,7 +39,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LDI-l8-hgK">
-                                                <rect key="frame" x="8" y="422" width="324" height="166.5"/>
+                                                <rect key="frame" x="8" y="422" width="324" height="167"/>
                                                 <color key="backgroundColor" red="0.82736625150730514" green="1" blue="0.87024023652822646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -128,7 +128,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1e-Nr-iPL">
-                                <rect key="frame" x="8" y="864.5" width="324" height="86.5"/>
+                                <rect key="frame" x="8" y="865" width="324" height="86"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="savePin:" destination="HqQ-E4-nb9" eventType="touchUpInside" id="KWp-Wk-fyb"/>

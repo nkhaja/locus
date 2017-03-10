@@ -9,6 +9,9 @@
 import UIKit
 import MapKit
 
+
+// TODO: Optimize space to searchResults not stored twice
+
 class MyPinsController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,6 +23,10 @@ class MyPinsController: UIViewController {
     var selectedCell: MyPinCell?
     var selectedIndexPath: IndexPath?
     private let refreshControl = UIRefreshControl()
+    
+    // Searching Vars
+    
+    var filteredPins = [Pin]()
 
 
     
@@ -27,37 +34,13 @@ class MyPinsController: UIViewController {
         super.viewDidLoad()
         
         setupCollectionView()
+        setupRefreshing()
         loadData()
-        
-        refreshControl.addTarget(self, action: #selector(refreshData(sender:)), for: .valueChanged)
-        
-        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
-        
-        
-//        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins ...", attributes: attributes)
-
-
-        
-        
-        
 
     }
     
-    func loadData() {
-        
-        FirebaseService.getPinsForUser(id: ThisUser.instance!.id, local: true) { [weak self] pins in
-            
-            self?.pins = pins
-            
-            self?.refreshControl.endRefreshing()
-            self?.activityIndicator.stopAnimating()
 
-            self?.collectionView.reloadData()
-        }
-    }
-    
+    // Mark: Setup
     func setupCollectionView(){
         
         if #available(iOS 10.0, *) {
@@ -67,6 +50,34 @@ class MyPinsController: UIViewController {
         }
         
     }
+    
+    
+    func setupRefreshing(){
+        
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(sender:)), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
+        
+    }
+    
+    
+    // Mark: Get Data
+    
+    func loadData() {
+        
+        FirebaseService.getPinsForUser(id: ThisUser.instance!.id, local: true) { [weak self] pins in
+            
+            self?.pins = pins
+            
+            self?.refreshControl.endRefreshing()
+            self?.activityIndicator.stopAnimating()
+            
+            self?.collectionView.reloadData()
+        }
+    }
 
     
     func refreshData(sender: Any) {
@@ -75,13 +86,27 @@ class MyPinsController: UIViewController {
         
     }
     
+    
+    @IBAction func searchFieldEditingChanged(_ sender: Any) {
+        
+        self.doSearch()
+        
+    }
+    
+    
+    
 }
 
-
+// Mark: CollectionView Functions
 extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if filteredPins.count > 0 {
+            return filteredPins.count
+        }
+        
         return pins.count
     }
     
@@ -90,9 +115,21 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyPinCell
+        
         cell.indexPath = indexPath
         
-        let thisPin = pins[indexPath.row]
+
+        
+        var thisPin: Pin
+        
+        if filteredPins.count == 0{
+            thisPin = pins[indexPath.row]
+        }
+        
+        else{
+            
+            thisPin = filteredPins[indexPath.row]
+        }
         
         cell.indexPath = indexPath
         
@@ -130,6 +167,8 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     
+    
+    // Mark: Collectionview Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 1
         return CGSize(width: width, height: width)
@@ -145,6 +184,7 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
 }
 
 
+// Mark: OverlayButtonView Delegate Functions
 extension MyPinsController: OverlayButtonViewDelegate {
     
     func overlayButtonTriggered(type: OverlayButtonType, indexPath: IndexPath?) {
@@ -156,7 +196,19 @@ extension MyPinsController: OverlayButtonViewDelegate {
             let mapVc = nav.viewControllers[0] as! MapViewController
             self.tabBarController?.selectedIndex = 0
             
-            let visitPin = pins[indexPath.row]
+            let isfiltering = filteredPins.count > 0
+            
+            var visitPin: Pin
+            
+            
+            if filteredPins.count == 0{
+                visitPin = pins[indexPath.row]
+            }
+                
+            else{
+                
+                visitPin = filteredPins[indexPath.row]
+            }
             
             
             switch (type) {
@@ -191,18 +243,66 @@ extension MyPinsController: OverlayButtonViewDelegate {
             case .south:
                 visitPin.delete(){
                     
-//                    self.pins.remove(at: indexPath.row)
-                    self.collectionView.reloadData()
+                    if isfiltering {
+                        let index2 = self.filteredPins.index(of: visitPin)!
+                        self.filteredPins.remove(at: index2)
+                    }
                     
+                    self.loadData()
+                
                 }
             }
-            
-            
-            
         }
         
     }
     
     
+    
+}
+
+// Mark: Searching
+
+extension MyPinsController {
+
+    
+   func doSearch(){
+    
+        guard let text = searchTextField.text else {return }
+        if text == "" {
+            
+            self.filteredPins.removeAll()
+            collectionView.reloadData()
+            return
+            
+        }
+        
+        for p in pins{
+            
+            if p.title.contains(text) || p.placeName.contains(text) || p.date.toString().contains(text){
+                
+                if !filteredPins.contains(p){
+                    filteredPins.append(p)
+                }
+            }
+        }
+        
+        self.loadData()
+    }
+    
+
+}
+
+
+
+// Mark: Textfield Delegate
+extension MyPinsController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
+        
+    }
     
 }

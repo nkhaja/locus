@@ -223,8 +223,8 @@
 		BD2E86771E689188000C7EBA /* Followers */ = {
 			isa = PBXGroup;
 			children = (
-				BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */,
 				BD2E869C1E6DF0D7000C7EBA /* FollowerPreviewCell.xib */,
+				BDA2B7F91E5E9B4D00F1BC74 /* FollowingUsersController.swift */,
 				BD2E869E1E6DF95C000C7EBA /* FollowerPreviewCell.swift */,
 				BD2E86A11E6E0173000C7EBA /* NewFollowers */,
 				BD2E86A01E6E0154000C7EBA /* FollowerPins */,

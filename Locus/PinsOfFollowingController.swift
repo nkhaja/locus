@@ -17,25 +17,74 @@ class PinsOfFollowingController: UIViewController {
     var selectedIndexPath: IndexPath?
     var selectedCell: FollowersPinCell?
     
+    var filteredPins = [Pin]()
+    
+    private let refreshControl = UIRefreshControl()
+
+    
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var searchTextField: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // get the pins for this user
-        
-        FirebaseService.getPinsForUser(id: id, local: false, completion: { pins in
-            
-            self.pins = pins
-            self.collectionView.reloadData()
-    
-        })
-        
-        
-
-        // Do any additional setup after loading the view.
+        setupCollectionView()
+        setupRefreshing()
+        loadData()
     }
+    
+    func setupCollectionView(){
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        
+    }
+    
+    
+    func setupRefreshing(){
+        
+        
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
+        
+    }
+    
+    
+    // Mark: Get Data
+    
+    func loadData() {
+        
+        FirebaseService.getPinsForUser(id: id, local: false) { [weak self] pins in
+            
+            self?.pins = pins
+            
+            self?.refreshControl.endRefreshing()
+            self?.activityIndicator.stopAnimating()
+            
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    
+    
+    
+    @IBAction func backButton(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
 }
 
@@ -52,7 +101,16 @@ extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FollowersPinCell
         cell.indexPath = indexPath
         
-        let thisPin = pins[indexPath.row]
+        var thisPin: Pin
+        
+        if filteredPins.count == 0{
+            thisPin = pins[indexPath.row]
+        }
+            
+        else{
+            
+            thisPin = filteredPins[indexPath.row]
+        }
         
         cell.indexPath = indexPath
         
@@ -84,6 +142,7 @@ extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionVie
         cell.overlayButtonView.delegate = self
         cell.addSubview(cell.overlayButtonView)
         cell.overlayButtonView.animateButtons()
+        cell.overlayButtonView.northButton.isHidden = true
         
        
     }
@@ -102,6 +161,7 @@ extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionVie
         return 1.0
     }
     
+    
 }
 
 
@@ -112,11 +172,21 @@ extension PinsOfFollowingController: OverlayButtonViewDelegate {
         if let indexPath = indexPath {
             self.selectedCell = collectionView.cellForItem(at: indexPath) as! FollowersPinCell
             
-            let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
-            let mapVc = nav.viewControllers[0] as! MapViewController
-            self.tabBarController?.selectedIndex = 0
+
             
-            let visitPin = pins[indexPath.row]
+            
+            
+            
+            var visitPin: Pin
+            
+            if filteredPins.count == 0{
+                visitPin = pins[indexPath.row]
+            }
+                
+            else{
+                
+                visitPin = filteredPins[indexPath.row]
+            }
             
             
             switch (type) {
@@ -125,48 +195,98 @@ extension PinsOfFollowingController: OverlayButtonViewDelegate {
                 
             case .east:
                 
-                visitPin.image = selectedCell?.pinImageView.image
-                mapVc.selectedPin = visitPin
-                mapVc.performSegue(withIdentifier: "buildPin", sender: mapVc)
+                let storyBoard = UIStoryboard(name: "Edit", bundle: nil)
+                let pinDetailVc = storyboard?.instantiateViewController(withIdentifier: String(describing: PinDetailController.self)) as! PinDetailController
+                pinDetailVc.pin = visitPin
+                
+                self.present(pinDetailVc, animated: true, completion: nil)
+                
+
                 
                 
             case .west:
                 
                 // TODO: horrible, fix it
                 
+                let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
+                let mapVc = nav.viewControllers[0] as! MapViewController
+                self.tabBarController?.selectedIndex = 0
+                
                 mapVc.panTo(coordinate: visitPin.coordinate, mapView: mapVc.mapView)
+                mapVc.dropPins(pins: [visitPin])
                 
                 
             case .north:
-                print("north")
+                return
+
                 
-                let storyboard = UIStoryboard(name: "EditPin", bundle: Bundle.main)
-                
-                let pinDetailController = storyboard.instantiateViewController(withIdentifier: "PinDetailController") as! PinDetailController
-                
-                
-                pinDetailController.pin = visitPin
-                
-                self.present(pinDetailController, animated: true, completion: nil)
-                
-                
-                
+            
             case .south:
                 visitPin.delete(){
                     
-                    //                    self.pins.remove(at: indexPath.row)
-                    self.collectionView.reloadData()
+                    let flagAlert = self.createFlagAlertFor(pin: visitPin)
+                    self.present(flagAlert, animated: true, completion: nil)
                     
                 }
             }
+        }
+    }
+    
+    
+    
+    func createFlagAlertFor(pin:Pin) -> UIAlertController {
+        let alert = UIAlertController(title: "Flag this Pin", message: "Are you sure you want to flag this pin for inappropriate content?", preferredStyle: .alert)
+        
+        let flagAction = UIAlertAction(title: "Flag", style: .default, handler: { action in
             
             
+            
+            
+            let flag = Flag(fromUser: ThisUser.instance!.id, toUser: pin.ownerId, pinId
+                : pin.id!)
+            FirebaseService.saveFlag(flag: flag)
+            
+        })
+        
+        alert.addAction(flagAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        return alert
+        
+    }
+}
+
+
+extension PinsOfFollowingController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        UIView.animate(withDuration: 0.5) { 
+            
+            // do animations to expand size past back button here
             
         }
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            
+           // do animations to shrink textfield to accommodate back button
+            
+        }
+        
+        
+        return true
+ 
+    }
     
+
 }
+
 
 

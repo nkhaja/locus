@@ -12,11 +12,17 @@ class FollowingUsersController: UIViewController {
     
     @IBOutlet weak var tableView:  UITableView!
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var thisUser:User?
     lazy var filteredFollowing = [Identity]()
     var following = [Identity]()
     var selectedUserId: String?
+    
+    lazy var refreshControl = UIRefreshControl()
+    
+    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+
     
     // The id of the user who's map is being overlayed with our own
     var overlayMap: String?
@@ -32,6 +38,36 @@ class FollowingUsersController: UIViewController {
         
         tableView.register(nib, forCellReuseIdentifier: "FollowerPreviewCell")
         
+        loadData()
+        setupCollectionView()
+        setupRefreshing()
+    
+    }
+    
+    func setupCollectionView(){
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+    }
+    
+    
+    func setupRefreshing(){
+        
+        
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
+        
+    }
+    
+    func loadData(){
+        
         FirebaseService.getUsersFollowing(user: ThisUser.instance!, completion: { [weak self] identities in
             
             guard self != nil else{
@@ -43,8 +79,9 @@ class FollowingUsersController: UIViewController {
             self?.filteredFollowing = self!.following
             self?.tableView.reloadData()
         })
-
-        filteredFollowing = following
+        
+        
+        
     }
     
     
@@ -198,8 +235,12 @@ extension FollowingUsersController: PreviewCellDelegate{
     func seeDetails(indexPath: IndexPath) {
        
         selectedUserId = following[indexPath.row].id
-        performSegue(withIdentifier: "followersPins", sender: self)
-
+        let storyboard = UIStoryboard(name: "Followers", bundle: nil)
+        let pinsOfFollowingVc = storyboard.instantiateViewController(withIdentifier: String(describing: PinsOfFollowingController.self)) as! PinsOfFollowingController
+        
+        pinsOfFollowingVc.id = selectedUserId
+        
+        self.present(pinsOfFollowingVc, animated: true, completion: nil)
         
         //function to set active Map
     }

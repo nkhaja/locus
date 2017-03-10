@@ -14,63 +14,70 @@ import Firebase
 
 class NewFollowerViewController: UIViewController {
     
-    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     var filteredUsers = [User]()
     lazy var pendingFollowers = [Identity]()
+    lazy var refreshControl = UIRefreshControl()
+    
+    var headerHeight: CGFloat = 40
     
     // array of ids for people we are following
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchField.delegate = self
+        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchBar.layer.borderWidth = 0
+        
+        loadData()
+
+    }
+    
+    func setupCollectionView(){
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+    }
+    
+    
+    func setupRefreshing(){
+        
+        
+        refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Updating Pins...")
+        
+    }
+    
+    
+    
+    
+    func loadData(){
+        
         let permissionsWaitingIds = Array(ThisUser.instance!.permissionsWaiting.keys)
         
-        FirebaseService.getPendingRequests(ids: permissionsWaitingIds) { userInfo in
+        FirebaseService.getPendingRequests(ids: permissionsWaitingIds) { [weak self] userInfo in
             
-            self.pendingFollowers = userInfo
-            self.tableView.reloadData()
-
+            self?.refreshControl.endRefreshing()
+            self?.activityIndicator.stopAnimating()
+            self?.pendingFollowers = userInfo
+            self?.tableView.reloadData()
+            
         }
-    }
-    
-    
-    @IBAction func editingChanged(_ sender: Any) {
-        filteredUsers = []
-        
-        // make sure text is not nil or blank
-        guard let text = searchField.text else {return }
-        if text == "" {return}
-        
-        let query = FirConst.userRef.queryOrdered(byChild: "name").queryStarting(atValue: text)
-        
-        query.observe(FIRDataEventType.value, with: { snapshot in
-            if snapshot.hasChildren(){
-                for snap in snapshot.children{
-                    let data = snap as! FIRDataSnapshot
-                    let user = User(snapshot: data)
-                    
-                    // TODO: update when usernames become different from names
-                    // Don't include yourself as a result in searchQuery
-                    if user.name != ThisUser.instance?.name && user.accountPrivacy != .closed {
-                        if user.name.lowercased().hasPrefix(text){
-                            self.filteredUsers.append(user)
-                        }
-                        
-                    }
-                }
-            }
-            self.tableView.reloadData()
-        })
         
     }
-    
-    
-    
 }
 
 
@@ -92,6 +99,8 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! NewFollowTableViewCell
         
         
@@ -110,7 +119,6 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         // logged in user has id of current iteration's user in their list of friends. AKA currentUser is a friend
         if ThisUser.instance?.following[rowUser.id] != nil{
             
-            // TODO: replace with Image
             // put image to indicate user is being followed already
             cell.friendImageView.image = #imageLiteral(resourceName: "checkmark")
         }
@@ -139,7 +147,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             
             // get db reference to selected user
             if ThisUser.instance?.following[selectedUser.id] != nil{
-                let followeeRef = ThisUser.instance!.reference!.child("following").child(selectedUser.id)
+                let followeeRef = ThisUser.instance!.reference!.child(FirConst.following).child(selectedUser.id)
                 
                 // remove this person as someone you are following from db
                 followeeRef.removeValue()
@@ -150,7 +158,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             if selectedUser.permissionsWaiting[ThisUser.instance!.id] != nil {
                 
                 // reference to thisUser's request in selected user's data
-                let permisisonRef = selectedUser.reference!.child("permissionsWaiting").child(ThisUser.instance!.id)
+                let permisisonRef = selectedUser.reference!.child(FirConst.permissionsWaiting).child(ThisUser.instance!.id)
                 
                 // cancel request
                 permisisonRef.removeValue()
@@ -161,14 +169,14 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
                 // Privacy settings are open, we can follow them immediately
             else if selectedUser.accountPrivacy == .open {
                 ThisUser.instance?.following[selectedUser.id] = true
-                ThisUser.instance?.reference!.child("following").child(selectedUser.id).setValue(true)
+                ThisUser.instance?.reference!.child(FirConst.following).child(selectedUser.id).setValue(true)
                 // change image to following icon
             }
                 
                 
                 // We need permission to access their account. Send a request
             else if selectedUser.accountPrivacy == .permission {
-                selectedUser.reference?.child("permissionsWaiting").child(ThisUser.instance!.id).setValue(true)
+                selectedUser.reference?.child(FirConst.permissionsWaiting).child(ThisUser.instance!.id).setValue(true)
                 
                 // change image to waiting icon
                 // TODO: make sure that updating here is responsive.
@@ -213,11 +221,74 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 0 && pendingFollowers.count == 0 {
+            return 0
+        }
+        
+        return headerHeight
+        
+        
+        
+    }
+    
+    
     
     
 }
 
 extension NewFollowerViewController: UITextFieldDelegate {
+ 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+}
+
+
+extension NewFollowerViewController: UISearchBarDelegate {
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredUsers = []
+        
+        // make sure text is not nil or blank
+        guard let text = searchBar.text?.lowercased() else {return }
+        if text == "" {
+            
+            self.filteredUsers.removeAll()
+            tableView.reloadData()
+            return
+            
+        }
+        
+        let query = FirConst.userRef.queryOrdered(byChild: FirConst.name).queryStarting(atValue: text)
+        
+        query.observeSingleEvent(of: FIRDataEventType.value, with: { snapshot in
+            if snapshot.hasChildren(){
+                for snap in snapshot.children{
+                    let data = snap as! FIRDataSnapshot
+                    let user = User(snapshot: data)
+                    
+                    // TODO: update when usernames become different from names
+                    // Don't include yourself as a result in searchQuery
+                    if user.name != ThisUser.instance?.name && user.accountPrivacy != .closed {
+                        if user.name.lowercased().hasPrefix(text) {
+                            self.filteredUsers.append(user)
+                        }
+                        
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        })
+        
+    }
+    
+    
     
 }
 

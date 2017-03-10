@@ -139,8 +139,6 @@ class Pin {
             pinRef.setValue(self.toAnyObject())
         }
         
-    
-        
         //save image here instead?
     }
     
@@ -190,6 +188,7 @@ class Pin {
                 var name = placemark.name! //+ ", " + pm.subThoroughfare!
                 if let city = placemark.locality, let state = placemark.administrativeArea{
                     name = name + ", \(city) \(state)"
+                    
                 }
                 
                 completion(name)
@@ -226,3 +225,64 @@ class Pin {
         ]
     }
 }
+
+
+extension Pin: Comparable {
+
+    static func == (lhs: Pin, rhs: Pin) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    
+    static func < (lhs: Pin, rhs: Pin) -> Bool {
+        return lhs.title < rhs.title
+    }
+
+}
+
+
+struct Flag {
+    
+    var fromUser: String
+    var toUser: String
+    var pinId: String
+    
+    
+    init(fromUser: String, toUser: String, pinId: String){
+        
+        self.fromUser = fromUser
+        self.toUser = toUser
+        self.pinId = pinId
+    }
+    
+    
+    func save(){
+        
+        FirebaseService.saveFlag(flag: self)
+        
+    }
+    
+    func toAnyObject() -> [String: String]{
+        
+        return [
+            
+            "fromUser" : fromUser,
+            "toUser" : toUser,
+            "pinId" : pinId
+            
+        ]
+        
+        
+    }
+    
+}
+
+    
+
+
+
+    
+    
+    
+    
+

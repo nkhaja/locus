@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RL7-ch-e2i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9K4-Pd-UKy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,8 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WrX-XQ-SQc">
+                                <rect key="frame" x="0.0" y="323" width="375" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3RP-zu-5KS">
-                                <rect key="frame" x="0.0" y="84" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="wa5-f2-f6t" customClass="FollowingUserCell" customModule="Locus" customModuleProvider="target">
@@ -60,7 +64,7 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bWp-sz-0fx">
-                                <rect key="frame" x="0.0" y="84" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -73,17 +77,18 @@
                         <constraints>
                             <constraint firstItem="MBm-2U-g4n" firstAttribute="top" secondItem="3RP-zu-5KS" secondAttribute="bottom" id="773-BV-NJH"/>
                             <constraint firstAttribute="trailing" secondItem="3RP-zu-5KS" secondAttribute="trailing" id="Fnp-Xf-sCi"/>
+                            <constraint firstItem="bWp-sz-0fx" firstAttribute="top" secondItem="vRM-Oo-9Um" secondAttribute="bottom" id="LXM-eD-cIp"/>
                             <constraint firstItem="bWp-sz-0fx" firstAttribute="leading" secondItem="o58-uL-e4z" secondAttribute="leading" id="NKF-In-TKP"/>
                             <constraint firstAttribute="trailing" secondItem="bWp-sz-0fx" secondAttribute="trailing" id="PWu-8o-Qkr"/>
-                            <constraint firstItem="bWp-sz-0fx" firstAttribute="top" secondItem="vRM-Oo-9Um" secondAttribute="bottom" constant="20" id="WWt-xu-zqu"/>
+                            <constraint firstItem="3RP-zu-5KS" firstAttribute="height" secondItem="o58-uL-e4z" secondAttribute="height" multiplier="0.9" id="dY1-vw-hvO"/>
                             <constraint firstItem="3RP-zu-5KS" firstAttribute="leading" secondItem="o58-uL-e4z" secondAttribute="leading" id="hSz-BM-hc2"/>
-                            <constraint firstItem="3RP-zu-5KS" firstAttribute="top" secondItem="vRM-Oo-9Um" secondAttribute="bottom" constant="20" id="zwI-pm-iB3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yU3-VW-flc">
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="WrX-XQ-SQc" id="9LW-AQ-gD4"/>
                         <outlet property="searchField" destination="bWp-sz-0fx" id="B8t-xA-eLh"/>
                         <outlet property="tableView" destination="3RP-zu-5KS" id="qev-Tt-bFN"/>
                         <segue destination="pme-mO-m9w" kind="show" identifier="followersPins" id="fZq-Ur-o5B"/>
@@ -96,7 +101,7 @@
         <!--Pins Of Following Controller-->
         <scene sceneID="aA1-kD-mxf">
             <objects>
-                <viewController id="pme-mO-m9w" customClass="PinsOfFollowingController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PinsOfFollowingController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pme-mO-m9w" customClass="PinsOfFollowingController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8yo-fB-Rjd"/>
                         <viewControllerLayoutGuide type="bottom" id="5FL-Ld-bHO"/>
@@ -106,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fzR-Nj-iwL">
-                                <rect key="frame" x="0.0" y="18" width="375" height="600"/>
+                                <rect key="frame" x="0.0" y="67" width="375" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hc0-Vr-8fl">
                                     <size key="itemSize" width="106" height="86"/>
@@ -114,6 +119,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="jxG-EN-lDq">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="We3-nj-fsA" customClass="FollowersPinCell" customModule="Locus" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="106" height="86"/>
@@ -143,42 +152,46 @@
                                     <outlet property="delegate" destination="pme-mO-m9w" id="Cjv-yO-agx"/>
                                 </connections>
                             </collectionView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KQ9-Xp-Vwq">
+                                <rect key="frame" x="34" y="20" width="341" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pme-mO-m9w" id="m8x-AM-Mlg"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYF-pF-cTy">
+                                <rect key="frame" x="0.0" y="20" width="30" height="30"/>
+                                <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="backButton:" destination="pme-mO-m9w" eventType="touchUpInside" id="8im-zg-g7K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KQ9-Xp-Vwq" firstAttribute="leading" secondItem="OYF-pF-cTy" secondAttribute="trailing" constant="4" id="2eH-3f-uM4"/>
+                            <constraint firstItem="OYF-pF-cTy" firstAttribute="top" secondItem="8yo-fB-Rjd" secondAttribute="bottom" id="2iL-xj-aqC"/>
                             <constraint firstItem="fzR-Nj-iwL" firstAttribute="leading" secondItem="e4V-zy-lNi" secondAttribute="leading" id="Chb-bu-quH"/>
+                            <constraint firstItem="OYF-pF-cTy" firstAttribute="leading" secondItem="e4V-zy-lNi" secondAttribute="leading" id="FhI-jx-4fM"/>
                             <constraint firstItem="fzR-Nj-iwL" firstAttribute="height" secondItem="e4V-zy-lNi" secondAttribute="height" multiplier="0.9" id="GQz-dq-dfi"/>
                             <constraint firstAttribute="trailing" secondItem="fzR-Nj-iwL" secondAttribute="trailing" id="JrO-kB-fuC"/>
+                            <constraint firstAttribute="trailing" secondItem="KQ9-Xp-Vwq" secondAttribute="trailing" id="MkG-93-fSW"/>
                             <constraint firstItem="5FL-Ld-bHO" firstAttribute="top" secondItem="fzR-Nj-iwL" secondAttribute="bottom" id="WKd-eP-4gQ"/>
+                            <constraint firstItem="KQ9-Xp-Vwq" firstAttribute="top" secondItem="8yo-fB-Rjd" secondAttribute="bottom" id="xdf-Dx-Zfx"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="jxG-EN-lDq" id="RWj-WP-X08"/>
+                        <outlet property="backButton" destination="OYF-pF-cTy" id="Smm-vE-MLF"/>
                         <outlet property="collectionView" destination="fzR-Nj-iwL" id="4ev-fS-XfL"/>
+                        <outlet property="searchTextField" destination="KQ9-Xp-Vwq" id="oXY-Vv-RXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QnB-ji-UHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1728.8" y="1016.9415292353824"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="C1e-Cz-eDO">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RL7-ch-e2i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="nyn-EH-HNb"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kiv-75-Exw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="9K4-Pd-UKy" kind="relationship" relationship="rootViewController" id="72m-5j-4Gi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OrJ-pU-tus" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="1016.9415292353824"/>
         </scene>
     </scenes>
 </document>
