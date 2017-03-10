@@ -15,9 +15,8 @@ import MapKit
 class MyPinsController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var pins = [Pin]()
     var selectedCell: MyPinCell?
@@ -85,16 +84,6 @@ class MyPinsController: UIViewController {
         loadData()
         
     }
-    
-    
-    @IBAction func searchFieldEditingChanged(_ sender: Any) {
-        
-        self.doSearch()
-        
-    }
-    
-    
-    
 }
 
 // Mark: CollectionView Functions
@@ -255,9 +244,6 @@ extension MyPinsController: OverlayButtonViewDelegate {
         }
         
     }
-    
-    
-    
 }
 
 // Mark: Searching
@@ -265,9 +251,9 @@ extension MyPinsController: OverlayButtonViewDelegate {
 extension MyPinsController {
 
     
-   func doSearch(){
+    func doSearchFor(text:String?){
     
-        guard let text = searchTextField.text else {return }
+        guard let text = text else {return }
         if text == "" {
             
             self.filteredPins.removeAll()
@@ -294,15 +280,32 @@ extension MyPinsController {
 
 
 
-// Mark: Textfield Delegate
-extension MyPinsController: UITextFieldDelegate{
+// Mark: Searchbar Delegate
+
+extension MyPinsController: UISearchBarDelegate{
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        textField.resignFirstResponder()
+        self.doSearchFor(text: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
         
-        return true
+    
+    func dismissKeyboard(){
+        
+        searchBar.resignFirstResponder()
         
     }
     
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
 }

@@ -24,7 +24,7 @@ class PinsOfFollowingController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton!
     
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -287,6 +287,64 @@ extension PinsOfFollowingController: UITextFieldDelegate{
     
 
 }
+
+extension PinsOfFollowingController : UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        doSearchFor(text: searchText)
+    }
+    
+    
+    func doSearchFor(text:String?){
+        
+        guard let text = text else {return }
+        if text == "" {
+            
+            self.filteredPins.removeAll()
+            collectionView.reloadData()
+            return
+            
+        }
+        
+        for p in pins{
+            
+            if p.title.contains(text) || p.placeName.contains(text) || p.date.toString().contains(text){
+                
+                if !filteredPins.contains(p){
+                    filteredPins.append(p)
+                }
+            }
+        }
+        
+        self.loadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func dismissKeyboard(){
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    
+    
+}
+
+
 
 
 

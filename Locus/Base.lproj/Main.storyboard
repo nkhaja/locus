@@ -278,7 +278,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y65-md-iev">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y65-md-iev">
                                 <rect key="frame" x="0.0" y="58" width="375" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NyW-cs-6lD">
@@ -320,27 +320,21 @@
                                     <outlet property="delegate" destination="XCa-zF-dUq" id="D1p-oy-GBH"/>
                                 </connections>
                             </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1vD-Qa-dwC">
-                                <rect key="frame" x="16" y="20" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ylA-lQ-qJ2"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="EZY-pU-UTo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="searchFieldEditingChanged:" destination="XCa-zF-dUq" eventType="editingChanged" id="HPT-n5-dos"/>
-                                    <outlet property="delegate" destination="XCa-zF-dUq" id="A0i-Ys-r8T"/>
+                                    <outlet property="delegate" destination="XCa-zF-dUq" id="dAU-TQ-L6O"/>
                                 </connections>
-                            </textField>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1vD-Qa-dwC" firstAttribute="leading" secondItem="xBa-jZ-fho" secondAttribute="leadingMargin" id="LBs-g2-HlP"/>
-                            <constraint firstItem="1vD-Qa-dwC" firstAttribute="trailing" secondItem="xBa-jZ-fho" secondAttribute="trailingMargin" id="VX1-AT-Lsu"/>
-                            <constraint firstItem="y65-md-iev" firstAttribute="top" secondItem="1vD-Qa-dwC" secondAttribute="bottom" constant="8" id="ZqV-Ja-Rtx"/>
-                            <constraint firstItem="1vD-Qa-dwC" firstAttribute="top" secondItem="DxB-os-BOn" secondAttribute="bottom" id="alm-X3-Z3e"/>
+                            <constraint firstAttribute="trailing" secondItem="EZY-pU-UTo" secondAttribute="trailing" id="5gn-Rj-99f"/>
+                            <constraint firstItem="EZY-pU-UTo" firstAttribute="leading" secondItem="xBa-jZ-fho" secondAttribute="leading" id="ffz-e4-MEF"/>
                             <constraint firstItem="yH5-sE-MCU" firstAttribute="top" secondItem="y65-md-iev" secondAttribute="bottom" id="pKe-c5-jMp"/>
+                            <constraint firstItem="y65-md-iev" firstAttribute="top" secondItem="EZY-pU-UTo" secondAttribute="bottom" id="tQF-rP-2Bs"/>
+                            <constraint firstItem="EZY-pU-UTo" firstAttribute="top" secondItem="xBa-jZ-fho" secondAttribute="top" id="xSX-nl-Ni6"/>
                             <constraint firstAttribute="trailing" secondItem="y65-md-iev" secondAttribute="trailing" id="xaa-Fm-fUP"/>
                             <constraint firstItem="y65-md-iev" firstAttribute="leading" secondItem="xBa-jZ-fho" secondAttribute="leading" id="y02-0e-YSY"/>
                         </constraints>
@@ -349,7 +343,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="uzf-QV-cW9" id="Cp3-7u-vN5"/>
                         <outlet property="collectionView" destination="y65-md-iev" id="Ini-9u-wul"/>
-                        <outlet property="searchTextField" destination="1vD-Qa-dwC" id="s9U-aG-RKK"/>
+                        <outlet property="searchBar" destination="EZY-pU-UTo" id="JV1-tk-ZO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CCR-d5-StE" userLabel="First Responder" sceneMemberID="firstResponder"/>

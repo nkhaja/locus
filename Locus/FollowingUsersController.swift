@@ -11,8 +11,8 @@ import UIKit
 class FollowingUsersController: UIViewController {
     
     @IBOutlet weak var tableView:  UITableView!
-    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var thisUser:User?
     lazy var filteredFollowing = [Identity]()
@@ -21,7 +21,6 @@ class FollowingUsersController: UIViewController {
     
     lazy var refreshControl = UIRefreshControl()
     
-    lazy var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
 
     
     // The id of the user who's map is being overlayed with our own
@@ -96,23 +95,7 @@ class FollowingUsersController: UIViewController {
     
     @IBAction func searchFieldEdited(_ sender: Any) {
         
-        // Show all options if filtering on
-        guard let text = searchField.text
-            else {
-                filteredFollowing = following
-                return
-        }
-        
-        if text == "" {
-            filteredFollowing = following
-            return
-        }
-        
-        filteredFollowing = following.filter {
-            $0.name.hasPrefix(searchField.text!)
-        }
-        
-        self.tableView.reloadData()
+
         
     }
     
@@ -167,7 +150,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
  
             
-        if searchField.text == nil || searchField.text == "" {
+        if searchBar.text == nil || searchBar.text == "" {
             filteredFollowing = following
             
         }
@@ -248,3 +231,50 @@ extension FollowingUsersController: PreviewCellDelegate{
     
 }
 
+
+extension FollowingUsersController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Show all options if filtering on
+        guard let text = searchBar.text
+            else {
+                filteredFollowing = following
+                return
+        }
+        
+        if text == "" {
+            filteredFollowing = following
+            return
+        }
+        
+        filteredFollowing = following.filter {
+            $0.name.hasPrefix(searchBar.text!)
+        }
+        
+        self.tableView.reloadData()
+
+    }
+    
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func dismissKeyboard(){
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    
+}

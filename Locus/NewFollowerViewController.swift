@@ -36,6 +36,7 @@ class NewFollowerViewController: UIViewController {
         searchBar.layer.borderWidth = 0
         
         loadData()
+        
 
     }
     
@@ -286,6 +287,26 @@ extension NewFollowerViewController: UISearchBarDelegate {
             self.tableView.reloadData()
         })
         
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+    
+    }
+    
+    func dismissKeyboard(){
+        
+        searchBar.resignFirstResponder()
+        
+    }
+    
+    func hideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
     }
     
     
