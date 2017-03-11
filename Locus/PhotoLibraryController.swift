@@ -216,13 +216,15 @@ extension GeoTaggedLibrary {
                                             let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                                             let gpsPhoto = GpsPhoto(image: image, location: location2d)
                                             output.append(gpsPhoto)
+
                                         }
                                         
+                                        output_dispatch.leave()
+
 
             })
             
                 
-                output_dispatch.leave()
         
         }
         

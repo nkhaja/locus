@@ -46,6 +46,9 @@
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
+		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
+		BD6747121E734D7800591079 /* baybridge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD6747111E734D7800591079 /* baybridge.jpg */; };
+		BD6747141E73554A00591079 /* IconCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6747131E73554A00591079 /* IconCollectionCell.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 		BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */; };
 		BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */; };
@@ -102,6 +105,9 @@
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
 		BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowerViewController.swift; sourceTree = "<group>"; };
 		BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowTableViewCell.swift; sourceTree = "<group>"; };
+		BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTakingHelper.swift; path = ../../../../.Trash/PhotoTakingHelper.swift; sourceTree = "<group>"; };
+		BD6747111E734D7800591079 /* baybridge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = baybridge.jpg; path = ../../../../Desktop/baybridge.jpg; sourceTree = "<group>"; };
+		BD6747131E73554A00591079 /* IconCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionCell.swift; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Locus/LoginViewController.swift; sourceTree = "<group>"; };
 		BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryController.swift; sourceTree = "<group>"; };
 		BD94ACDD1E50398E00AFCB99 /* SeeImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeImageController.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 				BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */,
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
 				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
+				BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD2E86771E689188000C7EBA /* Followers */,
 				BD2E86A21E6E01FE000C7EBA /* MyPins */,
@@ -208,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				BD2D6D1B1E294CAC00F6F4BB /* DateView.swift */,
+				BD6747131E73554A00591079 /* IconCollectionCell.swift */,
 				BD30BFDF1E2AC8610040B2E6 /* DateController.swift */,
 				BD30BFE71E2B042E0040B2E6 /* AlbumCell.swift */,
 				BD30BFE81E2B042E0040B2E6 /* AlbumController.swift */,
@@ -253,6 +261,7 @@
 		BD2E86A21E6E01FE000C7EBA /* MyPins */ = {
 			isa = PBXGroup;
 			children = (
+				BD6747111E734D7800591079 /* baybridge.jpg */,
 				BD2E86981E6D07CC000C7EBA /* PinDetailController.swift */,
 				BD2E86711E67E5D1000C7EBA /* MyPinsController.swift */,
 				BD2E86781E68A90D000C7EBA /* MyPinCell.swift */,
@@ -346,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD2E869D1E6DF0D7000C7EBA /* FollowerPreviewCell.xib in Resources */,
+				BD6747121E734D7800591079 /* baybridge.jpg in Resources */,
 				BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */,
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* Map.storyboard in Resources */,
@@ -415,8 +425,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD2E86691E63CA5D000C7EBA /* FollowersPinCell.swift in Sources */,
+				BD6747141E73554A00591079 /* IconCollectionCell.swift in Sources */,
 				BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */,
 				BD2E866B1E6607C0000C7EBA /* FollowingUserCell.swift in Sources */,
+				BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */,
 				BD1A7B091E08DA26001E290B /* Pin.swift in Sources */,
 				BD2E869F1E6DF95C000C7EBA /* FollowerPreviewCell.swift in Sources */,
 				BD2D6D1C1E294CAC00F6F4BB /* DateView.swift in Sources */,

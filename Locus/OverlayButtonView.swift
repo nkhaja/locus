@@ -33,6 +33,9 @@ class OverlayButtonView: UIView {
     var proportion: CGFloat = 3
     var padding: CGFloat = 4
     
+    var colors : [UIColor] = [.blue, .red, .green, .purple]
+
+    
     
     
     override init(frame: CGRect) {
@@ -48,6 +51,25 @@ class OverlayButtonView: UIView {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismiss))
         self.addGestureRecognizer(tap)
+        
+    }
+    
+    
+    func setColors(north:UIColor, south:UIColor, east:UIColor, west:UIColor) {
+        
+        eastButton.backgroundColor = east
+        westButton.backgroundColor = west
+        northButton.backgroundColor = north
+        southButton.backgroundColor = south
+    
+    }
+    
+    func setImages(north:UIImage, south:UIImage, east:UIImage, west:UIImage){
+        
+        northButton.setImage(north, for: .normal)
+        southButton.setImage(south, for: .normal)
+        eastButton.setImage(east, for: .normal)
+        westButton.setImage(west, for: .normal)
         
     }
     
@@ -69,7 +91,6 @@ class OverlayButtonView: UIView {
         
         
         let buttons : [UIButton] = [eastButton, westButton, northButton, southButton]
-        let colors : [UIColor] = [.blue, .red, .green, .purple]
         
         for i in 0..<buttons.count{
             

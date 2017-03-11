@@ -47,9 +47,11 @@ class BuildPinViewController: UIViewController {
         titleTextField.delegate = self
         placeNameTextField.delegate = self
         
+        
         //Setup
         setupKeyboard()
         setupGestures()
+        setupStoryTextView()
         
         
         //Set datePicker as Input for dateTextfield
@@ -118,6 +120,37 @@ class BuildPinViewController: UIViewController {
         
         return pin
     }
+    
+    
+    func setupGestures(){
+        let tapImage = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        
+        self.pinImage.isUserInteractionEnabled = true
+        self.pinImage.addGestureRecognizer(tapImage)
+        
+        
+        let tapView = UITapGestureRecognizer(target: self, action: #selector(closeKeyBoard))
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapView)
+    }
+    
+    func setupStoryTextView(){
+        
+        storyTextView.text = "Your story..."
+        storyTextView.textColor = UIColor.lightGray
+        storyTextView.layer.borderColor = UIColor.gray.cgColor
+        
+    }
+    
+    func imageTapped(){
+        
+        presentAlerts()
+    }
+    
+    func closeKeyBoard(){
+        self.view.endEditing(true)
+    }
+    
     
     
     @IBAction func selectIconButton(_ sender: UIButton) {
@@ -214,7 +247,12 @@ class BuildPinViewController: UIViewController {
     
     
     
+    @IBAction func unwindFromSomewhere(segue: UIStoryboardSegue){
+        
+    }
+    
     @IBAction func unwindFromIconSelection(segue: UIStoryboardSegue){
+        
         
     }
     
@@ -225,119 +263,7 @@ class BuildPinViewController: UIViewController {
 }
 
 
-//Handle keyboard
-
-//Extension for accessing camera with gestures
-
-extension BuildPinViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-   
-    func setupGestures(){
-        let tapImage = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        
-//        let tapScreen = UITapGestureRecognizer
-        self.pinImage.isUserInteractionEnabled = true
-        self.pinImage.addGestureRecognizer(tapImage)
-        
-        
-        let tapView = UITapGestureRecognizer(target: self, action: #selector(closeKeyBoard))
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(tapView)
-        
-        // gesture for dateTextPicker Keyboard
-        
-    }
-    
-    func closeKeyBoard(){
-        self.view.endEditing(true)
-    }
-    
-    
-    //Present media picking options
-    func imageTapped() {
-        let cameraAlert = UIAlertController(title: "Select a source", message: "Where would you like to get your photos from?", preferredStyle: .actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { action in
-            self.openMedia(source: .camera)
-        }
-        
-        let galleryAction = UIAlertAction(title: "Gallery", style: .default) { action in
-            self.openMedia(source: .photoLibrary)
-        }
-        
-        let cancelAction = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
-        
-        cameraAlert.addAction(cameraAction)
-        cameraAlert.addAction(galleryAction)
-        cameraAlert.addAction(cancelAction)
-        
-        self.present(cameraAlert, animated: true, completion: nil)
-    }
-    
-    //Open either camera or gallery
-    func openMedia(source: UIImagePickerControllerSourceType){
-        if UIImagePickerController.isSourceTypeAvailable(source){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = source
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    
-    // build the alert asking user if they'd like to save photo to gallery
-    func requestSavingToGallery(image:UIImage?){
-        let saveAlert = UIAlertController(title: "Save this image?", message: nil, preferredStyle: .alert)
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { action in
-            if let image = image{
-                self.saveToGallery(image: image)
-            }
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        saveAlert.addAction(saveAction)
-        saveAlert.addAction(cancel)
-        
-        if image != nil{
-            present(saveAlert, animated: true, completion: nil)
-        }
-    }
-    
-    
-    
-    //TODO: PICK UP HERE
-    func saveToGallery(image:UIImage){
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        let alert = UIAlertController(title: "Save Completion",
-                                      message: "Your Image has been saved to Photo Library!",
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
-    
-    
-    // TODO: Enable GPS autofill for images taken on the spot
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        picker.dismiss(animated: true) {
-            if let image =  info[UIImagePickerControllerOriginalImage] as? UIImage{
-                self.pinImage.image = image
-                let metaData = info[UIImagePickerControllerMediaMetadata]
-                print(metaData)
-                
-                
-                if picker.sourceType == .camera{
-                    self.requestSavingToGallery(image: image)
-                }
-            }
-        }
-    }
-}
-
-extension BuildPinViewController: UITextFieldDelegate{
+extension BuildPinViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == self.dateTextField {
 
@@ -408,3 +334,17 @@ extension BuildPinViewController {
     }
 }
 
+
+extension BuildPinViewController: UITextViewDelegate{
+    
+    
+    // Mark: Used to create a pseudo placeholder field
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+}

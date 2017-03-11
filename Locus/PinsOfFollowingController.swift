@@ -339,9 +339,6 @@ extension PinsOfFollowingController : UISearchBarDelegate{
         
         view.addGestureRecognizer(tap)
     }
-    
-    
-    
 }
 
 

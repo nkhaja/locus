@@ -151,7 +151,11 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
         cell.overlayButtonView.indexPath = indexPath
         cell.overlayButtonView.delegate = self
         cell.addSubview(cell.overlayButtonView)
+        
+        cell.overlayButtonView.setColors(north: .green, south: .red, east: .purple, west: .blue)
         cell.overlayButtonView.animateButtons()
+        
+        
         
     }
     
@@ -230,19 +234,46 @@ extension MyPinsController: OverlayButtonViewDelegate {
                
             
             case .south:
-                visitPin.delete(){
-                    
-                    if isfiltering {
-                        let index2 = self.filteredPins.index(of: visitPin)!
-                        self.filteredPins.remove(at: index2)
-                    }
-                    
-                    self.loadData()
                 
+                let deletePinAlert = UIAlertController(title: "Delete Pin", message: "Are you sure you want to delete this pin?", preferredStyle: .alert)
+                
+                
+                // Mark: Delete this Pin
+                let deleteAction = UIAlertAction(title: "DELETE", style: .destructive, handler: { [weak self] action in
+                    
+                    
+                    
+                    visitPin.delete(){
+                        
+                        if isfiltering {
+                            let index = self?.pins.index(of: visitPin)!
+                            self?.pins.remove(at: index!)
+                            self?.filteredPins.remove(at: indexPath.row)
+                        }
+                            
+                        else {
+                            
+                            self?.pins.remove(at: indexPath.row)
+                            
+                        }
+                        
+                        self?.loadData()
+                    }
+ 
+                })
+                
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                deletePinAlert.addAction(deleteAction)
+                deletePinAlert.addAction(cancelAction)
+                
+                
+                self.present(deletePinAlert, animated: true, completion: nil)
+                
+
                 }
             }
-        }
-        
     }
 }
 

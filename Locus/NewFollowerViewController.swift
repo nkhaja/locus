@@ -33,14 +33,18 @@ class NewFollowerViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        setupRefreshing()
+        setupTableviewView()
+        
         searchBar.layer.borderWidth = 0
+        
         
         loadData()
         
 
     }
     
-    func setupCollectionView(){
+    func setupTableviewView(){
         
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -71,9 +75,10 @@ class NewFollowerViewController: UIViewController {
         
         FirebaseService.getPendingRequests(ids: permissionsWaitingIds) { [weak self] userInfo in
             
+
+            self?.pendingFollowers = userInfo
             self?.refreshControl.endRefreshing()
             self?.activityIndicator.stopAnimating()
-            self?.pendingFollowers = userInfo
             self?.tableView.reloadData()
             
         }

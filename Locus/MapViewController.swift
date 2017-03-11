@@ -104,6 +104,7 @@ class MapViewController: UIViewController {
         for p in pins{
             let point = LocusPointAnnotation()
             point.coordinate = p.coordinate
+            point.iconName = p.iconName
             point.custom = true
             point.date = p.date.toString()
             point.name = "Hard-Coded"
@@ -256,7 +257,7 @@ extension MapViewController: MKMapViewDelegate{
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
                     
                     customAnnotationView.frame.size = CGSize(width: 30, height: 30)
-                    customAnnotationView.image = #imageLiteral(resourceName: "redGooglePin")
+                    customAnnotationView.image = UIImage(named: locusAnnotation.iconName)
                     customAnnotationView.canShowCallout = false
                     customAnnotationView.pinId = locusAnnotation.pinId
                 
@@ -361,7 +362,6 @@ extension MapViewController: MKMapViewDelegate{
             customView.frame.size = CGSize(width: 150, height: 150)
 
             
-            view.detailCalloutAccessoryView = customView
             self.selectedAnnotation = view.annotation
             view.canShowCallout = true
         
@@ -444,7 +444,15 @@ extension MapViewController: CustomCalloutDelegate {
         present(detailVc, animated: true, completion: nil)
         
     }
+}
+
+
+extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
+    
     
     
     
 }
+

@@ -24,4 +24,5 @@ class MyPinCell: UICollectionViewCell {
     }
     
     
+    
 }

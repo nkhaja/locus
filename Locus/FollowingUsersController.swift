@@ -76,6 +76,7 @@ class FollowingUsersController: UIViewController {
             
             self?.following = identities
             self?.filteredFollowing = self!.following
+            self?.activityIndicator.stopAnimating()
             self?.tableView.reloadData()
         })
         
@@ -93,11 +94,6 @@ class FollowingUsersController: UIViewController {
     }
 
     
-    @IBAction func searchFieldEdited(_ sender: Any) {
-        
-
-        
-    }
     
     
     
