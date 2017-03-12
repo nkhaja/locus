@@ -76,6 +76,7 @@ class FollowingUsersController: UIViewController {
             
             self?.following = identities
             self?.filteredFollowing = self!.following
+            self?.refreshControl.endRefreshing()
             self?.activityIndicator.stopAnimating()
             self?.tableView.reloadData()
         })
@@ -143,6 +144,8 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowerPreviewCell") as! FollowerPreviewCell
+        
+        cell.createGradiantLayer()
         
  
             

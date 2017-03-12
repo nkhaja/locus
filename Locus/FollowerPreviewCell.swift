@@ -30,6 +30,31 @@ class FollowerPreviewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func layoutSubviews() {
+        
+        self.addMapButton.layer.cornerRadius = addMapButton.frame.width/2
+        super.layoutSubviews()
+        
+    }
+    
+    
+    func createGradiantLayer(){
+        
+        
+        let gradiant = CAGradientLayer()
+        
+        gradiant.frame = self.bounds
+        
+        let lightBlue = UIColor(red: 79, green: 202, blue: 255, alpha: 1).cgColor
+        
+        gradiant.colors = [lightBlue, UIColor.red.cgColor]
+        
+        self.layer.insertSublayer(gradiant, at: 0)
+        
+        
+    }
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
