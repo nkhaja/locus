@@ -46,6 +46,9 @@ protocol Clearable {
 }
 
 extension Clearable where Self: MKMapView {
+    
+    // TODO: Find a less than n times solution to this problem, do for single pin removal
+    
     func clearAnnotations(){
         for a in self.annotations{
             let la = a as? LocusPointAnnotation

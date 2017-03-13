@@ -21,11 +21,18 @@ class MyPinsController: UIViewController {
     var pins = [Pin]()
     var selectedCell: MyPinCell?
     var selectedIndexPath: IndexPath?
+    
+    
     private let refreshControl = UIRefreshControl()
     
     // Searching Vars
     
     var filteredPins = [Pin]()
+    
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
 
 
     
@@ -84,6 +91,9 @@ class MyPinsController: UIViewController {
         loadData()
         
     }
+    
+   
+
 }
 
 // Mark: CollectionView Functions
@@ -187,7 +197,6 @@ extension MyPinsController: OverlayButtonViewDelegate {
             
             let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
             let mapVc = nav.viewControllers[0] as! MapViewController
-            self.tabBarController?.selectedIndex = 0
             
             let isfiltering = filteredPins.count > 0
             
@@ -216,6 +225,7 @@ extension MyPinsController: OverlayButtonViewDelegate {
                 
                 // TODO: horrible, fix it
                 
+                self.tabBarController?.selectedIndex = 0
                 mapVc.panTo(coordinate: visitPin.coordinate, mapView: mapVc.mapView)
             
             
@@ -257,6 +267,7 @@ extension MyPinsController: OverlayButtonViewDelegate {
                             
                         }
                         
+                        mapVc.mapView.removePinWith(coordinate: visitPin.coordinate)
                         self?.loadData()
                     }
  

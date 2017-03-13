@@ -44,6 +44,7 @@
 		BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */; };
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
+		BD4387601E7611BB0010F24C /* ExpandingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */; };
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
 		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
@@ -103,6 +104,7 @@
 		BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildPinViewController.swift; sourceTree = "<group>"; };
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
+		BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandingToolBar.swift; path = Locus/ExpandingToolBar.swift; sourceTree = "<group>"; };
 		BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowerViewController.swift; sourceTree = "<group>"; };
 		BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowTableViewCell.swift; sourceTree = "<group>"; };
 		BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTakingHelper.swift; path = ../../../../.Trash/PhotoTakingHelper.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				BD94AD061E5552B600AFCB99 /* CustomCalloutView.swift */,
 				BD94AD0C1E56898F00AFCB99 /* CustomAnnotationView.swift */,
 				BD2E86731E67E981000C7EBA /* OverlayButtonView.swift */,
+				BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -321,7 +324,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = MakeSchool;
 				TargetAttributes = {
 					BD1A7AEC1E06081F001E290B = {
@@ -434,6 +437,7 @@
 				BD2D6D1C1E294CAC00F6F4BB /* DateView.swift in Sources */,
 				BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */,
 				BD1A7B051E06084A001E290B /* User.swift in Sources */,
+				BD4387601E7611BB0010F24C /* ExpandingToolBar.swift in Sources */,
 				BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */,
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
 				BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */,
@@ -530,6 +534,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -579,6 +584,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -607,6 +613,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6B0DB943E15DD2938A54C97 /* Pods-Locus.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PU7KSX8Z6J;
 				INFOPLIST_FILE = Locus/Info.plist;
@@ -621,6 +628,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99A1AD6623EE156786DAFADA /* Pods-Locus.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PU7KSX8Z6J;
 				INFOPLIST_FILE = Locus/Info.plist;

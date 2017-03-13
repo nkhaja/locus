@@ -18,7 +18,7 @@ class Pin {
     var placeName: String = ""
     var story:String = ""
     var ownerId: String = ""
-    var iconName: String = "redGooglePin"
+    var iconName: String = "logo"
     var privacy: Privacy = .pub
     var date: Date = Date()
     var albumName = ""

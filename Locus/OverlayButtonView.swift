@@ -166,10 +166,12 @@ class OverlayButtonView: UIView {
     
     func northTapped(){
         delegate?.overlayButtonTriggered(type: .north, indexPath: self.indexPath)
+        self.dismiss()
     }
     
     func southTapped(){
         delegate?.overlayButtonTriggered(type: .south, indexPath: self.indexPath)
+        self.dismiss()
     }
    
 }

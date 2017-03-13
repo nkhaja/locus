@@ -73,9 +73,25 @@ class LocusMapView: MKMapView, Clearable {
         
     }
     
+    func removePinWith(coordinate: CLLocationCoordinate2D){
+        
+        for a in self.annotations{
+            if a.coordinate == coordinate {
+                self.removeAnnotation(a)
+            }
+        }
+    }
+}
+
+extension CLLocationCoordinate2D : Equatable{
     
-
+    public static func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        
+        if lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude{
+            return true
+        }
+        
+        return false
+    }
     
-
-
 }

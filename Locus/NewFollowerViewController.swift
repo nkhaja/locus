@@ -23,6 +23,10 @@ class NewFollowerViewController: UIViewController {
     lazy var pendingFollowers = [Identity]()
     lazy var refreshControl = UIRefreshControl()
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     var headerHeight: CGFloat = 40
     
     // array of ids for people we are following

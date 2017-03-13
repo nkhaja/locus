@@ -19,6 +19,10 @@ class PinsOfFollowingController: UIViewController {
     
     var filteredPins = [Pin]()
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     private let refreshControl = UIRefreshControl()
 
     
@@ -173,10 +177,6 @@ extension PinsOfFollowingController: OverlayButtonViewDelegate {
             self.selectedCell = collectionView.cellForItem(at: indexPath) as! FollowersPinCell
             
 
-            
-            
-            
-            
             var visitPin: Pin
             
             if filteredPins.count == 0{

@@ -88,6 +88,12 @@ struct FirebaseService {
 
     }
     
+    static func unfollowUser(followingUserId: String, followedUserId: String, completion: @escaping () -> ()){
+        
+        FirConst.userRef.child(followedUserId).child(FirConst.following).child(followingUserId).removeValue()
+        
+    }
+    
     
     // MARK: Pin Functions
     static func getPinsForUser(id:String, local: Bool, completion: @escaping ([Pin]) -> ()){

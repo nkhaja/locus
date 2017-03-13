@@ -28,7 +28,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4V8-9L-9XU">
-                                <rect key="frame" x="0.0" y="60" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -76,7 +76,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0Qm-LF-DPu">
-                                <rect key="frame" x="0.0" y="16" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="qae-Lm-32d"/>
@@ -88,9 +88,9 @@
                             <constraint firstAttribute="trailing" secondItem="4V8-9L-9XU" secondAttribute="trailing" id="4a3-l4-inj"/>
                             <constraint firstItem="0Qm-LF-DPu" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="S3r-3L-nBB"/>
                             <constraint firstAttribute="trailing" secondItem="0Qm-LF-DPu" secondAttribute="trailing" id="YB3-Zo-OGf"/>
+                            <constraint firstItem="0Qm-LF-DPu" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="fjt-sE-ihB"/>
                             <constraint firstItem="4V8-9L-9XU" firstAttribute="top" secondItem="0Qm-LF-DPu" secondAttribute="bottom" id="juG-jZ-Fqc"/>
                             <constraint firstItem="4V8-9L-9XU" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="m1c-Gm-zC1"/>
-                            <constraint firstItem="0Qm-LF-DPu" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="16" id="psl-5Z-jV9"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="4V8-9L-9XU" secondAttribute="bottom" id="waU-gm-pFq"/>
                         </constraints>
                     </view>

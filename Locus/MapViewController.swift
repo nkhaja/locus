@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import MapKit
+import ActionButton
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
@@ -37,6 +38,8 @@ class MapViewController: UIViewController {
     var selectedPin: Pin?
     
     var customView: CustomCalloutView!
+    
+    var genericPinPosition: Int?
 
     // id: Pin -- reference to a followers map you've chosen to overlap with yours.
     
@@ -46,11 +49,12 @@ class MapViewController: UIViewController {
         
         super.viewDidLoad()
         
-        let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
-        self.customView = xib?[0] as! CustomCalloutView
-        
         mapView.delegate = self
+
         setupLocation()
+//        setActionBar()
+        setupETB()
+        
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
         self.mapView.setup()
@@ -62,8 +66,10 @@ class MapViewController: UIViewController {
             }
         }
         
-        // Refactor this
-        let pinQuery = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownderId").queryEqual(toValue: thisUserID)
+        
+        let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+        self.customView = xib?[0] as! CustomCalloutView
+
 
     }
     
@@ -188,6 +194,12 @@ class MapViewController: UIViewController {
             }
 
         }
+        
+    }
+    
+    func cleaGenericPin(){
+        
+        
         
     }
     
@@ -403,6 +415,8 @@ extension MapViewController: HandleMapSearch {
         }
         
         mapView.clearAnnotations()
+        self.genericPinPosition = nil
+        self.genericPinPosition = mapView.annotations.count - 1
         mapView.addAnnotation(annotation)
         
         //refactor the lines below into their own function
@@ -447,12 +461,62 @@ extension MapViewController: CustomCalloutDelegate {
 }
 
 
-extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension MapViewController {
     
+    func setupETB() {
+        
+        
+        let x = view.frame.width - 50
+        let y = view.frame.height - 90 - 10  // 90 is for tab bar , approximate
+        let frame = CGRect(x: x , y: y, width: 200, height: 40)
+        let toolbar = ExpandingToolBar(frame: frame, buttonSize: 40)
+        
+//        toolbar.setExpandButtonImage(image: #imageLiteral(resourceName: "logo-mini"))
+        
+        toolbar.direction = .north
+        
+        toolbar.addAction(title: "signOut", font: nil, image: #imageLiteral(resourceName: "man-and-opened-exit-door"), color: UIColor.blue, action: signOut)
+        toolbar.addAction(title: "Add GPS Photo", font: nil, image: #imageLiteral(resourceName: "placeholder"), color: UIColor.green, action: getGPSPhotos)
+        
+        toolbar.addAction(title: "Take Photo", font: nil, image: #imageLiteral(resourceName: "video-camera"), color: UIColor.purple, action: takePhoto)
+        
+        toolbar.addAction(title: "Find Me", font: nil, image: #imageLiteral(resourceName: "weapon-crosshair"), color: UIColor.orange, action: findMe)
+
+        
+        self.view.addSubview(toolbar)
+        
+        
+        
+
+        
+    }
     
+    func signOut(){
+        
+        GIDSignIn.sharedInstance().signOut()
+        self.dismiss(animated: true, completion: nil)
+    }
     
+    func getGPSPhotos(){
+        
+        self.performSegue(withIdentifier: "photoLibrary", sender: self)
+
+    }
     
+    func findMe(){
+        
+        if let currentPosition = currentPosition {
+            
+            panTo(coordinate: currentPosition.coordinate, mapView: self.mapView)
+            
+        }
+  
+    }
     
+    func takePhoto(){
+        
+        presentAlerts()
+        
+    }
     
 }
-

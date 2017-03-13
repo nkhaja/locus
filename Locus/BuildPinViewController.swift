@@ -211,6 +211,7 @@ class BuildPinViewController: UIViewController {
         
             if let mapVc = segue.destination as? MapViewController{
                 
+                mapVc.mapView.clearAnnotations()
                 mapVc.panTo(coordinate: pin!.coordinate, mapView: mapVc.mapView)
                 
             }

@@ -21,6 +21,10 @@ class FollowingUsersController: UIViewController {
     
     lazy var refreshControl = UIRefreshControl()
     
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
 
     
     // The id of the user who's map is being overlayed with our own
@@ -145,7 +149,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowerPreviewCell") as! FollowerPreviewCell
         
-        cell.createGradiantLayer()
+//        cell.createGradiantLayer()
         
  
             
@@ -163,7 +167,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             
             // TODO: change the image here when this occurs instead of the title
-            cell.addMapButton.setTitle("Remove Map", for: .normal)
+//            cell.addMapButton.setTitle("Remove Map", for: .normal)
         }
         
         
@@ -173,7 +177,6 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let idForRow = filteredFollowing[indexPath.row].id
         
 
     }
@@ -228,8 +231,22 @@ extension FollowingUsersController: PreviewCellDelegate{
     }
     
     
+    func unfollowUser(indexPath: IndexPath) {
+        
+        let unfollowUserId = following[indexPath.row].id
+        
+        FirebaseService.unfollowUser(followingUserId: ThisUser.instance!.id, followedUserId: unfollowUserId) { [weak self] Void in
+            
+            self?.tableView.reloadData()
+            
+        }
+        
+        
+        
+    }
+    
+    
 }
-
 
 extension FollowingUsersController: UISearchBarDelegate{
     

@@ -160,7 +160,13 @@ class ExpandingToolBar: UIView {
         }
         
         if let image = image{
-            button.setBackgroundImage(image, for: .normal)
+            
+            button.imageView?.contentMode = .scaleAspectFit
+            button.setImage(image, for: .normal)
+            button.imageView?.contentMode = .scaleAspectFit
+            button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
+        
         }
         
         if let color = color{
@@ -315,7 +321,11 @@ class ExpandingToolBar: UIView {
     }
     
     func setExpandButtonImage(image: UIImage){
-        expandButton?.setBackgroundImage(image, for: .normal)
+        expandButton?.setImage(image, for: .normal)
+        expandButton?.imageView?.contentMode = .scaleAspectFit
+        expandButton?.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        
     }
     
     

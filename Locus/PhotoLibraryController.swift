@@ -34,8 +34,12 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     weak var delegate: Mappable?
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
+        
         getImagesWithGps { gpsPhotos in
             self.gpsPhotos = gpsPhotos
             self.collectionView.reloadData()
@@ -44,6 +48,7 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
         
         
         submitButton.isHidden = true
+        submitButton.layer.cornerRadius = 8
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
     }
 

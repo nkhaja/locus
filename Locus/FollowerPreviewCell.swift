@@ -12,6 +12,7 @@ protocol PreviewCellDelegate: class{
     
     func addMap(indexPath: IndexPath, isActive: Bool)
     func seeDetails(indexPath: IndexPath)
+    func unfollowUser(indexPath: IndexPath)
     
 }
 
@@ -19,7 +20,11 @@ protocol PreviewCellDelegate: class{
 class FollowerPreviewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var addMapButton: UIButton!
+    @IBOutlet weak var seeDetailsButton: UIButton!
+    @IBOutlet weak var unfollowButton: UIButton!
+    
     
     weak var delegate: PreviewCellDelegate?
     var indexPath: IndexPath!
@@ -33,8 +38,37 @@ class FollowerPreviewCell: UITableViewCell {
     
     override func layoutSubviews() {
         
-        self.addMapButton.layer.cornerRadius = addMapButton.frame.width/2
         super.layoutSubviews()
+        
+        // make buttons round
+        
+        let inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        
+        self.addMapButton.layer.cornerRadius = addMapButton.frame.width/2
+        addMapButton.setImage(#imageLiteral(resourceName: "map"), for: .normal)
+        addMapButton.contentMode = .scaleAspectFit
+        addMapButton.imageEdgeInsets = inset
+
+       
+        self.seeDetailsButton.layer.cornerRadius = seeDetailsButton.frame.width/2
+        seeDetailsButton.setImage(#imageLiteral(resourceName: "details-white"), for: .normal)
+        seeDetailsButton.contentMode = .scaleAspectFit
+        seeDetailsButton.imageEdgeInsets = inset
+        
+        
+        // TODO: Fix appearance of shadows here
+        seeDetailsButton.layer.shadowRadius = 10
+        seeDetailsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        seeDetailsButton.layer.shadowColor = UIColor.black.cgColor
+
+
+        
+        
+        self.unfollowButton.layer.cornerRadius = unfollowButton.frame.width/2
+        unfollowButton.setImage(#imageLiteral(resourceName: "settings"), for: .normal)
+        unfollowButton.contentMode = .scaleAspectFit
+        unfollowButton.imageEdgeInsets = inset
+
         
     }
     
@@ -69,14 +103,27 @@ class FollowerPreviewCell: UITableViewCell {
             delegate.addMap(indexPath: indexPath, isActive: self.isActive)
         }
         
-        
     }
+
     
     @IBAction func seeDetailsButton(_ sender: Any) {
         
         if let delegate = delegate{
             delegate.seeDetails(indexPath: indexPath)
         }
+        
     }
+    
+    @IBAction func unfollowButton(_ sender: Any) {
+        
+        
+        if let delegate = delegate{
+            
+            delegate.unfollowUser(indexPath: indexPath)
+        }
+        
+    }
+    
+
 
 }
