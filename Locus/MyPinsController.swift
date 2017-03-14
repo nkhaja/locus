@@ -163,6 +163,8 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
         cell.addSubview(cell.overlayButtonView)
         
         cell.overlayButtonView.setColors(north: .green, south: .red, east: .purple, west: .blue)
+        cell.overlayButtonView.setImages(north: #imageLiteral(resourceName: "settings"), south: #imageLiteral(resourceName: "delete-white"), east: #imageLiteral(resourceName: "details-white"), west: #imageLiteral(resourceName: "map"))
+        
         cell.overlayButtonView.animateButtons()
         
         

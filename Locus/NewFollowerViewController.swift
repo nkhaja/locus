@@ -40,6 +40,7 @@ class NewFollowerViewController: UIViewController {
         setupRefreshing()
         setupTableviewView()
         
+        searchBar.placeholder = "Search for users to follow"
         searchBar.layer.borderWidth = 0
         
         

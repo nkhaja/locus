@@ -114,9 +114,9 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section){
         case 0:
-            return "Active Maps"
+            return "Currently Overlaid Map"
         case 1:
-            return "Followers"
+            return "You are Following"
         default:
             return ""
         }
@@ -156,6 +156,10 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         if searchBar.text == nil || searchBar.text == "" {
             filteredFollowing = following
             
+        }
+        
+        if overlayMap == filteredFollowing[indexPath.row].id{
+            cell.addMapButton.isHidden = true
         }
         
         // inner argument returns an id, that hashes to a name from the outer dict
@@ -245,6 +249,17 @@ extension FollowingUsersController: PreviewCellDelegate{
         
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 0 && overlayMap == nil {
+            return 0
+        }
+        
+        return 40
+        
+        
+        
+    }
     
 }
 

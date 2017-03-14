@@ -9,7 +9,7 @@
 import UIKit
 
 class ExpandingToolBar: UIView {
-
+    
     private var maxSize: CGFloat = 0
     private var minSize: CGFloat = 0
     var canExpand: Bool = true
@@ -58,20 +58,20 @@ class ExpandingToolBar: UIView {
         if let buttonSize = buttonSize{
             self.buttonSize = buttonSize
         }
-        
+            
         else {
             
             self.buttonSize = minSize
             
         }
-
+        
         
         self.minSize = min(frame.width, frame.height)
-       
+        
         self.maxSize = max(frame.width, frame.height, minSize*CGFloat(actions.count), self.buttonSize*CGFloat(actions.count))
         
         self.buttonSize = self.minSize
-
+        
         let newFrame = CGRect(x: frame.origin.x, y: frame.origin.y, width: minSize, height: minSize)
         
         super.init(frame: newFrame)
@@ -84,7 +84,7 @@ class ExpandingToolBar: UIView {
         buildExpandButton()
     }
     
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -97,7 +97,7 @@ class ExpandingToolBar: UIView {
         expandButton = UIButton(frame: buttonRect)
         
         if let expandButton = expandButton {
-
+            
             self.addSubview(expandButton)
             expandButton.backgroundColor = UIColor.gray
             expandButton.addTarget(self, action: #selector(expand), for: .touchUpInside)
@@ -106,7 +106,7 @@ class ExpandingToolBar: UIView {
         }
     }
     
-     func expand(){
+    func expand(){
         print("tapped")
         if !isExpanded {
             let newFrames = rectForDirection(direction: self.direction)
@@ -151,7 +151,7 @@ class ExpandingToolBar: UIView {
             button.titleLabel?.minimumScaleFactor = 0.1
         }
         
-
+        
         button.clipsToBounds = true
         
         
@@ -160,13 +160,7 @@ class ExpandingToolBar: UIView {
         }
         
         if let image = image{
-            
-            button.imageView?.contentMode = .scaleAspectFit
-            button.setImage(image, for: .normal)
-            button.imageView?.contentMode = .scaleAspectFit
-            button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-
-        
+            button.setBackgroundImage(image, for: .normal)
         }
         
         if let color = color{
@@ -177,7 +171,7 @@ class ExpandingToolBar: UIView {
         let toolbarAction = ToolbarAction(button: button, image:image, action: action)
         actions.append(toolbarAction)
     }
-
+    
     
     private func layoutActionButtons(){
         UIView.animate(withDuration: 0.5) { [unowned self] in
@@ -229,24 +223,24 @@ class ExpandingToolBar: UIView {
     }
     
     
-
+    
     private func contractActionButtons(){
-       UIView.animate(withDuration: 0.5, animations: {
-        for i in 0..<self.actions.count {
-            let thisAction = self.actions[i]
-            thisAction.button.frame.origin = self.bounds.origin
+        UIView.animate(withDuration: 0.5, animations: {
+            for i in 0..<self.actions.count {
+                let thisAction = self.actions[i]
+                thisAction.button.frame.origin = self.bounds.origin
+            }
+        }){ completed in
+            
+            for a in self.actions{
+                a.button.removeFromSuperview()
+            }
         }
-       }){ completed in
         
-        for a in self.actions{
-            a.button.removeFromSuperview()
-        }
-    }
-
     }
     
     
-     func triggerAction(sender:UIButton){
+    func triggerAction(sender:UIButton){
         for a in actions{
             if sender == a.button{
                 a.action()
@@ -260,18 +254,18 @@ class ExpandingToolBar: UIView {
         var sub: CGRect
         switch(direction){
         case .east:
-             base = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: maxSize, height: minSize)
-             sub = expandButton!.bounds
-        
+            base = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: maxSize, height: minSize)
+            sub = expandButton!.bounds
+            
         case .west:
-             base = CGRect(x: self.frame.origin.x - maxSize + minSize, y: self.frame.origin.y, width: maxSize, height: minSize)
-             let x = maxSize - minSize
-             sub = CGRect(x: x, y: self.bounds.origin.y, width: minSize, height: minSize)
-        
+            base = CGRect(x: self.frame.origin.x - maxSize + minSize, y: self.frame.origin.y, width: maxSize, height: minSize)
+            let x = maxSize - minSize
+            sub = CGRect(x: x, y: self.bounds.origin.y, width: minSize, height: minSize)
+            
         case .south:
             base = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: minSize, height: maxSize)
             sub = expandButton!.bounds
-        
+            
         case .north:
             base = CGRect(x: self.frame.origin.x, y: self.frame.origin.y - maxSize + minSize, width: minSize, height: maxSize)
             let y = maxSize - minSize
@@ -280,7 +274,7 @@ class ExpandingToolBar: UIView {
         return (base, sub)
     }
     
-   private func panStatusChanged(){
+    private func panStatusChanged(){
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(callPanDelegate))
         
         
@@ -321,16 +315,12 @@ class ExpandingToolBar: UIView {
     }
     
     func setExpandButtonImage(image: UIImage){
-        expandButton?.setImage(image, for: .normal)
-        expandButton?.imageView?.contentMode = .scaleAspectFit
-        expandButton?.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        
-        
+        expandButton?.setBackgroundImage(image, for: .normal)
     }
     
     
     // MARK: Toolbar Action Editing Functions
-
+    
     func removeButton(index: Int){
         self.contractActionButtons()
         self.actions.remove(at: index)
@@ -367,7 +357,7 @@ class ExpandingToolBar: UIView {
     
     func callSlideDelegate(){
         
-    
+        
     }
 }
 
@@ -390,7 +380,7 @@ struct ToolbarAction {
         }
     }
     
-
+    
     init(button:ToolbarButton, image: UIImage?, action: @escaping () -> ()){
         self.button = button
         self.action = action
@@ -399,7 +389,7 @@ struct ToolbarAction {
             self.button.imageView?.contentMode = .scaleAspectFit
         }
     }
-
+    
 }
 
 
@@ -419,7 +409,7 @@ extension Pannable where Self: UIViewController{
         if sender.state == .began || sender.state == .changed {
             
             let translation = sender.translation(in: self.view)
-
+            
             source.center = CGPoint(x: source.center.x + translation.x, y: source.center.y + translation.y)
             sender.setTranslation(CGPoint.zero, in: self.view)
         }
@@ -444,7 +434,7 @@ extension Slideable where Self: UIViewController{
     func triggerSlide(sender: UIPanGestureRecognizer, source: UIView){
         if sender.state == .began || sender.state == .changed{
             
-//            let tranlsation = sender.
+            //            let tranlsation = sender.
             
         }
     }

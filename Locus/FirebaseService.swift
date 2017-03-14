@@ -13,7 +13,7 @@ struct FirebaseService {
     
     static func updateUser(id:String, completion: @escaping () -> ()){
         let reference = FirConst.userRef.child(id)
-        reference.observe(.value, with: { snapshot in
+        reference.observeSingleEvent(of: .value, with: { snapshot in
             let user = User(snapshot: snapshot)
             ThisUser.instance = user
             completion()
@@ -90,7 +90,7 @@ struct FirebaseService {
     
     static func unfollowUser(followingUserId: String, followedUserId: String, completion: @escaping () -> ()){
         
-        FirConst.userRef.child(followedUserId).child(FirConst.following).child(followingUserId).removeValue()
+        FirConst.userRef.child(followingUserId).child(FirConst.following).child(followingUserId).removeValue()
         
     }
     

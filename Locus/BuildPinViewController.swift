@@ -63,8 +63,18 @@ class BuildPinViewController: UIViewController {
         if let pin = self.pin{
             self.pinImage.image = pin.image
             
-            let thisIcon = UIImage(named: pin.iconName)
-            self.iconButton.setImage(thisIcon, for: .normal)
+//            let thisIcon = UIImage(named: pin.iconName)
+//            self.iconButton.setImage(thisIcon, for: .normal)
+            
+            
+            iconButton.imageView?.sd_setImage(with: FirConst.iconRef.child(pin.iconName + "@3x.png"), placeholderImage: nil){
+                
+                image, error, cache, ref in
+                
+                self.iconButton.setImage(image, for: .normal)
+
+                
+            }
             
             self.titleTextField.text! = pin.title
             self.placeNameTextField.text! = pin.placeName

@@ -15,7 +15,8 @@ class IconCollectionCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         
-//        self.iconImageView.image = nil
+        self.iconImageView.sd_cancelCurrentImageLoad()
+        self.iconImageView.image = nil
         
     }
     

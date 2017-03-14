@@ -14,7 +14,9 @@ class IconCollectionController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let iconNames = ["bluePushPin", "redGooglePin", "clothesPin", "baguette", "chili", "candy", "doughnut", "egg", "fish", "fruit", "fries", "gingerBreadMan", "glass", "ice-cream", "noodles", "knife", "pint", "glass", "pizza", "sandwich", "shwarma", "steak", "sushi", "turkey", "basketball", "bee", "bicycle", "books", "boxing", "burger", "candy", "coins", "cricket","cup", "deer", "exercise", "flask", "football", "goggles", "golf", "graduate", "hockey", "hummingbird", "lion", "martini", "money", "nemo", "olympics", "owl", "shopping-basket", "shopping-cart", "snorkel", "soccer", "spider-web", "fishing", "rollerSkates", "baseball", "football-helmet", "billiards", "medal", "volleyBall", "karate", "strategy", "swan", "video-camera", "tennis-ball"]
+    var selectedImage: UIImage?
+    
+    let iconNames = ["bluePushPin", "redGooglePin", "clothesPin", "baguette", "chili", "candy", "doughnut", "egg", "fish", "fruit", "fries", "gingerBreadMan", "glass", "ice-cream", "noodles", "knife", "pint", "glass", "pizza", "sandwich", "shwarma", "steak", "sushi", "turkey", "basketball", "bee", "bicycle", "books", "boxing", "burger", "candy", "coins", "cricket","cup", "deer", "exercise", "flask", "football", "goggles", "golf", "graduate", "hockey", "hummingbird", "lion", "martini", "money", "nemo", "olympics", "owl", "shopping-basket", "shopping-cart", "snorkel", "soccer", "spider-web", "fishing", "rollerSkates", "baseball", "football-helmet", "billiards", "medal", "volleyBall", "karate", "strategy", "swan", "video-camera", "tennis-ball", "pong"]
     
     
     var selectedIconName: String?
@@ -31,6 +33,7 @@ class IconCollectionController: UIViewController {
                 build.iconButton.setImage(UIImage(named:name), for: .normal)
                 
                 build.pin?.iconName = name
+                build.iconButton.setImage(selectedImage, for: .normal)
             }
         }
     }
@@ -48,11 +51,16 @@ extension IconCollectionController: UICollectionViewDelegate, UICollectionViewDa
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "icon", for: indexPath) as! IconCollectionCell
         
+        let iconNameForCell = iconNames[indexPath.row] + "@3x.png"
         
-        cell.iconImageView.image = UIImage(named: iconNames[indexPath.row])
+        cell.iconImageView.sd_setImage(with: FirConst.iconRef.child(iconNameForCell), placeholderImage: nil) { (image, error, cahce, ref) in
+            
+            self.selectedImage = image
+        }
+
+
         
         return cell
-        
         
     }
 

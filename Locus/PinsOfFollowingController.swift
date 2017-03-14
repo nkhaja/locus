@@ -147,6 +147,9 @@ extension PinsOfFollowingController: UICollectionViewDataSource, UICollectionVie
         cell.addSubview(cell.overlayButtonView)
         cell.overlayButtonView.animateButtons()
         cell.overlayButtonView.northButton.isHidden = true
+        cell.overlayButtonView.setImages(north: nil, south: #imageLiteral(resourceName: "flag-white"), east: #imageLiteral(resourceName: "details-white"), west: #imageLiteral(resourceName: "map"))
+        
+        cell.overlayButtonView.setColors(north: .white, south: .red, east: .purple, west: .blue)
         
        
     }

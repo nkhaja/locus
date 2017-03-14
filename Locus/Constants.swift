@@ -9,12 +9,15 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 struct FirConst {
     
     static let ref = FIRDatabase.database().reference()
     static let userRef = ref.child("users")
     static let pinRef = ref.child("pins")
+    
+    static let iconRef = FIRStorage.storage().reference().child("icons")
     
     // Users
     static let name = "name"

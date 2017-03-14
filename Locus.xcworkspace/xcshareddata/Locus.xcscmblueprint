@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E2A18443FA831E5F080B17DB2797B7D6A41C1373",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "46F7872EFB090DE0652B3AF6B3822D13F7D464C9" : 9223372036854775807,
+    "E2A18443FA831E5F080B17DB2797B7D6A41C1373" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A2493E8D-ABD9-4C0F-8C6E-1039AFFBED14",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "46F7872EFB090DE0652B3AF6B3822D13F7D464C9" : "..\/SA%20Projects\/MSprojects\/conquestV0",
+    "E2A18443FA831E5F080B17DB2797B7D6A41C1373" : "Locus\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Locus",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Locus.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nkhaja\/conquestV0.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "46F7872EFB090DE0652B3AF6B3822D13F7D464C9"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nkhaja\/locus.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E2A18443FA831E5F080B17DB2797B7D6A41C1373"
+    }
+  ]
+}

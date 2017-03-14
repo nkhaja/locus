@@ -55,17 +55,23 @@ class User{
         }
     }
     
+
+    
     func getAllPins(completion: @escaping () -> ()){
         
         
         let pinRef = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownerId").queryEqual(toValue: ThisUser.instance!.id)
+        
         pinRef.observe(.value, with: { snapshot in
             for item in snapshot.children{
                 let pinData = item as! FIRDataSnapshot
                 let newPin = Pin(snapshot: pinData, ownerId: self.id)
                 self.pins[pinData.key] = newPin
-                completion()
             }
+            
+            completion()
+
+            
             })
         }
     

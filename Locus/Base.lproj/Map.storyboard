@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Map-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
@@ -24,37 +24,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k6O-LB-GKl" customClass="LocusMapView" customModule="Locus" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="569"/>
                                 <connections>
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="Wiu-k9-i4F"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFN-7g-f5O">
-                                <rect key="frame" x="16" y="117" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="signOutButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="YCK-0f-F21"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xni-VO-BE4">
-                                <rect key="frame" x="282" y="117" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="AddImages"/>
-                                <connections>
-                                    <action selector="addImages:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Pq2-2f-dxu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DFN-7g-f5O" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="53" id="HLm-Or-Dp6"/>
+                            <constraint firstItem="k6O-LB-GKl" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Ry6-al-Udg"/>
                             <constraint firstAttribute="trailing" secondItem="k6O-LB-GKl" secondAttribute="trailing" id="U6x-4k-SRx"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="a3P-Zh-eVM"/>
+                            <constraint firstItem="k6O-LB-GKl" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="dCb-hR-yqL"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="eq8-t1-gKc"/>
-                            <constraint firstItem="DFN-7g-f5O" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="jMd-WG-F3y"/>
-                            <constraint firstItem="k6O-LB-GKl" firstAttribute="top" secondItem="DFN-7g-f5O" secondAttribute="bottom" constant="-83" id="tRM-cm-oyo"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="logo-mini" id="mNu-Nt-G7Q"/>
                     <navigationItem key="navigationItem" id="nLx-hf-d6O"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -65,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.8" y="-275.71214392803603"/>
+            <point key="canvasLocation" x="1501" y="-370"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="nry-h7-VgC">
@@ -192,13 +177,15 @@
             </objects>
             <point key="canvasLocation" x="2332" y="387.25637181409297"/>
         </scene>
-        <!--First-->
+        <!--Map-->
         <scene sceneID="9be-Ek-6PN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FQg-Kv-4i7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ssk-yL-pmB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="logo-mini" id="OWf-fN-tEC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fbf-Kz-EyC">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbf-Kz-EyC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -207,9 +194,8 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="sc1-lT-hMK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FQg-Kv-4i7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573.60000000000002" y="-275.71214392803603"/>
+            <point key="canvasLocation" x="862" y="-371"/>
         </scene>
         <!--EditPin-->
         <scene sceneID="OYP-fj-gYe">
@@ -229,6 +215,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="logo-mini" width="27" height="29"/>
     </resources>
 </document>

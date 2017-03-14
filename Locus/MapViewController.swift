@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import MapKit
-import ActionButton
+import SDWebImage
 
 protocol HandleMapSearch {
     func dropPinZoomIn(placemark:MKPlacemark)
@@ -69,10 +69,12 @@ class MapViewController: UIViewController {
         
         let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
         self.customView = xib?[0] as! CustomCalloutView
-
-
+        
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 
     
     
@@ -83,6 +85,7 @@ class MapViewController: UIViewController {
                 if let title = selectedAnnotation?.title, let subtitle = selectedAnnotation? .subtitle{
                     build.placeName = "\(title ?? ""), \(subtitle ?? "")"
                     build.location = selectedAnnotation?.coordinate
+                
                 }
             
                 
@@ -196,24 +199,18 @@ class MapViewController: UIViewController {
         }
         
     }
-    
-    func cleaGenericPin(){
-        
-        
-        
-    }
+
     
     
-    
-    @IBAction func signOutButton(_ sender: AnyObject) {
-        GIDSignIn.sharedInstance().signOut()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func addImages(_ sender: Any) {
-        performSegue(withIdentifier: "photoLibrary", sender: self)
-    }
-    
+//    @IBAction func signOutButton(_ sender: AnyObject) {
+//        GIDSignIn.sharedInstance().signOut()
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func addImages(_ sender: Any) {
+//        performSegue(withIdentifier: "photoLibrary", sender: self)
+//    }
+//    
     @IBAction func unwindFromPinBuilder(segue: UIStoryboardSegue){
 
     }
@@ -269,7 +266,17 @@ extension MapViewController: MKMapViewDelegate{
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
                     
                     customAnnotationView.frame.size = CGSize(width: 30, height: 30)
-                    customAnnotationView.image = UIImage(named: locusAnnotation.iconName)
+                    
+                    customAnnotationView.imageView.sd_setImage(with: FirConst.iconRef.child(locusAnnotation.iconName + "@3x.png"), placeholderImage: #imageLiteral(resourceName: "redGooglePin")) { image, error, cache, ref in
+                        
+                        customAnnotationView.image = image
+                    }
+
+                    
+                    
+                    
+//                    customAnnotationView.image = UIImage(named: locusAnnotation.iconName)
+                    
                     customAnnotationView.canShowCallout = false
                     customAnnotationView.pinId = locusAnnotation.pinId
                 
@@ -475,7 +482,9 @@ extension MapViewController {
         
         toolbar.direction = .north
         
-        toolbar.addAction(title: "signOut", font: nil, image: #imageLiteral(resourceName: "man-and-opened-exit-door"), color: UIColor.blue, action: signOut)
+        let font = UIFont(name: "Helvetica", size: 20)
+        
+        toolbar.addAction(title: "signOut", font: font, image: #imageLiteral(resourceName: "man-and-opened-exit-door"), color: UIColor.blue, action: signOut)
         toolbar.addAction(title: "Add GPS Photo", font: nil, image: #imageLiteral(resourceName: "placeholder"), color: UIColor.green, action: getGPSPhotos)
         
         toolbar.addAction(title: "Take Photo", font: nil, image: #imageLiteral(resourceName: "video-camera"), color: UIColor.purple, action: takePhoto)

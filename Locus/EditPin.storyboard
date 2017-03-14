@@ -49,7 +49,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tF-7c-5gz" userLabel="Pin Icon">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tF-7c-5gz" userLabel="Pin Icon">
                                                 <rect key="frame" x="280" y="284" width="52" height="43"/>
                                                 <connections>
                                                     <action selector="selectIconButton:" destination="HqQ-E4-nb9" eventType="touchUpInside" id="EcR-UC-BkU"/>
@@ -322,7 +322,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-MO-Shg">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-MO-Shg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="728"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9X-ue-Tuu">
@@ -401,12 +401,13 @@
                                     <constraint firstAttribute="bottom" secondItem="M9X-ue-Tuu" secondAttribute="bottom" id="zxI-7S-nzB"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwx-Id-o7m">
-                                <rect key="frame" x="0.0" y="730" width="375" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwx-Id-o7m">
+                                <rect key="frame" x="162" y="746" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="bgv-fo-EQz"/>
+                                    <constraint firstAttribute="height" constant="50" id="x8x-pK-lnf"/>
+                                    <constraint firstAttribute="width" constant="50" id="yDL-W4-yL0"/>
                                 </constraints>
-                                <state key="normal" title="Exit"/>
+                                <state key="normal" image="back_blue"/>
                                 <connections>
                                     <action selector="dismissButton:" destination="FJJ-ld-BOg" eventType="touchUpInside" id="YRf-kl-Psw"/>
                                 </connections>
@@ -416,11 +417,9 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UOo-MO-Shg" secondAttribute="trailing" id="AMH-yo-bxD"/>
                             <constraint firstItem="UOo-MO-Shg" firstAttribute="leading" secondItem="VrE-kL-NAf" secondAttribute="leading" id="AMT-DS-DgU"/>
-                            <constraint firstItem="xwx-Id-o7m" firstAttribute="top" secondItem="UOo-MO-Shg" secondAttribute="bottom" constant="2" id="GAt-6t-Xaz"/>
                             <constraint firstItem="UOo-MO-Shg" firstAttribute="top" secondItem="VrE-kL-NAf" secondAttribute="top" id="HYS-3d-mlF"/>
-                            <constraint firstItem="kkt-kU-Qqn" firstAttribute="top" secondItem="xwx-Id-o7m" secondAttribute="bottom" id="U1E-rJ-hMv"/>
-                            <constraint firstAttribute="trailing" secondItem="xwx-Id-o7m" secondAttribute="trailing" id="ZJ6-Bt-vad"/>
-                            <constraint firstItem="xwx-Id-o7m" firstAttribute="leading" secondItem="VrE-kL-NAf" secondAttribute="leading" id="vgP-W9-Qkx"/>
+                            <constraint firstItem="xwx-Id-o7m" firstAttribute="centerX" secondItem="VrE-kL-NAf" secondAttribute="centerX" id="YAO-Sl-swL"/>
+                            <constraint firstItem="kkt-kU-Qqn" firstAttribute="top" secondItem="xwx-Id-o7m" secondAttribute="bottom" constant="4" id="j8Z-BD-LPN"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

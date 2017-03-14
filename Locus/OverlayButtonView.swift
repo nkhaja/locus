@@ -64,13 +64,27 @@ class OverlayButtonView: UIView {
     
     }
     
-    func setImages(north:UIImage, south:UIImage, east:UIImage, west:UIImage){
+    func setImages(north:UIImage?, south:UIImage?, east:UIImage?, west:UIImage?){
+        
+        let inset = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
         
         northButton.setImage(north, for: .normal)
-        southButton.setImage(south, for: .normal)
-        eastButton.setImage(east, for: .normal)
-        westButton.setImage(west, for: .normal)
+        northButton.contentMode = .scaleAspectFit
+        northButton.imageEdgeInsets = inset
         
+        southButton.setImage(south, for: .normal)
+        southButton.contentMode = .scaleAspectFit
+        southButton.imageEdgeInsets = inset
+
+
+        eastButton.setImage(east, for: .normal)
+        eastButton.contentMode = .scaleAspectFit
+        eastButton.imageEdgeInsets = inset
+
+
+        westButton.setImage(west, for: .normal)
+        westButton.contentMode = .scaleAspectFit
+        westButton.imageEdgeInsets = inset
     }
     
     
@@ -144,7 +158,10 @@ class OverlayButtonView: UIView {
     
     
     func dismiss(){
+        
+        
         removeFromSuperview()
+        
     }
     
     

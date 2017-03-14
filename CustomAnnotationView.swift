@@ -12,9 +12,11 @@ import MapKit
 class CustomAnnotationView: MKAnnotationView {
     
     var pinId: String?
+    var imageView: UIImageView!
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.imageView = UIImageView(frame: self.frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
