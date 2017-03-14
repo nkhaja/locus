@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="city_sky.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-At-T0m">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="citySky.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Pp9-At-T0m">
                                 <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -342,7 +342,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="city_sky.png" width="6144" height="6144"/>
+        <image name="citySky.jpg" width="1134" height="1134"/>
         <image name="connect" width="20" height="20"/>
         <image name="logo-mini" width="27" height="29"/>
         <image name="people" width="42" height="42"/>

@@ -42,6 +42,9 @@
                                                 <rect key="frame" x="8" y="422" width="324" height="167"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HqQ-E4-nb9" id="IfU-zR-Heh"/>
+                                                </connections>
                                             </textView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where was this taken?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R1H-hR-vVg" userLabel="LocationTextField">
                                                 <rect key="frame" x="8" y="284" width="270" height="43"/>
@@ -127,8 +130,12 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1e-Nr-iPL">
-                                <rect key="frame" x="8" y="865" width="324" height="86"/>
-                                <state key="normal" title="Pin it"/>
+                                <rect key="frame" x="0.0" y="865" width="340" height="86"/>
+                                <color key="backgroundColor" red="0.22352941176470587" green="0.68627450980392157" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                <state key="normal" title="Pin">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="savePin:" destination="HqQ-E4-nb9" eventType="touchUpInside" id="KWp-Wk-fyb"/>
                                 </connections>
@@ -140,9 +147,9 @@
                             <constraint firstAttribute="trailing" secondItem="f89-xV-0Bf" secondAttribute="trailing" id="Ecs-7C-Efk"/>
                             <constraint firstItem="sJQ-bw-k6R" firstAttribute="top" secondItem="D1e-Nr-iPL" secondAttribute="bottom" id="F0c-Sz-hVk"/>
                             <constraint firstItem="syd-Zb-erw" firstAttribute="width" secondItem="6lj-Cx-1CO" secondAttribute="width" id="L3l-09-vBg"/>
-                            <constraint firstAttribute="trailing" secondItem="D1e-Nr-iPL" secondAttribute="trailing" constant="8" id="Lqm-MO-hMv"/>
+                            <constraint firstAttribute="trailing" secondItem="D1e-Nr-iPL" secondAttribute="trailing" id="Lqm-MO-hMv"/>
                             <constraint firstItem="D1e-Nr-iPL" firstAttribute="top" secondItem="f89-xV-0Bf" secondAttribute="bottom" id="Ups-21-DwJ"/>
-                            <constraint firstItem="D1e-Nr-iPL" firstAttribute="leading" secondItem="6lj-Cx-1CO" secondAttribute="leading" constant="8" id="ZDZ-DN-DdL"/>
+                            <constraint firstItem="D1e-Nr-iPL" firstAttribute="leading" secondItem="6lj-Cx-1CO" secondAttribute="leading" id="ZDZ-DN-DdL"/>
                             <constraint firstItem="f89-xV-0Bf" firstAttribute="top" secondItem="6lj-Cx-1CO" secondAttribute="top" id="epe-BG-qDV"/>
                             <constraint firstItem="f89-xV-0Bf" firstAttribute="leading" secondItem="6lj-Cx-1CO" secondAttribute="leading" id="fKN-Bz-Pza"/>
                         </constraints>

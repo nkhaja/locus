@@ -45,7 +45,7 @@
 		BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */; };
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
 		BD4387601E7611BB0010F24C /* ExpandingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */; };
-		BD4387621E775AD70010F24C /* city_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = BD4387611E775AD70010F24C /* city_sky.png */; };
+		BD4387641E77AE3B0010F24C /* citySky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD4387631E77AE3B0010F24C /* citySky.jpg */; };
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
 		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
@@ -106,7 +106,7 @@
 		BD365DEB1E1FD514005BD9BE /* EditPin.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditPin.storyboard; sourceTree = "<group>"; };
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
 		BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandingToolBar.swift; path = Locus/ExpandingToolBar.swift; sourceTree = "<group>"; };
-		BD4387611E775AD70010F24C /* city_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = city_sky.png; path = "../../../SA Projects/MSprojects/conquestV0/conquestV0/Assets.xcassets/citySky.imageset/city_sky.png"; sourceTree = "<group>"; };
+		BD4387631E77AE3B0010F24C /* citySky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = citySky.jpg; sourceTree = "<group>"; };
 		BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowerViewController.swift; sourceTree = "<group>"; };
 		BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowTableViewCell.swift; sourceTree = "<group>"; };
 		BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTakingHelper.swift; path = ../../../../.Trash/PhotoTakingHelper.swift; sourceTree = "<group>"; };
@@ -248,9 +248,9 @@
 		BD2E86A01E6E0154000C7EBA /* FollowerPins */ = {
 			isa = PBXGroup;
 			children = (
-				BD4387611E775AD70010F24C /* city_sky.png */,
 				BD2E86661E63BE1F000C7EBA /* PinsOfFollowingController.swift */,
 				BD2E86681E63CA5D000C7EBA /* FollowersPinCell.swift */,
+				BD4387631E77AE3B0010F24C /* citySky.jpg */,
 			);
 			name = FollowerPins;
 			sourceTree = "<group>";
@@ -366,8 +366,8 @@
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* Map.storyboard in Resources */,
 				BD2E86701E67E4C9000C7EBA /* NewFollowers.storyboard in Resources */,
-				BD4387621E775AD70010F24C /* city_sky.png in Resources */,
 				BD1A7AFA1E06081F001E290B /* Assets.xcassets in Resources */,
+				BD4387641E77AE3B0010F24C /* citySky.jpg in Resources */,
 				BD94AD0B1E5663D600AFCB99 /* CustomCalloutView.xib in Resources */,
 				BD94ACE31E503C2A00AFCB99 /* PhotoLibrary.storyboard in Resources */,
 				BD365DEC1E1FD514005BD9BE /* EditPin.storyboard in Resources */,

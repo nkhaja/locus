@@ -34,6 +34,8 @@ class FollowerPreviewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+
     }
     
     override func layoutSubviews() {
@@ -41,6 +43,8 @@ class FollowerPreviewCell: UITableViewCell {
         super.layoutSubviews()
         
         // make buttons round
+        
+//        buttons = [addMapButton, seeDetailsButton, unfollowButton]
         
         let inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
@@ -55,15 +59,16 @@ class FollowerPreviewCell: UITableViewCell {
         seeDetailsButton.contentMode = .scaleAspectFit
         seeDetailsButton.imageEdgeInsets = inset
         
+
+        
         
         // TODO: Fix appearance of shadows here
-        seeDetailsButton.layer.shadowRadius = 10
-        seeDetailsButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        seeDetailsButton.layer.shadowColor = UIColor.black.cgColor
+        self.seeDetailsButton.layer.shadowRadius = 4
+        self.seeDetailsButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.seeDetailsButton.layer.shadowColor = UIColor.black.cgColor
+        self.seeDetailsButton.layer.shadowOpacity = 0.4
 
 
-        
-        
         self.unfollowButton.layer.cornerRadius = unfollowButton.frame.width/2
         unfollowButton.setImage(#imageLiteral(resourceName: "settings"), for: .normal)
         unfollowButton.contentMode = .scaleAspectFit

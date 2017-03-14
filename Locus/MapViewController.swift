@@ -6,6 +6,8 @@
 //  Copyright © 2016 MakeSchool. All rights reserved.
 //
 
+// https://robots.thoughtbot.com/how-to-handle-large-amounts-of-data-on-maps
+
 import UIKit
 import Firebase
 import GoogleSignIn
@@ -67,8 +69,7 @@ class MapViewController: UIViewController {
         }
         
         
-        let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
-        self.customView = xib?[0] as! CustomCalloutView
+
         
     }
     
@@ -271,16 +272,20 @@ extension MapViewController: MKMapViewDelegate{
                         
                         customAnnotationView.image = image
                     }
-
-                    
-                    
-                    
-//                    customAnnotationView.image = UIImage(named: locusAnnotation.iconName)
                     
                     customAnnotationView.canShowCallout = false
                     customAnnotationView.pinId = locusAnnotation.pinId
-                
-                    return customAnnotationView
+
+                    
+                    let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+                    customView = xib?[0] as! CustomCalloutView
+                    
+                    customView.pinIconImage.image = #imageLiteral(resourceName: "redGooglePin")
+                    
+                    return customView
+                    
+                    
+//                    return customAnnotationView
                     
                 }
                 
@@ -346,13 +351,15 @@ extension MapViewController: MKMapViewDelegate{
             customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
 
             
-            customView.frame.size = CGSize(width: 150, height: 150)
+            customView.bounds.size = CGSize(width: 150, height: 150)
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
             
+//            mapView.addSubview(customView)
 
             // NOTE: ITS ADDING THE SUBVIEW TO THE ANNOTATION!
 
             view.addSubview(customView)
+            
             self.panTo(coordinate: thisPin.coordinate, mapView: self.mapView)
             
         }

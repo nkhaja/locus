@@ -188,6 +188,7 @@ class BuildPinViewController: UIViewController {
         })
     }
     
+    
     @IBAction func backButton(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
@@ -257,6 +258,9 @@ class BuildPinViewController: UIViewController {
     }
     
     
+    @IBAction func unwindFromIcons(segue: UIStoryboardSegue){
+        
+    }
     
     @IBAction func unwindFromSomewhere(segue: UIStoryboardSegue){
         
@@ -267,10 +271,6 @@ class BuildPinViewController: UIViewController {
         
     }
     
-
-    @IBAction func unwindFromAlbum(segue:UIStoryboardSegue) {
-        
-    }
 }
 
 
@@ -329,6 +329,7 @@ extension BuildPinViewController {
         let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1 : -1)
         scrollView.contentInset.bottom += adjustmentHeight
         scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+        
     }
     
     

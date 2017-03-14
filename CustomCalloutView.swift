@@ -16,7 +16,7 @@ protocol CustomCalloutDelegate: class{
 }
 
 
-class CustomCalloutView: UIView {
+class CustomCalloutView: MKAnnotationView {
     
     var pinId: String!
     weak var delegate: CustomCalloutDelegate?
@@ -24,6 +24,7 @@ class CustomCalloutView: UIView {
     @IBOutlet weak var pinImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var pinIconImage: UIImageView!
     
 
     required init?(coder aDecoder: NSCoder) {

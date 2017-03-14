@@ -94,7 +94,7 @@
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="4V8-9L-9XU" secondAttribute="bottom" id="waU-gm-pFq"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Connect" image="connect" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Connect" image="connect_to" id="cPa-gy-q4n"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="wV5-PL-dfQ" id="70k-k7-iph"/>
@@ -108,7 +108,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="connect" width="20" height="20"/>
+        <image name="connect_to" width="31" height="27"/>
         <image name="round_map_icon" width="272" height="393"/>
     </resources>
 </document>
