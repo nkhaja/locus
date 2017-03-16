@@ -15,7 +15,9 @@ extension LoginViewController{
     
     func signUp(){
         nameAlert = UIAlertController(title: "Welcome to Locus!", message: "What is your name?", preferredStyle: .alert)
+        
         let nameFormatAlert = UIAlertController(title: "Name Error", message: "Please make sure you name is at least 4 characters long with no spaces", preferredStyle: .alert)
+        
         let nameTakenAlert = UIAlertController(title: "Please select another name", message: "Sorry that username has already been taken", preferredStyle: .alert)
         
         
@@ -26,6 +28,7 @@ extension LoginViewController{
         
         
         let submitNameAction = UIAlertAction(title: "Ok", style: .default, handler: { action in
+            
             let name = self.nameAlert!.textFields![0].text ?? ""
             let characters = name.characters
             let id = FIRAuth.auth()!.currentUser!.uid

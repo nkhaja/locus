@@ -9,9 +9,9 @@
 import UIKit
 import MapKit
 import Firebase
+import SDWebImage
 
 class BuildPinViewController: UIViewController {
-
 
     var pin: Pin?
     var placeName: String?
@@ -24,6 +24,10 @@ class BuildPinViewController: UIViewController {
     // Vars for pickerView transitions
     var albumData: [(String, String)] = []
     var selectedAlbumId: String?
+    
+    // vars for keyboard
+    
+    var insetsExpanded = false
 
     
     @IBOutlet weak var pinImage: UIImageView!
@@ -61,7 +65,7 @@ class BuildPinViewController: UIViewController {
         
         //Setup if pre-existing pin
         if let pin = self.pin{
-            self.pinImage.image = pin.image
+            self.pinImage.sd_setImage(with: pin.imageRef!)
             
 //            let thisIcon = UIImage(named: pin.iconName)
 //            self.iconButton.setImage(thisIcon, for: .normal)
@@ -81,6 +85,7 @@ class BuildPinViewController: UIViewController {
             self.dateTextField.text! = pin.date.toString()
 //            self.albumTextField.text! = pin.albumName
             self.storyTextView.text! = pin.story
+            self.storyTextView.textColor = UIColor.black
             self.placeName = pin.placeName
             self.iconName = pin.iconName
             
@@ -197,36 +202,21 @@ class BuildPinViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "pickDate" {
-            if let pickDate = segue.destination as? DateController{
-                
-                if let pin = pin {
-                    pickDate.datePicker.date = pin.date
-                    pickDate.selectedDate = pin.date
-                }
-                
-                else{
-                    pickDate.selectedDate = Date()
-                }
-            }
-            
-            else if let pickAlbum = segue.destination as? AlbumController{
-                if let pin = pin{
-                    pickAlbum.selectedAlbumId = pin.albumId
-                    pickAlbum.selectedAlbumName = pin.albumName
-                }
-            }
-        }
         
-        else if segue.identifier == "fromBuilder" {
+        if segue.identifier == "fromBuilder" {
         
             if let mapVc = segue.destination as? MapViewController{
                 
                 mapVc.mapView.clearAnnotations()
                 mapVc.panTo(coordinate: pin!.coordinate, mapView: mapVc.mapView)
-                
             }
             
+        }
+        
+        else if segue.identifier == String(describing: IconCollectionController.self){
+            if let iconVc = segue.destination as? IconCollectionController{
+                iconVc.iconDelegate = self
+            }
         }
         
     }
@@ -312,11 +302,6 @@ extension BuildPinViewController {
                                                name: NSNotification.Name.UIKeyboardWillShow,
                                                object: nil)
         
-/*        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardDidShow(notification:)),
-                                               name: NSNotification.Name.UIKeyboardDidShow,
-                                               object: nil) */
-        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillHide(notification:)),
                                                name: NSNotification.Name.UIKeyboardWillHide,
@@ -334,7 +319,12 @@ extension BuildPinViewController {
     
     
     func keyboardWillShow(notification: Notification) {
-        adjustInsetForKeyboardShow(show: true, notification: notification)
+        if !insetsExpanded{
+            adjustInsetForKeyboardShow(show: true, notification: notification)
+            insetsExpanded = true
+        }
+        
+        
     }
     
     func keyboardDidShow(notification: Notification){
@@ -342,7 +332,11 @@ extension BuildPinViewController {
     
     
     func keyboardWillHide(notification: Notification) {
-        adjustInsetForKeyboardShow(show: false, notification: notification)
+        
+        if insetsExpanded{
+            adjustInsetForKeyboardShow(show: false, notification: notification)
+            insetsExpanded = false
+        }
     }
 }
 
@@ -357,6 +351,31 @@ extension BuildPinViewController: UITextViewDelegate{
             textView.text = nil
             textView.textColor = UIColor.black
         }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         
+//        let bottom = storyTextView.frame.origin.y + storyTextView.bounds.height
+//        let bottomPoint = CGPoint(x:0,y:bottom)
+//        scrollView.setContentOffset(bottomPoint, animated: true)
+//        
+        return true
+    }
+}
+
+
+// This only exists because unwind segues are broken in this project.
+extension BuildPinViewController: IconDelegate {
+    
+    func updateIcon(iconName: String) {
+        self.iconName = iconName
+        
+        
+        iconButton.imageView?.sd_setImage(with: FirConst.iconRef.child(iconName + "@3x.png"), placeholderImage: nil){
+            
+            image, error, cache, ref in
+            
+            self.iconButton.setImage(image, for: .normal)
+        }
     }
 }

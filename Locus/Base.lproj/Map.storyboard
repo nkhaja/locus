@@ -29,28 +29,64 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="Wiu-k9-i4F"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATE-SF-9Q0">
+                                <rect key="frame" x="329" y="72" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.22352941176470587" green="0.68627450980392157" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="8U8-1j-GJY"/>
+                                    <constraint firstAttribute="height" constant="30" id="szV-Jy-IBC"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="0.0" height="3"/>
+                                <state key="normal" image="magnify_white">
+                                    <color key="titleShadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pinDetailsButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="gWJ-0I-aaM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWS-uj-Jry">
+                                <rect key="frame" x="327" y="110" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.22352941176470587" green="0.68627450980392157" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="97y-Nt-aXJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="nRJ-To-w7Q"/>
+                                </constraints>
+                                <size key="titleShadowOffset" width="0.0" height="3"/>
+                                <state key="normal" backgroundImage="pencil_white">
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPinButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="wPx-RW-TcN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="jWS-uj-Jry" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="4NI-rZ-yso"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Ry6-al-Udg"/>
                             <constraint firstAttribute="trailing" secondItem="k6O-LB-GKl" secondAttribute="trailing" id="U6x-4k-SRx"/>
+                            <constraint firstItem="ATE-SF-9Q0" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="8" id="XTp-YM-263"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="a3P-Zh-eVM"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="dCb-hR-yqL"/>
                             <constraint firstItem="k6O-LB-GKl" firstAttribute="bottom" secondItem="4ug-Mw-9AY" secondAttribute="top" id="eq8-t1-gKc"/>
+                            <constraint firstItem="ATE-SF-9Q0" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="g7L-YY-sUK"/>
+                            <constraint firstItem="jWS-uj-Jry" firstAttribute="top" secondItem="ATE-SF-9Q0" secondAttribute="bottom" constant="8" id="gx2-jF-fgQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="logo-mini" id="mNu-Nt-G7Q"/>
                     <navigationItem key="navigationItem" id="nLx-hf-d6O"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editPinButton" destination="jWS-uj-Jry" id="DUT-DJ-kk2"/>
                         <outlet property="mapView" destination="k6O-LB-GKl" id="CJE-bQ-ZXl"/>
+                        <outlet property="pinDetailButton" destination="ATE-SF-9Q0" id="5Wz-K3-M1w"/>
                         <segue destination="K4y-s3-duB" kind="presentation" identifier="buildPin" id="E83-uJ-KW2"/>
                         <segue destination="xqg-De-0Bv" kind="show" identifier="photoLibrary" id="hQ4-FV-NqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="-371"/>
+            <point key="canvasLocation" x="1636" y="-371.06446776611699"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="nry-h7-VgC">
@@ -216,5 +252,7 @@
     </scenes>
     <resources>
         <image name="logo-mini" width="27" height="29"/>
+        <image name="magnify_white" width="73" height="76"/>
+        <image name="pencil_white" width="73" height="76"/>
     </resources>
 </document>

@@ -16,8 +16,10 @@ class FollowingUsersController: UIViewController {
     
     var thisUser:User?
     lazy var filteredFollowing = [Identity]()
+    
     var following = [Identity]()
     var selectedUserId: String?
+    
     
     lazy var refreshControl = UIRefreshControl()
     
@@ -114,7 +116,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section){
         case 0:
-            return "Currently Overlaid Map"
+            return "Viewing"
         case 1:
             return "You are Following"
         default:
@@ -149,7 +151,6 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowerPreviewCell") as! FollowerPreviewCell
         
-//        cell.createGradiantLayer()
         
  
             
@@ -158,31 +159,29 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
             
         }
         
-        if overlayMap == filteredFollowing[indexPath.row].id{
-            cell.addMapButton.isHidden = true
+        if overlayMap == filteredFollowing[indexPath.row].id && indexPath.section == 1{
+            cell.addMapButton.isEnabled = false
+            cell.addMapButton.backgroundColor = UIColor.gray
         }
         
         // inner argument returns an id, that hashes to a name from the outer dict
         cell.nameLabel.text = filteredFollowing[indexPath.row].name
         cell.indexPath = indexPath
         cell.delegate = self
+        cell.unfollowButton.backgroundColor = UIColor.red
         
         
         if indexPath.section == 0 {
             
-            // TODO: change the image here when this occurs instead of the title
-//            cell.addMapButton.setTitle("Remove Map", for: .normal)
+            cell.addMapButton.setImage(#imageLiteral(resourceName: "back_white"), for: .normal)
+            cell.unfollowButton.isEnabled = false
+            cell.unfollowButton.layer.opacity = 0
         }
         
         
         return cell
 
         
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-
     }
     
 }
@@ -237,13 +236,28 @@ extension FollowingUsersController: PreviewCellDelegate{
     
     func unfollowUser(indexPath: IndexPath) {
         
-        let unfollowUserId = following[indexPath.row].id
         
-        FirebaseService.unfollowUser(followingUserId: ThisUser.instance!.id, followedUserId: unfollowUserId) { [weak self] Void in
+        let unfollowUserId = following[indexPath.row].id
+        let unfollowName = following[indexPath.row].name
+        
+        let alert = UIAlertController(title: "Unfollowing this user", message: "Are you sure you want to unfollow \(unfollowName)? ", preferredStyle: .alert)
+        
+        
+        let confirmAction = UIAlertAction(title: "Unfollow", style: .destructive) { alert in
             
-            self?.tableView.reloadData()
-            
+            FirebaseService.unfollowUser(followingUserId: ThisUser.instance!.id, followedUserId: unfollowUserId) { [weak self] Void in
+                
+                self?.loadData()
+                
+            }
         }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(confirmAction)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+
         
         
         

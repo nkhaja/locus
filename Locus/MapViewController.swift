@@ -29,6 +29,11 @@ class MapViewController: UIViewController {
     
     // Location Variables
     @IBOutlet weak var mapView: LocusMapView!
+    
+    @IBOutlet weak var pinDetailButton: UIButton!
+    @IBOutlet weak var editPinButton: UIButton!
+    
+    
 
     var locationManager =  CLLocationManager()
     var currentPosition: CLLocation?
@@ -51,14 +56,18 @@ class MapViewController: UIViewController {
         
         super.viewDidLoad()
         
+        pinDetailButton.isHidden = true
+        editPinButton.isHidden = true
+        
         mapView.delegate = self
 
         setupLocation()
-//        setActionBar()
         setupETB()
+        setupButtons()
         
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
+       
         self.mapView.setup()
         
         FirebaseService.updateUser(id: thisUserID) {
@@ -67,17 +76,12 @@ class MapViewController: UIViewController {
                 self.dropPins(pins: Array(ThisUser.instance!.pins.values))
             }
         }
-        
-        
-
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "buildPin"{
@@ -86,7 +90,6 @@ class MapViewController: UIViewController {
                 if let title = selectedAnnotation?.title, let subtitle = selectedAnnotation? .subtitle{
                     build.placeName = "\(title ?? ""), \(subtitle ?? "")"
                     build.location = selectedAnnotation?.coordinate
-                
                 }
             
                 
@@ -107,22 +110,66 @@ class MapViewController: UIViewController {
         }
     }
     
+    
+    func setupButtons() {
+        
+        
+        let inset = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+
+        let buttons: [UIButton] = [pinDetailButton, editPinButton]
+        
+        for b in buttons{
+            
+            
+            b.layer.cornerRadius = b.frame.width/2
+            b.contentMode = .scaleAspectFit
+            b.imageEdgeInsets = inset
+            
+            b.layer.shadowRadius = 3
+            b.layer.shadowOffset = CGSize(width: 0, height: 3)
+            b.layer.shadowColor = UIColor.black.cgColor
+            b.layer.shadowOpacity = 0.3
+            
+            
+            if b == editPinButton {
+                b.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+            }
+            
+        }
+        
+        
+        
+    }
+    
     func dropPins(pins:[Pin]){
         
         // TODO: setup system where only pins not on map are added to it; instead of clearing and putting on.
         
-        for p in pins{
+        for p in pins {
+            
             let point = LocusPointAnnotation()
             point.coordinate = p.coordinate
             point.iconName = p.iconName
             point.custom = true
             point.date = p.date.toString()
-            point.name = "Hard-Coded"
+            point.name = ThisUser.instance?.name
             point.pinImage = p.image
             point.pinId = p.id
+
             
             if p.ownerId != ThisUser.instance!.id{
                 point.foreign = true
+                
+                FirebaseService.getUserName(id: p.ownerId, completion: { name in
+                    point.name = name
+                })
+                
+            }
+            
+            else{
+                
+                self.mapView.addAnnotation(point)
+                
             }
             
             self.mapView.addAnnotation(point)
@@ -198,20 +245,26 @@ class MapViewController: UIViewController {
             }
 
         }
+    }
+
+    @IBAction func pinDetailsButton(_ sender: Any) {
+        
+        let detailVc = Helper.instantiateController(storyboardName: "EditPin", controllerName: "PinDetailController", bundle: nil) as! PinDetailController
+        
+        detailVc.pin = selectedPin
+        
+        self.present(detailVc, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func editPinButton(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "buildPin", sender: self)
+        
         
     }
 
-    
-    
-//    @IBAction func signOutButton(_ sender: AnyObject) {
-//        GIDSignIn.sharedInstance().signOut()
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//    
-//    @IBAction func addImages(_ sender: Any) {
-//        performSegue(withIdentifier: "photoLibrary", sender: self)
-//    }
-//    
+
     @IBAction func unwindFromPinBuilder(segue: UIStoryboardSegue){
 
     }
@@ -254,8 +307,15 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        if annotation.isKind(of: CalloutAnnotation.self){
+            
+
+
+            
+            return customView
+        }
         
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
         if let locusAnnotation = annotation as? LocusPointAnnotation {
             if locusAnnotation.custom {
@@ -275,18 +335,8 @@ extension MapViewController: MKMapViewDelegate{
                     
                     customAnnotationView.canShowCallout = false
                     customAnnotationView.pinId = locusAnnotation.pinId
-
                     
-                    let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
-                    customView = xib?[0] as! CustomCalloutView
-                    
-                    customView.pinIconImage.image = #imageLiteral(resourceName: "redGooglePin")
-                    
-                    return customView
-                    
-                    
-//                    return customAnnotationView
-                    
+                    return customAnnotationView
                 }
                 
                 else{
@@ -320,9 +370,12 @@ extension MapViewController: MKMapViewDelegate{
         
         if customAnnotation.custom {
             
+
+            
             self.mapView.selectedMark = MKPlacemark(coordinate: customAnnotation.coordinate)
 
-
+            let xib = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+            customView = xib?[0] as! CustomCalloutView
             
             // Set Fields for customView
             customView.dateLabel.text = customAnnotation.date
@@ -343,18 +396,24 @@ extension MapViewController: MKMapViewDelegate{
 
             }
             
+            self.pinDetailButton.isHidden = false
+            // hide the edit button if you do not own this pin
+            self.editPinButton.isHidden = !(ThisUser.instance!.id == thisPin.ownerId)
+            
+            self.selectedPin = thisPin
             self.selectedAnnotation = view.annotation
             
             
             
-            // load image for selected pin
+//             load image for selected pin
+            
+            
             customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
 
             
             customView.bounds.size = CGSize(width: 150, height: 150)
             customView.center = CGPoint(x: view.bounds.size.width / 2, y: -customView.bounds.size.height*0.52)
             
-//            mapView.addSubview(customView)
 
             // NOTE: ITS ADDING THE SUBVIEW TO THE ANNOTATION!
 
@@ -385,7 +444,6 @@ extension MapViewController: MKMapViewDelegate{
             view.leftCalloutAccessoryView = drive
             view.rightCalloutAccessoryView = pinIt
             
-            customView.frame.size = CGSize(width: 150, height: 150)
 
             
             self.selectedAnnotation = view.annotation
@@ -398,6 +456,9 @@ extension MapViewController: MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         guard let deselectedAnnotation = view as? CustomAnnotationView else {return}
+        
+        pinDetailButton.isHidden = true
+        editPinButton.isHidden = true
         
         for sub in view.subviews {
             if let selectedView = sub as? CustomCalloutView{
@@ -474,7 +535,7 @@ extension MapViewController: CustomCalloutDelegate {
     }
 }
 
-
+// Mark: Setup for ETB
 extension MapViewController {
     
     func setupETB() {
@@ -482,7 +543,7 @@ extension MapViewController {
         
         let x = view.frame.width - 50
         let y = view.frame.height - 90 - 10  // 90 is for tab bar , approximate
-        let frame = CGRect(x: x , y: y, width: 200, height: 40)
+        let frame = CGRect(x: x , y: y, width: 240, height: 40)
         let toolbar = ExpandingToolBar(frame: frame, buttonSize: 40)
         
 //        toolbar.setExpandButtonImage(image: #imageLiteral(resourceName: "logo-mini"))
@@ -491,20 +552,20 @@ extension MapViewController {
         
         let font = UIFont(name: "Helvetica", size: 20)
         
-        toolbar.addAction(title: "signOut", font: font, image: #imageLiteral(resourceName: "man-and-opened-exit-door"), color: UIColor.blue, action: signOut)
-        toolbar.addAction(title: "Add GPS Photo", font: nil, image: #imageLiteral(resourceName: "placeholder"), color: UIColor.green, action: getGPSPhotos)
+
+        toolbar.addAction(title: "", font: nil, image: #imageLiteral(resourceName: "pinMap_color"), color: UIColor.gray, action: getGPSPhotos)
         
-        toolbar.addAction(title: "Take Photo", font: nil, image: #imageLiteral(resourceName: "video-camera"), color: UIColor.purple, action: takePhoto)
+        toolbar.addAction(title: "", font: nil, image: #imageLiteral(resourceName: "camera_color"), color: UIColor.gray, action: takePhoto)
         
-        toolbar.addAction(title: "Find Me", font: nil, image: #imageLiteral(resourceName: "weapon-crosshair"), color: UIColor.orange, action: findMe)
+        toolbar.addAction(title: "", font: nil, image: #imageLiteral(resourceName: "target_color"), color: UIColor.gray, action: findMe)
+        
+        
+        toolbar.addAction(title: "", font: nil, image: #imageLiteral(resourceName: "map_color"), color: .gray, action: changeMap)
+        
+        toolbar.addAction(title: "", font: font, image: #imageLiteral(resourceName: "man-and-opened-exit-door"), color: UIColor.gray, action: signOut)
 
         
         self.view.addSubview(toolbar)
-        
-        
-        
-
-        
     }
     
     func signOut(){
@@ -524,15 +585,51 @@ extension MapViewController {
         if let currentPosition = currentPosition {
             
             panTo(coordinate: currentPosition.coordinate, mapView: self.mapView)
-            
         }
-  
     }
     
     func takePhoto(){
         
         presentAlerts()
         
+    }
+    
+    func changeMap() {
+        
+       let alert = UIAlertController(title: "Select a map type", message: nil, preferredStyle: .actionSheet)
+        
+        let mapTypes : [MKMapType] = [.standard, .satellite, .hybrid, .satelliteFlyover, .hybridFlyover]
+        
+        for type in mapTypes{
+            let action = UIAlertAction(title: mapTypeString(type: type), style: .default, handler: { action in
+                
+                self.mapView.mapType = type
+            })
+            
+            alert.addAction(action)
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    // TODO: Put into protocol or extension
+    func mapTypeString(type: MKMapType) -> String{
+        
+        switch(type){
+        case .standard:
+            return "standard"
+        case .satellite:
+            return "satellite"
+        case .hybrid:
+            return "hybrid"
+        case .satelliteFlyover:
+            return "satellite flyover"
+        case .hybridFlyover:
+            return "hybrid flyover"
+        }
     }
     
 }

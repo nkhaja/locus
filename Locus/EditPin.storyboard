@@ -329,7 +329,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-MO-Shg">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOo-MO-Shg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="728"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9X-ue-Tuu">
@@ -403,8 +403,10 @@
                                 <constraints>
                                     <constraint firstItem="M9X-ue-Tuu" firstAttribute="width" secondItem="UOo-MO-Shg" secondAttribute="width" id="3pR-TN-mBt"/>
                                     <constraint firstItem="M9X-ue-Tuu" firstAttribute="leading" secondItem="UOo-MO-Shg" secondAttribute="leading" id="YJ2-Gp-UpI"/>
+                                    <constraint firstItem="M9X-ue-Tuu" firstAttribute="centerY" secondItem="UOo-MO-Shg" secondAttribute="centerY" id="bem-dC-FO4"/>
                                     <constraint firstItem="M9X-ue-Tuu" firstAttribute="top" secondItem="UOo-MO-Shg" secondAttribute="top" id="jWe-WD-BKW"/>
                                     <constraint firstAttribute="trailing" secondItem="M9X-ue-Tuu" secondAttribute="trailing" id="nIV-4N-o9R"/>
+                                    <constraint firstItem="M9X-ue-Tuu" firstAttribute="centerX" secondItem="UOo-MO-Shg" secondAttribute="centerX" id="tD2-K8-pU6"/>
                                     <constraint firstAttribute="bottom" secondItem="M9X-ue-Tuu" secondAttribute="bottom" id="zxI-7S-nzB"/>
                                 </constraints>
                             </scrollView>

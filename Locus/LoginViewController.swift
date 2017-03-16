@@ -21,6 +21,8 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     var usernameQuery:FIRDatabaseReference?
 
     
+    @IBOutlet weak var emailTextfield: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,35 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             signUp()
         }
     }
+    
+    
+    
+    func signUpPressed() {
+        
+        // TODO: Transition to sign up page here
+        
+        
+    }
+    
+    func loginPressed(){
+        
+        FIRAuth.auth()?.signIn(withEmail: emailTextfield.text!, password: passwordTextField.text!, completion: { user, error in
+            
+            
+            // TODO: create alert if error shows up here
+            
+            guard error == nil else { return }
+            
+            self.id = user?.uid
+            self.getUserName()
+  
+        })
+        
+        
+        
+    }
+    
+    
     
     func getUserName(){
         
@@ -63,6 +94,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
 
     
     
+    // Mark: Google Sign
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         if let error = error {
             // ...
@@ -86,8 +118,4 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             self.getUserName()
         }
     }
-
-    
-
-
 }

@@ -43,7 +43,6 @@ class NewFollowerViewController: UIViewController {
         searchBar.placeholder = "Search for users to follow"
         searchBar.layer.borderWidth = 0
         
-        
         loadData()
         
 
@@ -78,15 +77,26 @@ class NewFollowerViewController: UIViewController {
         
         let permissionsWaitingIds = Array(ThisUser.instance!.permissionsWaiting.keys)
         
+        // Single Get of requests made this this user
         FirebaseService.getPendingRequests(ids: permissionsWaitingIds) { [weak self] userInfo in
             
 
             self?.pendingFollowers = userInfo
-            self?.refreshControl.endRefreshing()
-            self?.activityIndicator.stopAnimating()
             self?.tableView.reloadData()
             
+            
+            // Listen for followers for this user
+            FirebaseService.updateFollowerStatus(id: ThisUser.instance!.id) { [weak self] following in
+                
+                ThisUser.instance!.following = following
+                self?.refreshControl.endRefreshing()
+                self?.activityIndicator.stopAnimating()
+                self?.tableView.reloadData()
+            }
+
         }
+
+        // TODO: Update people following using listener
         
     }
 }
@@ -161,12 +171,14 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
                 let followeeRef = ThisUser.instance!.reference!.child(FirConst.following).child(selectedUser.id)
                 
                 // remove this person as someone you are following from db
+                
                 followeeRef.removeValue()
             }
             
             // Are we waiting for acceptance from selected User?
             // Cancel the pending request
-            if selectedUser.permissionsWaiting[ThisUser.instance!.id] != nil {
+            
+            else if selectedUser.permissionsWaiting[ThisUser.instance!.id] != nil {
                 
                 // reference to thisUser's request in selected user's data
                 let permisisonRef = selectedUser.reference!.child(FirConst.permissionsWaiting).child(ThisUser.instance!.id)
@@ -177,7 +189,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
                 
                 
                 
-                // Privacy settings are open, we can follow them immediately
+            // Privacy settings are open, we can follow them immediately
             else if selectedUser.accountPrivacy == .open {
                 ThisUser.instance?.following[selectedUser.id] = true
                 ThisUser.instance?.reference!.child(FirConst.following).child(selectedUser.id).setValue(true)
@@ -185,7 +197,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             }
                 
                 
-                // We need permission to access their account. Send a request
+            // We need permission to access their account. Send a request
             else if selectedUser.accountPrivacy == .permission {
                 selectedUser.reference?.child(FirConst.permissionsWaiting).child(ThisUser.instance!.id).setValue(true)
                 
@@ -193,13 +205,6 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
                 // TODO: make sure that updating here is responsive.
             }
             
-            
-            
-            
-            
-            // Conditions
-            // unfollow the person if you're already following
-            // you're not following them. Either request to follow or automatically get follow status
         }
             
             // Follow invitations section. Clicking cell accepts invitation to follow.
@@ -239,9 +244,7 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
         }
         
         return headerHeight
-        
-        
-        
+ 
     }
     
     
@@ -316,10 +319,7 @@ extension NewFollowerViewController: UISearchBarDelegate {
             target: self,
             action: #selector(dismissKeyboard))
         
-        view.addGestureRecognizer(tap)
+        tableView.addGestureRecognizer(tap)
     }
-    
-    
-    
 }
 

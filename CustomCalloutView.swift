@@ -24,7 +24,7 @@ class CustomCalloutView: MKAnnotationView {
     @IBOutlet weak var pinImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var pinIconImage: UIImageView!
+//    @IBOutlet weak var pinIconImage: UIImageView!
     
 
     required init?(coder aDecoder: NSCoder) {

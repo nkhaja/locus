@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2g5-Yi-4TN">
-                        <rect key="frame" x="172" y="64" width="210" height="50"/>
+                        <rect key="frame" x="172" y="62" width="210" height="50"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2o-tT-oZX" userLabel="addMapButton">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -70,7 +70,7 @@
                 <constraints>
                     <constraint firstItem="qX5-e5-6ZU" firstAttribute="width" secondItem="i9b-aE-N08" secondAttribute="width" multiplier="0.9" id="6zd-Qh-Bak"/>
                     <constraint firstItem="qX5-e5-6ZU" firstAttribute="top" secondItem="i9b-aE-N08" secondAttribute="topMargin" id="JSW-mh-Ent"/>
-                    <constraint firstItem="2g5-Yi-4TN" firstAttribute="top" secondItem="qX5-e5-6ZU" secondAttribute="bottom" constant="8" id="SXr-6q-Vlv"/>
+                    <constraint firstItem="2g5-Yi-4TN" firstAttribute="top" secondItem="qX5-e5-6ZU" secondAttribute="bottom" constant="6" id="SXr-6q-Vlv"/>
                     <constraint firstItem="qX5-e5-6ZU" firstAttribute="centerX" secondItem="i9b-aE-N08" secondAttribute="centerX" id="ebJ-Ub-7JW"/>
                     <constraint firstItem="qX5-e5-6ZU" firstAttribute="height" secondItem="i9b-aE-N08" secondAttribute="height" multiplier="1:4" id="nj8-Va-5Ok"/>
                     <constraint firstItem="2g5-Yi-4TN" firstAttribute="centerX" secondItem="i9b-aE-N08" secondAttribute="centerX" id="qzP-Rs-CQC"/>

@@ -14,13 +14,14 @@ class LocusMapView: MKMapView, Clearable {
     
     func setup(){
         self.showsBuildings = true
-        self.mapType = .standard
+        self.mapType = .satelliteFlyover
         
         let mapCamera = MKMapCamera()
         
         mapCamera.pitch = 45
         mapCamera.altitude = 500
         mapCamera.heading = 45
+        
         
         self.camera = mapCamera
         

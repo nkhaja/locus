@@ -34,47 +34,46 @@ class FollowerPreviewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-
     }
     
     override func layoutSubviews() {
         
         super.layoutSubviews()
+        designButtons()
         
         // make buttons round
+    
+    }
+    
+    func designButtons(){
         
-//        buttons = [addMapButton, seeDetailsButton, unfollowButton]
+        
+        let buttons: [UIButton] = [addMapButton, seeDetailsButton, unfollowButton]
         
         let inset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         
-        self.addMapButton.layer.cornerRadius = addMapButton.frame.width/2
+        for b in buttons{
+            
+            
+            b.layer.cornerRadius = b.frame.width/2
+            b.contentMode = .scaleAspectFit
+            b.imageEdgeInsets = inset
+            
+            
+            // set shadows
+            
+            b.layer.shadowRadius = 4
+            b.layer.shadowOffset = CGSize(width: 0, height: 3)
+            b.layer.shadowColor = UIColor.black.cgColor
+            b.layer.shadowOpacity = 0.4
+            
+        }
+        
+        
+        
         addMapButton.setImage(#imageLiteral(resourceName: "map"), for: .normal)
-        addMapButton.contentMode = .scaleAspectFit
-        addMapButton.imageEdgeInsets = inset
-
-       
-        self.seeDetailsButton.layer.cornerRadius = seeDetailsButton.frame.width/2
         seeDetailsButton.setImage(#imageLiteral(resourceName: "details-white"), for: .normal)
-        seeDetailsButton.contentMode = .scaleAspectFit
-        seeDetailsButton.imageEdgeInsets = inset
-        
-
-        
-        
-        // TODO: Fix appearance of shadows here
-        self.seeDetailsButton.layer.shadowRadius = 4
-        self.seeDetailsButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        self.seeDetailsButton.layer.shadowColor = UIColor.black.cgColor
-        self.seeDetailsButton.layer.shadowOpacity = 0.4
-
-
-        self.unfollowButton.layer.cornerRadius = unfollowButton.frame.width/2
-        unfollowButton.setImage(#imageLiteral(resourceName: "settings"), for: .normal)
-        unfollowButton.contentMode = .scaleAspectFit
-        unfollowButton.imageEdgeInsets = inset
-
-        
+        unfollowButton.setImage(#imageLiteral(resourceName: "remove-contact-white"), for: .normal)
     }
     
     

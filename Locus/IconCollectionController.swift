@@ -9,14 +9,21 @@
 import UIKit
 
 
+// had to create this because Xcode bug with unwind segues
+protocol IconDelegate : class {
+    
+    func updateIcon(iconName: String)
+    
+}
 
 class IconCollectionController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     var selectedImage: UIImage?
+    weak var iconDelegate : IconDelegate?
     
-    let iconNames = ["bluePushPin", "redGooglePin", "clothesPin", "baguette", "chili", "candy", "doughnut", "egg", "fish", "fruit", "fries", "gingerBreadMan", "glass", "ice-cream", "noodles", "knife", "pint", "glass", "pizza", "sandwich", "shwarma", "steak", "sushi", "turkey", "basketball", "bee", "bicycle", "books", "boxing", "burger", "candy", "coins", "cricket","cup", "deer", "exercise", "flask", "football", "goggles", "golf", "graduate", "hockey", "hummingbird", "lion", "martini", "money", "nemo", "olympics", "owl", "shopping-basket", "shopping-cart", "snorkel", "soccer", "spider-web", "fishing", "rollerSkates", "baseball", "football-helmet", "billiards", "medal", "volleyBall", "karate", "strategy", "swan", "video-camera", "tennis-ball", "pong"]
+    let iconNames = ["baguette", "baseball", "basketball", "bee", "bicycle", "billiards", "bluePushPin", "books", "boxing", "burger", "candy", "candy", "chili", "clothesPin", "coins", "cricket", "cup", "deer", "doughnut", "egg", "exercise", "fish", "fishing", "flask", "football", "football-helmet", "fries", "fruit", "gingerBreadMan", "glass", "glass", "goggles", "golf", "graduate", "hockey", "hummingbird", "ice-cream", "karate", "knife", "lion", "martini", "medal", "money", "nemo", "noodles", "olympics", "owl", "pint", "pizza", "pong", "redGooglePin", "rollerSkates", "sandwich", "shopping-basket", "shopping-cart", "shwarma", "snorkel", "soccer", "spider-web", "steak", "strategy", "sushi", "swan", "tennis-ball", "turkey", "video-camera", "volleyBall"]
     
     
     var selectedIconName: String?
@@ -37,7 +44,6 @@ class IconCollectionController: UIViewController {
             }
         }
     }
-    
 }
 
 extension IconCollectionController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -68,7 +74,11 @@ extension IconCollectionController: UICollectionViewDelegate, UICollectionViewDa
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIconName = iconNames[indexPath.row]
-        performSegue(withIdentifier: "unwind", sender: self)
+        
+        iconDelegate?.updateIcon(iconName: selectedIconName!)
+        self.dismiss(animated: true, completion: nil)
+        
+//        performSegue(withIdentifier: "unwind", sender: self)
     }
     
     

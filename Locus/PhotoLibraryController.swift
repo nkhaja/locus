@@ -228,9 +228,6 @@ extension GeoTaggedLibrary {
 
 
             })
-            
-                
-        
         }
         
         output_dispatch.notify(queue: DispatchQueue.main) { 

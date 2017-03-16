@@ -68,6 +68,7 @@ class PinDetailController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         
     }
+    
 
 
 }

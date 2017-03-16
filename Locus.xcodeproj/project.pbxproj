@@ -46,6 +46,7 @@
 		BD4077E71E46BFCD00688418 /* IconCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4077E61E46BFCD00688418 /* IconCollectionController.swift */; };
 		BD4387601E7611BB0010F24C /* ExpandingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */; };
 		BD4387641E77AE3B0010F24C /* citySky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD4387631E77AE3B0010F24C /* citySky.jpg */; };
+		BD4387661E78A2A60010F24C /* CalloutAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4387651E78A2A60010F24C /* CalloutAnnotation.swift */; };
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
 		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
@@ -107,6 +108,7 @@
 		BD4077E61E46BFCD00688418 /* IconCollectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionController.swift; sourceTree = "<group>"; };
 		BD43875F1E7611BB0010F24C /* ExpandingToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExpandingToolBar.swift; path = Locus/ExpandingToolBar.swift; sourceTree = "<group>"; };
 		BD4387631E77AE3B0010F24C /* citySky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = citySky.jpg; sourceTree = "<group>"; };
+		BD4387651E78A2A60010F24C /* CalloutAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutAnnotation.swift; sourceTree = "<group>"; };
 		BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowerViewController.swift; sourceTree = "<group>"; };
 		BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowTableViewCell.swift; sourceTree = "<group>"; };
 		BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTakingHelper.swift; path = ../../../../.Trash/PhotoTakingHelper.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				BD1A7AF91E06081F001E290B /* Assets.xcassets */,
 				BD1A7AFB1E06081F001E290B /* LaunchScreen.storyboard */,
 				BD1A7AFE1E06081F001E290B /* Info.plist */,
+				BD4387651E78A2A60010F24C /* CalloutAnnotation.swift */,
 				BD1A7B061E08D96E001E290B /* GoogleService-Info.plist */,
 			);
 			path = Locus;
@@ -464,6 +467,7 @@
 				BD2E86671E63BE1F000C7EBA /* PinsOfFollowingController.swift in Sources */,
 				BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */,
 				BD30BFE01E2AC8610040B2E6 /* DateController.swift in Sources */,
+				BD4387661E78A2A60010F24C /* CalloutAnnotation.swift in Sources */,
 				BDA2B7FC1E5EBCF700F1BC74 /* ListPinsController.swift in Sources */,
 				BD30E13D1E282407007D82F7 /* Helper.swift in Sources */,
 				BD30BFE91E2B042E0040B2E6 /* AlbumCell.swift in Sources */,

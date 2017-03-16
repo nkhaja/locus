@@ -23,6 +23,20 @@ struct FirebaseService {
     
     // Mark: Follower Functions
     
+    static func getUserName(id:String, completion: @escaping (String) -> ()){
+    
+        let query = FirConst.userRef.child(id).child(FirConst.name)
+        
+        query.observeSingleEvent(of: .value, with : { snapshot in
+            
+            let name = snapshot.value as! String
+            
+            completion(name)
+            
+        })
+    
+    }
+    
     static func getFollowerData(id:String, completion: @escaping (String) -> ()){
         let query = FirConst.userRef.queryOrdered(byChild: "permissions").queryEqual(toValue: id)
         
@@ -31,6 +45,20 @@ struct FirebaseService {
             let name = data[FirConst.name] as! String
             completion(name)
         })
+    }
+    
+    static func updateFollowerStatus(id: String, completion: @escaping ([String: Bool]) -> () ){
+        let query = FirConst.userRef.child(id).child(FirConst.following)
+        
+        query.observe(.value, with: { snapshot in
+            
+            let data = snapshot.value as! [String:Bool]
+            completion(data)
+            
+        
+        })
+        
+        
     }
     
     
@@ -71,7 +99,7 @@ struct FirebaseService {
             output_dispatch.enter()
             
             
-            FirConst.userRef.child(key).observeSingleEvent(of: .value, with: { snapshot in
+            FirConst.userRef.child(key).observe(.value, with: { snapshot in
                 let snapshotValue = snapshot.value as! [String:Any]
                 let name = snapshotValue["name"] as! String
                 let identity = Identity(name: name, id: key)

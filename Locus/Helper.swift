@@ -29,7 +29,7 @@ class Helper {
     static func instantiateController(storyboardName: String, controllerName: String, bundle: Bundle?) -> UIViewController{
         
         let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        let vc = storyboard.instantiateViewController(withIdentifier: storyboardName)
+        let vc = storyboard.instantiateViewController(withIdentifier: controllerName)
         
         return vc
     }
