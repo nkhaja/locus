@@ -145,7 +145,7 @@ extension MyPinsController: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if let selectedIndexPath = self.selectedIndexPath{
+        if let selectedIndexPath = self.selectedIndexPath {
             
             let oldCell = collectionView.cellForItem(at: selectedIndexPath) as! MyPinCell
             
@@ -269,6 +269,7 @@ extension MyPinsController: OverlayButtonViewDelegate {
                             
                         }
                         
+                        self?.selectedIndexPath = nil
                         mapVc.mapView.removePinWith(coordinate: visitPin.coordinate)
                         self?.loadData()
                     }

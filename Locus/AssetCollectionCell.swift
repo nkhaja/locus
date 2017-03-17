@@ -13,5 +13,11 @@ class AssetCollectionCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var checkBox: UIImageView!
     
+    override func prepareForReuse() {
+        
+        self.imageView.image = nil
+        
+    }
+    
 }
 

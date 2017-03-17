@@ -425,6 +425,8 @@ extension MapViewController: MKMapViewDelegate{
         
         else {
             
+            self.selectedPin = nil
+            
             let btnHeight = view.frame.height * 0.8
             let smallSquare = CGSize(width: btnHeight, height: btnHeight)
             

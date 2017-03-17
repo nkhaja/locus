@@ -8,45 +8,51 @@
 
 
 protocol GeoTaggedLibrary: class{
-    func getImagesWithGps(completion: @escaping ([GpsPhoto]) -> ())
+    
+//    func getImagesWithGps(completion: @escaping ([GpsPhoto]) -> ())
+    var imgManager: PHImageManager? {get set}
+    var requestOptions: PHImageRequestOptions? {get set}
+    var fetchResult: PHFetchResult<PHAsset>? {get set}
+    
+    func getImageWithGps(index: Int, completion: @escaping (GpsPhoto) -> ())
 }
 
 protocol Mappable: class {
     func getSelectedGpsPhotos(gpsPhotos: [GpsPhoto])
+//    func getselectedGpsPhoto(gpsPhoto: GpsPhoto)
 }
 
 
 
 import UIKit
 import Photos
+import SDWebImage
 
 class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
+    
+    
+    internal var imgManager: PHImageManager?
+    internal var requestOptions: PHImageRequestOptions?
+    internal var fetchResult: PHFetchResult<PHAsset>?
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
-
     
-//    var images = [UIImage]()
-//    var metaPhotoStorage: MetaPhotoStorage = MetaPhotoStorage()
-    var gpsPhotos = [GpsPhoto]()
+    
+
     var selectedImage: UIImage?
     var multiSelect: Bool = false
     var selectedIndexes: [Int:Bool] = [:]
+    var selectedPhotos = [GpsPhoto]()
+    var numPhotos: Int = 0
     weak var delegate: Mappable?
     
-    
-    
+    //Photo Library Vars
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-        
-        getImagesWithGps { gpsPhotos in
-            self.gpsPhotos = gpsPhotos
-            self.collectionView.reloadData()
-        }
-        
-        
-        
+        getFetchResult()
         submitButton.isHidden = true
         submitButton.layer.cornerRadius = 8
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
@@ -63,16 +69,16 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     @IBAction func submitButton(_ sender: UIButton) {
         var photosToSend = [GpsPhoto]()
-        
-        for (key, value) in selectedIndexes {
-            if value{
-                photosToSend.append(self.gpsPhotos[key])
-            }
-        }
-        
-        if delegate != nil  && gpsPhotos.count > 0{
-            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
-        }
+//        
+//        for (key, value) in selectedIndexes {
+//            if value{
+//                photosToSend.append(self.gpsPhotos[key])
+//            }
+//        }
+//        
+//        if delegate != nil  && gpsPhotos.count > 0{
+//            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
+//        }
         
         self.navigationController?.popViewController(animated: true)
         
@@ -95,13 +101,19 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return gpsPhotos.count
+        return fetchResult!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: AssetCollectionCell.self), for: indexPath) as! AssetCollectionCell
         
         let row = indexPath.row
+        
+        getImageWithGps(index: indexPath.row) { photo in
+            
+            cell.imageView.image = photo.image
+            
+        }
         
         
         if multiSelect {
@@ -133,14 +145,15 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         }
         
         
-        cell.imageView.image = gpsPhotos[row].image
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let row = indexPath.row
-        selectedImage = gpsPhotos[row].image
+        let cell = collectionView.cellForItem(at: indexPath) as! AssetCollectionCell
+        
+        selectedImage = cell.imageView.image
         
         if multiSelect{
             //this item has been selected before
@@ -191,84 +204,85 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
 
 extension GeoTaggedLibrary {
     
-    func fetchPhotos(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, completion: @escaping ([GpsPhoto]) -> ()){
+    func getFetchResult(){
         
-        var output = [GpsPhoto]()
-        let output_dispatch = DispatchGroup()
-        
-
-        
-        //Options for retrieving meta data
-        let editingOtions = PHContentEditingInputRequestOptions()
-        editingOtions.isNetworkAccessAllowed = true
-        
-        for i in 0..<fetchResult.count {
-
-            let asset = fetchResult.object(at: i)
-            output_dispatch.enter()
-   
-            
-            // desired size of returned images
-            let size = CGSize(width: 500, height: 500)
-            
-            // Only returning photos with image data, Request the image of given quality sychronously
-            imgManager.requestImage(for: asset,
-                                    targetSize: size,
-                                    contentMode: .aspectFit,
-                                    options: requestOptions,
-                                    resultHandler: { image, info in
-                                        if let coordinate = asset.location?.coordinate, let image = image{
-                                            let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                                            let gpsPhoto = GpsPhoto(image: image, location: location2d)
-                                            output.append(gpsPhoto)
-
-                                        }
-                                        
-                                        output_dispatch.leave()
-
-
-            })
-        }
-        
-        output_dispatch.notify(queue: DispatchQueue.main) { 
-            completion(output)
-        }
-        
-
-    }
-    
-    
-    func getImagesWithGps(completion: @escaping ([GpsPhoto]) -> ()){
-        // Declare a singleton of PHImangeManger class
-        let imgManager = PHImageManager.default()
+        self.imgManager = PHImageManager.default()
         
         // Requestion options determine media type, and quality
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        requestOptions.deliveryMode = .highQualityFormat
-        requestOptions.isNetworkAccessAllowed = true
+        self.requestOptions = PHImageRequestOptions()
+        requestOptions!.isSynchronous = false
+        requestOptions!.deliveryMode = .highQualityFormat
+        requestOptions!.isNetworkAccessAllowed = true
         
         // Options for retrieving photos
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
-        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        self.fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
-        
-        if fetchResult.count > 0 {
-             fetchPhotos(imgManager: imgManager, fetchResult: fetchResult, requestOptions: requestOptions, completion: { gpsPhotos in
-                completion(gpsPhotos)
-             })
-        }
-        
-        else{
-            return
-        }
     }
+
+
+    // Mark: Getting a single Photo
+    func fetchPhoto(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, index: Int, completion: @escaping (GpsPhoto) -> ()){
+        
+        
+        let editingOtions = PHContentEditingInputRequestOptions()
+        editingOtions.isNetworkAccessAllowed = true
+        
+        let size = CGSize(width: 500, height: 500)
+        
+        let asset = fetchResult.object(at: index)
+                
+        
+        imgManager.requestImage(for: asset,
+                                targetSize: size,
+                                contentMode: .aspectFit,
+                                options: requestOptions,
+                                resultHandler: { image, info in
+                                    if let coordinate = asset.location?.coordinate, let image = image{
+                                        let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                                        
+                                        let gpsPhoto = GpsPhoto(image: image, location: location2d)
+                                        
+                                        completion(gpsPhoto)
+                                        
+                                    }
+                                    
+                        
+        })
+    }
+    
+        
+        func getImageWithGps(index: Int, completion: @escaping (GpsPhoto) -> ()) {
+        
+            if fetchResult!.count > 0 {
+                
+                fetchPhoto(imgManager: imgManager!, fetchResult: fetchResult!, requestOptions: requestOptions!, index: index, completion: { gpsPhoto in
+                    
+                    completion(gpsPhoto)
+                    
+                })
+
+            }
+                
+            else{
+                return
+            }
+        }
+        
 }
 
 // refactor metaPhotos to GPS photos time permitting
+
 struct GpsPhoto {
-    var image: UIImage
-    var location: CLLocationCoordinate2D
+        var image: UIImage
+        var location: CLLocationCoordinate2D
+        
+        init(image: UIImage, location: CLLocationCoordinate2D){
+            
+            self.image = image
+            self.location = location
+        }
 }
+
