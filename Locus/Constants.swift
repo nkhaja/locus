@@ -17,7 +17,10 @@ struct FirConst {
     static let userRef = ref.child("users")
     static let pinRef = ref.child("pins")
     
-    static let iconRef = FIRStorage.storage().reference().child("icons")
+
+    
+    static let storageRef  = FIRStorage.storage().reference()
+    static let iconRef = storageRef.child("icons")
     
     // Users
     static let name = "name"

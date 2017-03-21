@@ -64,13 +64,14 @@ class MapViewController: UIViewController {
         setupLocation()
         setupETB()
         setupButtons()
-        
         self.mapView.showsUserLocation = true
         self.mapView.showAnnotations(mapView.annotations, animated: true)
        
         self.mapView.setup()
         
         FirebaseService.updateUser(id: thisUserID) {
+            
+            self.setupListeners()
             
             ThisUser.instance?.getAllPins {
                 self.dropPins(pins: Array(ThisUser.instance!.pins.values))
@@ -136,8 +137,16 @@ class MapViewController: UIViewController {
             }
             
         }
+    }
+    
+    func listenForChanges(isNew: Bool){
         
         
+       FirebaseService.listenMostRecentPin(id: ThisUser.instance!.id) { pin in
+        
+            print(pin)
+        
+        }
         
     }
     
@@ -267,6 +276,12 @@ class MapViewController: UIViewController {
 
     @IBAction func unwindFromPinBuilder(segue: UIStoryboardSegue){
 
+//        FirebaseService.getMostRecentPin(id: ThisUser.instance!.id, isNew: true) { pin in
+//            
+//            print(pin)
+//            
+//        }
+//        
     }
 }
 
@@ -307,13 +322,10 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
-        if annotation.isKind(of: CalloutAnnotation.self){
-            
-
-
-            
-            return customView
-        }
+//        if annotation.isKind(of: CalloutAnnotation.self){
+//            
+//            return customView
+//        }
         
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
@@ -321,9 +333,6 @@ extension MapViewController: MKMapViewDelegate{
             if locusAnnotation.custom {
                 
                 
-                //Do stuff to customize the view
-                if pinView == nil {
-                    
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
                     
                     customAnnotationView.frame.size = CGSize(width: 30, height: 30)
@@ -337,12 +346,6 @@ extension MapViewController: MKMapViewDelegate{
                     customAnnotationView.pinId = locusAnnotation.pinId
                     
                     return customAnnotationView
-                }
-                
-                else{
-                    
-                    return pinView
-                }
             }
             
             else{
@@ -351,7 +354,7 @@ extension MapViewController: MKMapViewDelegate{
                     let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
                     standardPin.canShowCallout = true
                     standardPin.animatesDrop = true
-                    return standardPin
+                    return standardPin // returns here for when new basic pin added for first time
                 }
                 
                 else{

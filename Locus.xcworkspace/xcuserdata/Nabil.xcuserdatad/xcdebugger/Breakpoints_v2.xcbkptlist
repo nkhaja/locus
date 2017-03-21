@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Locus/BuildPinViewController.swift"
-            timestampString = "511376146.921201"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "511765004.532886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
-            landmarkName = "keyboardWillShow(notification:)"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
+            landmarkName = "getSelectedGpsPhotos(gpsPhotos:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Locus/BuildPinViewController.swift"
-            timestampString = "511376146.921201"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "511765004.532886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
-            landmarkName = "keyboardWillHide(notification:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "unwindFromPinBuilder(segue:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,13 +90,93 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Locus/FirebaseService.swift"
-            timestampString = "511322915.080172"
+            timestampString = "511764929.84507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "updateFollowerStatus(id:completion:)"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "listenMostRecentPin(id:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/FirebaseService.swift"
+            timestampString = "511764929.84507"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "listenMostRecentPin(id:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "511765004.532886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "setupListeners()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "511765004.532886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "setupListeners()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Locus.MapViewController.setupListeners () -&gt; ()"
+                  moduleName = "Locus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
+                  timestampString = "511765004.834781"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Locus.MapViewController.(setupListeners () -&gt; ()).(closure #1)"
+                  moduleName = "Locus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
+                  timestampString = "511765004.837457"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

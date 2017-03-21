@@ -62,7 +62,7 @@ class User{
         
         let pinRef = FIRDatabase.database().reference(withPath: "pins").queryOrdered(byChild: "ownerId").queryEqual(toValue: ThisUser.instance!.id)
         
-        pinRef.observe(.value, with: { snapshot in
+        pinRef.observeSingleEvent(of: .value, with: { snapshot in
             for item in snapshot.children{
                 let pinData = item as! FIRDataSnapshot
                 let newPin = Pin(snapshot: pinData, ownerId: self.id)
