@@ -269,9 +269,9 @@ extension MyPinsController: OverlayButtonViewDelegate {
                             
                         }
                         
+                        self?.loadData()
                         self?.selectedIndexPath = nil
                         mapVc.mapView.removePinWith(coordinate: visitPin.coordinate)
-                        self?.loadData()
                     }
  
                 })

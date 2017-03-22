@@ -76,11 +76,14 @@ class LocusMapView: MKMapView, Clearable {
     
     func removePinWith(coordinate: CLLocationCoordinate2D){
         
+        
+        // TODO: more performant version of this code
         for a in self.annotations{
             if a.coordinate == coordinate {
                 self.removeAnnotation(a)
             }
         }
+        
     }
 }
 

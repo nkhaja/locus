@@ -20,6 +20,7 @@ struct FirConst {
 
     
     static let storageRef  = FIRStorage.storage().reference()
+    static let allImagesref = storageRef.child("images")
     static let iconRef = storageRef.child("icons")
     
     // Users

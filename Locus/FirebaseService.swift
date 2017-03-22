@@ -14,7 +14,7 @@ struct FirebaseService {
     static func updateUser(id:String, completion: @escaping () -> ()){
         let reference = FirConst.userRef.child(id)
         
-        reference.observeSingleEvent(of: .value, with: { snapshot in
+        reference.observe(.value, with: { snapshot in
             let user = User(snapshot: snapshot)
             ThisUser.instance = user
             completion()
@@ -152,70 +152,40 @@ struct FirebaseService {
     
     static func getPin(id:String, completion: @escaping (Pin?) -> ()){
         let query = FirConst.pinRef.child(id)
-        query.observe(.value, with: { snapshot in
+        query.observeSingleEvent(of: .value, with: { snapshot in
             let newPin = Pin(snapshot: snapshot, ownerId: nil)
             
-            if newPin.privacy != .personal{
-                completion(newPin)
-            }
-        })
-    }
-    
-    
-    static func listenMostRecentPin(id: String, completion: @escaping (Pin) -> ()) {
-
-        let pinQuery = FirConst.pinRef.queryOrdered(byChild: FirConst.ownerId).queryEqual(toValue: id)
-        
-        pinQuery.observe(.childAdded, with: { snapshot in
+            completion(newPin)
             
-            let mostRecentPin = Pin(snapshot: snapshot, ownerId: id)
-            completion(mostRecentPin)
-        
+   
         })
-        
-        //        let pinIdQuery = FirConst.userRef.child(id).child(FirConst.pinIds)  //.queryLimited(toLast: 1)
-//        
-//        
-//        pinIdQuery.observe(.childAdded, with: { snapshot in
-//            
-//            let pinId = String(describing: snapshot.value)
-//            let pinObjectQuery = FirConst.pinRef.child(pinId)
-//            
-//            pinObjectQuery.observeSingleEvent(of: .value, with: { snapshot in
-//                
-//                let mostRecentPin = Pin(snapshot: snapshot, ownerId: id)
-//                
-//                completion(mostRecentPin)
-//                
-//            })
-//        })
     }
     
-    static func listenEditedPin(id: String, completion: @escaping (Pin) -> ()){
-        
-        
-        
-        
-    }
-    
-    
+
     static func deletePin(for userId: String, pinId: String, completion: @escaping () -> () ){
         let queryForPin = FirConst.pinRef.child(pinId)
-        let queryForImage = FirConst.storageRef.child(pinId)
+        let queryForImage = FirConst.allImagesref.child(pinId)
         let queryForUser = FirConst.userRef.child(userId).child(FirConst.pinIds).child(pinId)
 
         queryForPin.removeValue()
-        queryForImage.delete(completion: nil)
+        queryForImage.delete { error in
+            
+            if error != nil{
+                
+                print(error!.localizedDescription)
+
+                
+            }
+            
+        
+        }
         
         // TODO: Take care of error handling here
-        queryForUser.removeValue { error, ref in
-            if error != nil{
-                print("an error occurred with deleting this information")
-            }
+        queryForUser.removeValue()
             
             completion()
             
-        }
+        
     }
     
     

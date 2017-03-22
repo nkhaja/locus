@@ -29,7 +29,6 @@ class MapViewController: UIViewController {
     
     // Location Variables
     @IBOutlet weak var mapView: LocusMapView!
-    
     @IBOutlet weak var pinDetailButton: UIButton!
     @IBOutlet weak var editPinButton: UIButton!
     
@@ -39,6 +38,7 @@ class MapViewController: UIViewController {
     var currentPosition: CLLocation?
     var resultSearchController: UISearchController?
     var thisUserID: String = FIRAuth.auth()!.currentUser!.uid
+    var tempAnnotation: MKAnnotation?
     
     //Pin Variables
     var selectedAnnotation: MKAnnotation?
@@ -47,6 +47,8 @@ class MapViewController: UIViewController {
     var customView: CustomCalloutView!
     
     var genericPinPosition: Int?
+    
+    var initial = true
 
     // id: Pin -- reference to a followers map you've chosen to overlap with yours.
     
@@ -71,11 +73,24 @@ class MapViewController: UIViewController {
         
         FirebaseService.updateUser(id: thisUserID) {
             
-            self.setupListeners()
+            // use intial to avoid calling this part of listener when user updates.
+        
             
-            ThisUser.instance?.getAllPins {
-                self.dropPins(pins: Array(ThisUser.instance!.pins.values))
+                ThisUser.instance?.getAllPins {
+                    
+                    if self.initial{
+                        
+                    
+                    self.dropPins(pins: Array(ThisUser.instance!.pins.values))
+                    self.initial = false
+                    
+                }
+                    
             }
+            
+            
+            
+
         }
     }
     
@@ -139,14 +154,19 @@ class MapViewController: UIViewController {
         }
     }
     
-    func listenForChanges(isNew: Bool){
+    func updatePin(pinId: String){
+        
+        FirebaseService.getPin(id: pinId, completion: { pin in
+        
+            if let pin = pin{
+                
+                self.mapView.removePinWith(coordinate: pin.coordinate)
+                self.dropPins(pins: [pin])
+                
+            }
+        })
         
         
-       FirebaseService.listenMostRecentPin(id: ThisUser.instance!.id) { pin in
-        
-            print(pin)
-        
-        }
         
     }
     
@@ -255,6 +275,15 @@ class MapViewController: UIViewController {
 
         }
     }
+    
+    func removeTempAnnotation(){
+        
+        if let tempAnnotation = tempAnnotation{
+            
+            self.mapView.removeAnnotation(tempAnnotation)
+        }
+        
+    }
 
     @IBAction func pinDetailsButton(_ sender: Any) {
         
@@ -275,13 +304,9 @@ class MapViewController: UIViewController {
 
 
     @IBAction func unwindFromPinBuilder(segue: UIStoryboardSegue){
+        
 
-//        FirebaseService.getMostRecentPin(id: ThisUser.instance!.id, isNew: true) { pin in
-//            
-//            print(pin)
-//            
-//        }
-//        
+        
     }
 }
 
@@ -349,6 +374,8 @@ extension MapViewController: MKMapViewDelegate{
             }
             
             else{
+                
+                self.tempAnnotation = annotation
                 
                 if pinView == nil{
                     let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
@@ -495,8 +522,6 @@ extension MapViewController: HandleMapSearch {
         }
         
         mapView.clearAnnotations()
-        self.genericPinPosition = nil
-        self.genericPinPosition = mapView.annotations.count - 1
         mapView.addAnnotation(annotation)
         
         //refactor the lines below into their own function

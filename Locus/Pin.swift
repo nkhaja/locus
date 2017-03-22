@@ -48,6 +48,7 @@ class Pin {
     init(snapshot: FIRDataSnapshot, ownerId: String?){
         self.id = snapshot.key
         self.reference = snapshot.ref
+        
         let snapshotValue = snapshot.value as! [String:AnyObject]
         
         if let titleData = snapshotValue["title"]{
