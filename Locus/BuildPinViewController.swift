@@ -207,7 +207,7 @@ class BuildPinViewController: UIViewController {
         
             if let mapVc = segue.destination as? MapViewController{
 
-                
+                mapVc.removeTempAnnotation()
                 mapVc.updatePin(pinId: pin!.id!)
                 mapVc.panTo(coordinate: pin!.coordinate, mapView: mapVc.mapView)
             }

@@ -43,7 +43,8 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     var selectedImage: UIImage?
     var multiSelect: Bool = false
     var selectedIndexes: [Int:Bool] = [:]
-    var selectedPhotos = [GpsPhoto]()
+    var selectedPhotoDict = [Int: UIImage]()
+    
     var numPhotos: Int = 0
     weak var delegate: Mappable?
     
@@ -69,7 +70,21 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     @IBAction func submitButton(_ sender: UIButton) {
         var photosToSend = [GpsPhoto]()
-//        
+        
+        
+        for (key, photo) in selectedPhotoDict{
+            
+            photosToSend.append(photo)
+            
+        }
+        
+        if delegate != nil && photosToSend.count > 0{
+            
+            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
+            
+        }
+        
+      
 //        for (key, value) in selectedIndexes {
 //            if value{
 //                photosToSend.append(self.gpsPhotos[key])
@@ -160,15 +175,19 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
             if let selected = selectedIndexes[row]{
                 if selected {
                     selectedIndexes[row] = false
+                    selectedPhotoDict.removeValue(forKey: row)
                 }
                 else{
                     selectedIndexes[row] = true
+                    selectedPhotoDict[row] = cell.imageView.image
                 }
             }
                 
-                // this item is being selected for the first time
+            // this item is being selected for the first time
             else{
                 selectedIndexes[row] = true
+                selectedPhotoDict[row] = cell.imageView.image
+                
             }
             
             self.collectionView.reloadItems(at: [indexPath])
@@ -210,7 +229,7 @@ extension GeoTaggedLibrary {
         
         // Requestion options determine media type, and quality
         self.requestOptions = PHImageRequestOptions()
-        requestOptions!.isSynchronous = false
+        requestOptions!.isSynchronous = true
         requestOptions!.deliveryMode = .highQualityFormat
         requestOptions!.isNetworkAccessAllowed = true
         
@@ -233,7 +252,8 @@ extension GeoTaggedLibrary {
         let size = CGSize(width: 500, height: 500)
         
         let asset = fetchResult.object(at: index)
-                
+        
+        
         
         imgManager.requestImage(for: asset,
                                 targetSize: size,

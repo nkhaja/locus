@@ -46,7 +46,6 @@ class MapViewController: UIViewController {
     
     var customView: CustomCalloutView!
     
-    var genericPinPosition: Int?
     
     var initial = true
 
@@ -460,20 +459,15 @@ extension MapViewController: MKMapViewDelegate{
             let btnHeight = view.frame.height * 0.8
             let smallSquare = CGSize(width: btnHeight, height: btnHeight)
             
-            let drive = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
             let pinIt = UIButton(frame: CGRect(origin: .zero, size: smallSquare))
             
-            drive.contentMode = .scaleAspectFit
             pinIt.contentMode = .scaleAspectFit
             
-            drive.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
-            pinIt.setBackgroundImage(UIImage(named: "sports-car"), for: .normal)
+            pinIt.setBackgroundImage(#imageLiteral(resourceName: "placeholder"), for: .normal)
             
             
-            drive.addTarget(self.mapView, action: #selector(self.mapView.getDirections), for: .touchUpInside)
             pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
             
-            view.leftCalloutAccessoryView = drive
             view.rightCalloutAccessoryView = pinIt
             
 
