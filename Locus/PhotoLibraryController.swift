@@ -19,7 +19,6 @@ protocol GeoTaggedLibrary: class{
 
 protocol Mappable: class {
     func getSelectedGpsPhotos(gpsPhotos: [GpsPhoto])
-//    func getselectedGpsPhoto(gpsPhoto: GpsPhoto)
 }
 
 
