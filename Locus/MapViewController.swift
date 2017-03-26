@@ -57,6 +57,8 @@ class MapViewController: UIViewController {
         
         super.viewDidLoad()
         
+        
+        
         pinDetailButton.isHidden = true
         editPinButton.isHidden = true
         
@@ -360,6 +362,7 @@ extension MapViewController: MKMapViewDelegate{
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
                     
                     customAnnotationView.frame.size = CGSize(width: 30, height: 30)
+                    customAnnotationView.contentMode = .scaleAspectFit
                     
                     customAnnotationView.imageView.sd_setImage(with: FirConst.iconRef.child(locusAnnotation.iconName + "@3x.png"), placeholderImage: #imageLiteral(resourceName: "redGooglePin")) { image, error, cache, ref in
                         
@@ -437,8 +440,36 @@ extension MapViewController: MKMapViewDelegate{
             
 //             load image for selected pin
             
+            // TODO: This is freaking ridiculous
             
-            customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
+            print(SDImageCache.shared().diskImageExists(withKey: thisPin.imageRef!.fullPath))
+            print(SDImageCache.shared().diskImageExists(withKey: String(describing: thisPin.imageRef!)))
+            SDImageCache.shared().getDiskCount()
+
+            
+//            thisPin.imageRef!.downloadURL(completion: { url, error in
+//                
+//                if let url = url{
+//                
+//                    self.customView.pinImageView.sd_setImage(with: url, placeholderImage: UIImage(), options: .refreshCached, completed: { image, error, cache, url in
+//                        
+//                        // do stuff
+//                    
+//                    
+//                    })
+//                }
+//                
+//            })
+            
+
+            
+  
+            
+            customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: { image, error, cache, ref in
+                
+                self.customView.pinImageView.image = image
+            
+            })
             
             
 

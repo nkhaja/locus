@@ -122,8 +122,9 @@ class BuildPinViewController: UIViewController {
         pin.privacy = Privacy(rawValue: privacySegmentedControl.selectedSegmentIndex)!
         
         if pin.image != pinImage.image{
-            SDImageCache.shared().clearDisk()
-            SDImageCache.shared().cleanDisk()
+            
+            SDImageCache.shared().removeImage(forKey: pin.imageRef!.fullPath, fromDisk: true)
+
         }
         
         pin.image = Helper.resizeImage(image: pinImage.image!, newWidth: 400)
