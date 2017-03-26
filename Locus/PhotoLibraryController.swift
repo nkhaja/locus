@@ -14,7 +14,7 @@ protocol GeoTaggedLibrary: class{
     var requestOptions: PHImageRequestOptions? {get set}
     var fetchResult: PHFetchResult<PHAsset>? {get set}
     
-    func getImageWithGps(index: Int, completion: @escaping (GpsPhoto) -> ())
+    func getImageWithGps(index: Int, completion: @escaping (GpsPhoto?) -> ())
 }
 
 protocol Mappable: class {
@@ -42,10 +42,18 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     var selectedImage: UIImage?
     var multiSelect: Bool = false
     var selectedIndexes: [Int:Bool] = [:]
-    var selectedPhotoDict = [Int: UIImage]()
+    var photosForBatch = [GpsPhoto]()
+
     
-    var numPhotos: Int = 0
     weak var delegate: Mappable?
+    
+    // pagination
+    
+    var page: Int = 1
+    var pageSize: Int = 25
+    var lastPage: Int = 0
+    var resultsFetched : Bool = false
+    
     
     //Photo Library Vars
         
@@ -53,6 +61,7 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
         super.viewDidLoad()
         
         getFetchResult()
+        paginate(higherIndex: true, lastPage: lastPage)
         submitButton.isHidden = true
         submitButton.layer.cornerRadius = 8
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
@@ -71,30 +80,116 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
         var photosToSend = [GpsPhoto]()
         
         
-        for (key, photo) in selectedPhotoDict{
+        let group = DispatchGroup()
+        
+        
+        for (key, value) in selectedIndexes {
+            if value{
+                
+                group.enter()
+                getImageWithGps(index: key, completion: { photo in
+                    
+                    if let photo = photo{
+                        photosToSend.append(photo)
+                    }
+                    
+                    
+                    
+                    group.leave()
+                    
+                })
             
-            photosToSend.append(photo)
+            
+            }
+        }
+        
+        
+        group.notify(queue: .main, execute: {
+            
+            if self.delegate != nil && photosToSend.count > 0{
+                self.delegate?.getSelectedGpsPhotos(gpsPhotos: photosToSend)
+            }
+            
+            self.navigationController?.popViewController(animated: true)
+            
+        })
+        
+    }
+    
+    func paginate(higherIndex: Bool, lastPage: Int){
+        
+        var batchResult = [GpsPhoto]()
+        
+        var start: Int = 0
+        var end: Int = 0
+        var fetchCount = fetchResult!.count
+        
+        let group = DispatchGroup()
+        
+        // max fetch is less than total photos
+        
+        if (higherIndex && lastPage == fetchCount) || (!higherIndex && lastPage == 0){
+            return
+        }
+        
+        
+        if fetchCount < pageSize {
+            
+            start = 0
+            end = fetchCount
+            self.lastPage = fetchCount
             
         }
         
-        if delegate != nil && photosToSend.count > 0{
+        else if higherIndex {
             
-            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
+            start = lastPage
+            end = start + pageSize
+            if end > fetchCount{
+                end = fetchCount
+            }
+ 
+        }
+        
+        // !higherIndex
+        else{
+            
+            end = lastPage - pageSize
+            start = end - pageSize
+            
+            if start < 0 {
+                start = 0
+                end = pageSize
+            }
             
         }
         
-      
-//        for (key, value) in selectedIndexes {
-//            if value{
-//                photosToSend.append(self.gpsPhotos[key])
-//            }
-//        }
-//        
-//        if delegate != nil  && gpsPhotos.count > 0{
-//            delegate!.getSelectedGpsPhotos(gpsPhotos: photosToSend)
-//        }
+
+        for i in start...end {
+            
+            group.enter()
+            getImageWithGps(index: i, completion: { photo in
+                
+                if let gpsPhoto = photo{
+                    batchResult.append(gpsPhoto)
+                }
+                
+                
+                group.leave()
         
-        self.navigationController?.popViewController(animated: true)
+            })
+            
+            
+        }
+        
+        group.notify(queue: .main) { 
+            
+            self.lastPage = end
+            self.photosForBatch = batchResult
+            self.collectionView.reloadData()
+            
+        }
+        
         
         
     }
@@ -115,7 +210,7 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return fetchResult!.count
+        return photosForBatch.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,11 +218,7 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         
         let row = indexPath.row
         
-        getImageWithGps(index: indexPath.row) { photo in
-            
-            cell.imageView.image = photo.image
-            
-        }
+        cell.imageView.image = photosForBatch[row].image
         
         
         if multiSelect {
@@ -174,19 +265,15 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
             if let selected = selectedIndexes[row]{
                 if selected {
                     selectedIndexes[row] = false
-                    selectedPhotoDict.removeValue(forKey: row)
                 }
                 else{
                     selectedIndexes[row] = true
-                    selectedPhotoDict[row] = cell.imageView.image
                 }
             }
                 
             // this item is being selected for the first time
             else{
                 selectedIndexes[row] = true
-                selectedPhotoDict[row] = cell.imageView.image
-                
             }
             
             self.collectionView.reloadItems(at: [indexPath])
@@ -198,6 +285,28 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         
         
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        var row = indexPath.row
+        
+        if row == 0{
+            return
+        }
+        
+        if row == lastPage - 5 {
+            paginate(higherIndex: true, lastPage: lastPage)
+        }
+        
+        else if row == lastPage - 20 {
+            paginate(higherIndex: false, lastPage: lastPage)
+        }
+
+        
+        
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 1
@@ -228,7 +337,7 @@ extension GeoTaggedLibrary {
         
         // Requestion options determine media type, and quality
         self.requestOptions = PHImageRequestOptions()
-        requestOptions!.isSynchronous = true
+        requestOptions!.isSynchronous = false
         requestOptions!.deliveryMode = .highQualityFormat
         requestOptions!.isNetworkAccessAllowed = true
         
@@ -236,19 +345,20 @@ extension GeoTaggedLibrary {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
+        
         self.fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
         
     }
 
 
     // Mark: Getting a single Photo
-    func fetchPhoto(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, index: Int, completion: @escaping (GpsPhoto) -> ()){
+    func fetchPhoto(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, index: Int, completion: @escaping (GpsPhoto?) -> ()){
         
         
         let editingOtions = PHContentEditingInputRequestOptions()
         editingOtions.isNetworkAccessAllowed = true
         
-        let size = CGSize(width: 500, height: 500)
+        let size = CGSize(width: 400, height: 400)
         
         let asset = fetchResult.object(at: index)
         
@@ -260,6 +370,7 @@ extension GeoTaggedLibrary {
                                 options: requestOptions,
                                 resultHandler: { image, info in
                                     if let coordinate = asset.location?.coordinate, let image = image{
+                                        
                                         let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                                         
                                         let gpsPhoto = GpsPhoto(image: image, location: location2d)
@@ -268,14 +379,18 @@ extension GeoTaggedLibrary {
                                         
                                     }
                                     
+                                    else {completion(nil)}
+                                    
+                                
+                                    
                         
         })
     }
     
+        // returns a GPS photo by checking the given index in the fetch result
+        func getImageWithGps(index: Int, completion: @escaping (GpsPhoto?) -> ()) {
         
-        func getImageWithGps(index: Int, completion: @escaping (GpsPhoto) -> ()) {
-        
-            if fetchResult!.count > 0 {
+            if fetchResult!.count > 0 && fetchResult!.count > index {
                 
                 fetchPhoto(imgManager: imgManager!, fetchResult: fetchResult!, requestOptions: requestOptions!, index: index, completion: { gpsPhoto in
                     
@@ -286,7 +401,7 @@ extension GeoTaggedLibrary {
             }
                 
             else{
-                return
+                completion(nil)
             }
         }
         

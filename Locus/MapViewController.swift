@@ -474,7 +474,7 @@ extension MapViewController: MKMapViewDelegate{
             
             self.selectedAnnotation = view.annotation
             view.canShowCallout = true
-        
+         
             
         }
 
@@ -528,11 +528,11 @@ extension MapViewController: HandleMapSearch {
 extension MapViewController: Mappable{
     
     func getSelectedGpsPhotos(gpsPhotos: [GpsPhoto]) {
-        let uid = FIRAuth.auth()?.currentUser?.uid
+        let uid = ThisUser.instance!.id
         var newPins = [Pin]()
         for photo in gpsPhotos{
             
-            let newPin = Pin(ownerId: uid!, coordinate: photo.location, image: photo.image)
+            let newPin = Pin(ownerId: uid, coordinate: photo.location, image: photo.image)
             newPin.save(newAlbum: nil)
             newPins.append(newPin)
             
