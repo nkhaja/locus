@@ -358,7 +358,7 @@ extension GeoTaggedLibrary {
         let editingOtions = PHContentEditingInputRequestOptions()
         editingOtions.isNetworkAccessAllowed = true
         
-        let size = CGSize(width: 400, height: 400)
+        let size = CGSize(width: 300, height: 300)
         
         let asset = fetchResult.object(at: index)
         

@@ -363,6 +363,7 @@ extension MapViewController: MKMapViewDelegate{
                     
                     customAnnotationView.imageView.sd_setImage(with: FirConst.iconRef.child(locusAnnotation.iconName + "@3x.png"), placeholderImage: #imageLiteral(resourceName: "redGooglePin")) { image, error, cache, ref in
                         
+    
                         customAnnotationView.image = image
                     }
                     
@@ -438,6 +439,8 @@ extension MapViewController: MKMapViewDelegate{
             
             
             customView.pinImageView.sd_setImage(with: thisPin.imageRef!, maxImageSize: 1 * 1024 * 1024, placeholderImage: UIImage(), completion: nil)
+            
+            
 
             
             customView.bounds.size = CGSize(width: 150, height: 150)

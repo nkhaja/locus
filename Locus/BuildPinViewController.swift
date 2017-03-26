@@ -120,6 +120,12 @@ class BuildPinViewController: UIViewController {
         pin.story = storyTextView.text!
         pin.iconName = self.iconName
         pin.privacy = Privacy(rawValue: privacySegmentedControl.selectedSegmentIndex)!
+        
+        if pin.image != pinImage.image{
+            SDImageCache.shared().clearDisk()
+            SDImageCache.shared().cleanDisk()
+        }
+        
         pin.image = Helper.resizeImage(image: pinImage.image!, newWidth: 400)
         
 //        if albumTextField.text == "No Album Selected"{
@@ -231,6 +237,11 @@ class BuildPinViewController: UIViewController {
         
         if let pin = self.pin{
             let updatedPin = makePin(pin: pin)
+            
+            if updatedPin.image != pin.image {
+            
+            }
+            
             updatedPin.save(newAlbum: nil)
             // TODO: change to Any Object
             
