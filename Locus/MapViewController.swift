@@ -497,7 +497,7 @@ extension MapViewController: MKMapViewDelegate{
             
             pinIt.contentMode = .scaleAspectFit
             
-            pinIt.setBackgroundImage(#imageLiteral(resourceName: "placeholder"), for: .normal)
+            pinIt.setBackgroundImage(#imageLiteral(resourceName: "pinMap_color"), for: .normal)
             
             
             pinIt.addTarget(self, action: #selector(self.goBuildPin), for: .touchUpInside)
