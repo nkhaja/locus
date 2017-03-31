@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Locus/FirebaseService.swift"
-            timestampString = "512245282.594585"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "512683331.804948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "getPinsForUser(id:local:completion:)"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
+            landmarkName = "mapView(_:didSelect:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Locus/MapViewController.swift"
-            timestampString = "512246023.381536"
+            timestampString = "512683331.804948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "mapView(_:didSelect:)"
             landmarkType = "7">
             <Locations>
@@ -58,12 +58,12 @@
                   moduleName = "Locus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
-                  timestampString = "512246268.583319"
+                  timestampString = "512683332.062132"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "468"
-                  endingLineNumber = "468"
-                  offsetFromSymbolStart = "7161">
+                  startingLineNumber = "471"
+                  endingLineNumber = "471"
+                  offsetFromSymbolStart = "8041">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -73,12 +73,12 @@
                   moduleName = "Locus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
-                  timestampString = "512246268.587959"
+                  timestampString = "512683332.064777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
-                  offsetFromSymbolStart = "38">
+                  startingLineNumber = "473"
+                  endingLineNumber = "473"
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -90,45 +90,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Locus/MapViewController.swift"
-            timestampString = "512246023.381536"
+            timestampString = "512683331.804948"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "450"
-            endingLineNumber = "450"
-            landmarkName = "mapView(_:didSelect:)"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Locus.MapViewController.mapView (__ObjC.MKMapView, didSelect : __ObjC.MKAnnotationView) -&gt; ()"
-                  moduleName = "Locus"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
-                  timestampString = "512246268.593359"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "468"
-                  endingLineNumber = "468"
-                  offsetFromSymbolStart = "7161">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Locus.MapViewController.(mapView (__ObjC.MKMapView, didSelect : __ObjC.MKAnnotationView) -&gt; ()).(closure #1)"
-                  moduleName = "Locus"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/MapViewController.swift"
-                  timestampString = "512246268.596555"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "470"
-                  endingLineNumber = "470"
-                  offsetFromSymbolStart = "38">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "512683331.804948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "mapView(_:viewFor:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "512683331.804948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
+            landmarkName = "mapView(_:viewFor:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/MapViewController.swift"
+            timestampString = "512683331.804948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "mapView(_:viewFor:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -348,10 +348,6 @@ extension MapViewController: MKMapViewDelegate{
             return nil
         }
         
-//        if annotation.isKind(of: CalloutAnnotation.self){
-//            
-//            return customView
-//        }
         
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
@@ -379,17 +375,24 @@ extension MapViewController: MKMapViewDelegate{
             else{
                 
                 self.tempAnnotation = annotation
+                let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "standardPin")
+                standardPin.canShowCallout = true
+                standardPin.animatesDrop = true
+                return standardPin // returns here for when new basic pin added for first time
+
                 
-                if pinView == nil{
-                    let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-                    standardPin.canShowCallout = true
-                    standardPin.animatesDrop = true
-                    return standardPin // returns here for when new basic pin added for first time
-                }
                 
-                else{
-                    return pinView
-                }
+//                if pinView == nil{
+//                    let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "standardPin")
+//                    standardPin.canShowCallout = true
+//                    standardPin.animatesDrop = true
+//                    return standardPin // returns here for when new basic pin added for first time
+//                }
+//                
+//                else{
+//
+//                    return pinView
+//                }
                 
             }
         }
