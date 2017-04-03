@@ -47,12 +47,11 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
     
     weak var delegate: Mappable?
     
-    // pagination
     
-    var page: Int = 1
+    // pagination
     var pageSize: Int = 25
     var lastPage: Int = 0
-    var resultsFetched : Bool = false
+    var isUpdating: Bool = false
     
     
     //Photo Library Vars
@@ -61,7 +60,7 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
         super.viewDidLoad()
         
         getFetchResult()
-        paginate(higherIndex: true, lastPage: lastPage)
+        paginate(lastPage: lastPage)
         submitButton.isHidden = true
         submitButton.layer.cornerRadius = 8
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(multiSelectPressed))
@@ -116,19 +115,20 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
         
     }
     
-    func paginate(higherIndex: Bool, lastPage: Int){
+    func paginate(lastPage: Int){
+        self.isUpdating = true
         
         var batchResult = [GpsPhoto]()
         
         var start: Int = 0
         var end: Int = 0
-        var fetchCount = fetchResult!.count
+        let fetchCount = fetchResult!.count
         
         let group = DispatchGroup()
         
         // max fetch is less than total photos
         
-        if (higherIndex && lastPage == fetchCount) || (!higherIndex && lastPage == 0){
+        if  lastPage == fetchCount{
             return
         }
         
@@ -141,7 +141,7 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
             
         }
         
-        else if higherIndex {
+        else {
             
             start = lastPage
             end = start + pageSize
@@ -149,19 +149,6 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
                 end = fetchCount
             }
  
-        }
-        
-        // !higherIndex
-        else{
-            
-            end = lastPage - pageSize
-            start = end - pageSize
-            
-            if start < 0 {
-                start = 0
-                end = pageSize
-            }
-            
         }
         
 
@@ -178,22 +165,17 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
                 group.leave()
         
             })
-            
-            
         }
         
         group.notify(queue: .main) { 
             
             self.lastPage = end
             self.photosForBatch = batchResult
+            self.isUpdating = false
             self.collectionView.reloadData()
             
         }
-        
-        
-        
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == String(describing: SeeImageController.self){
@@ -287,27 +269,6 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        var row = indexPath.row
-        
-        if row == 0{
-            return
-        }
-        
-        if row == lastPage - 5 {
-            paginate(higherIndex: true, lastPage: lastPage)
-        }
-        
-        else if row == lastPage - 20 {
-            paginate(higherIndex: false, lastPage: lastPage)
-        }
-
-        
-        
-    }
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 3 - 1
         return CGSize(width: width, height: width)
@@ -320,6 +281,32 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0
     }
+}
+
+
+extension PhotoLibraryController: UIScrollViewDelegate{
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        
+                if scrollView == collectionView{
+        
+                    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height){
+        
+                        if !isUpdating && fetchResult!.count < lastPage {
+        
+                           paginate(lastPage: lastPage)
+        
+                        }
+        
+                    }
+                    
+                }
+        
+        
+    }
+    
+    
 }
 
 
@@ -353,11 +340,7 @@ extension GeoTaggedLibrary {
 
     // Mark: Getting a single Photo
     func fetchPhoto(imgManager: PHImageManager, fetchResult: PHFetchResult<PHAsset>, requestOptions: PHImageRequestOptions, index: Int, completion: @escaping (GpsPhoto?) -> ()){
-        
-        
-        let editingOtions = PHContentEditingInputRequestOptions()
-        editingOtions.isNetworkAccessAllowed = true
-        
+
         let size = CGSize(width: 300, height: 300)
         
         let asset = fetchResult.object(at: index)

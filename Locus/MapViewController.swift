@@ -149,7 +149,7 @@ class MapViewController: UIViewController {
             
             
             if b == editPinButton {
-                b.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+                b.imageEdgeInsets = UIEdgeInsets(top: 150, left: 150, bottom: 150, right: 150)
             }
             
         }
@@ -357,13 +357,15 @@ extension MapViewController: MKMapViewDelegate{
                 
                     let customAnnotationView = CustomAnnotationView(annotation: locusAnnotation, reuseIdentifier: "pin")
                     
-                    customAnnotationView.frame.size = CGSize(width: 30, height: 30)
+                    customAnnotationView.bounds.size = CGSize(width: 30, height: 30)
                     customAnnotationView.contentMode = .scaleAspectFit
-                    
-                    customAnnotationView.imageView.sd_setImage(with: FirConst.iconRef.child(locusAnnotation.iconName + "@3x.png"), placeholderImage: #imageLiteral(resourceName: "redGooglePin")) { image, error, cache, ref in
+//                    customAnnotationView.clipsToBounds = true
+                
+                    customAnnotationView.imageView.sd_setImage(with: FirConst.iconRef.child(locusAnnotation.iconName + "@3x.png"), placeholderImage: #imageLiteral(resourceName: "pin")) { image, error, cache, ref in
                         
     
                         customAnnotationView.image = image
+                        
                     }
                     
                     customAnnotationView.canShowCallout = false
@@ -378,22 +380,9 @@ extension MapViewController: MKMapViewDelegate{
                 let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "standardPin")
                 standardPin.canShowCallout = true
                 standardPin.animatesDrop = true
+               
                 return standardPin // returns here for when new basic pin added for first time
 
-                
-                
-//                if pinView == nil{
-//                    let standardPin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "standardPin")
-//                    standardPin.canShowCallout = true
-//                    standardPin.animatesDrop = true
-//                    return standardPin // returns here for when new basic pin added for first time
-//                }
-//                
-//                else{
-//
-//                    return pinView
-//                }
-                
             }
         }
 
@@ -446,8 +435,6 @@ extension MapViewController: MKMapViewDelegate{
             // TODO: This is freaking ridiculous
             
             print(SDImageCache.shared().diskImageExists(withKey: thisPin.imageRef!.fullPath))
-            print(SDImageCache.shared().diskImageExists(withKey: String(describing: thisPin.imageRef!)))
-            SDImageCache.shared().getDiskCount()
 
             
 //            thisPin.imageRef!.downloadURL(completion: { url, error in
