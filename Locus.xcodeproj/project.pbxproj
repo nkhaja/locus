@@ -626,7 +626,7 @@
 				DEVELOPMENT_TEAM = PU7KSX8Z6J;
 				INFOPLIST_FILE = Locus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nabil.Locus;
+				PRODUCT_BUNDLE_IDENTIFIER = nkhaja.locus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -641,7 +641,7 @@
 				DEVELOPMENT_TEAM = PU7KSX8Z6J;
 				INFOPLIST_FILE = Locus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Nabil.Locus;
+				PRODUCT_BUNDLE_IDENTIFIER = nkhaja.locus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -10,6 +10,7 @@ import UIKit
 import GoogleSignIn
 import Firebase
 
+
 class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     var userRef:FIRDatabaseReference?
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.userRef = FIRDatabase.database().reference(withPath: "users")
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
@@ -41,11 +43,9 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     }
     
     
-    
     func signUpPressed() {
         
         // TODO: Transition to sign up page here
-        
         
     }
     
@@ -62,11 +62,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             self.getUserName()
   
         })
-        
-        
-        
     }
-    
     
     
     func getUserName(){
@@ -86,14 +82,12 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
     }
 
     
-    
     @IBAction func didTapSignOut(sender: AnyObject) {
         GIDSignIn.sharedInstance().signOut()
     }
     
 
-    
-    
+
     // Mark: Google Sign
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         if let error = error {
@@ -103,6 +97,7 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
             print("\n")
             return
         }
+        
         
         guard let authentication = user.authentication else { return }
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,

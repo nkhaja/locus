@@ -96,5 +96,24 @@ extension Data{
     
 }
 
+protocol NoRotating {
+
+//     func shouldAutorotate() -> Bool
+//    
+//     func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+}
+
+extension NoRotating where Self: UIViewController {
+    
+     func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+     func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    
+}
+
 
 
