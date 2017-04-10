@@ -151,11 +151,10 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
  
         }
         
-
-        for i in start...end {
+        while batchResult.count <= 25 && start < fetchCount{
             
             group.enter()
-            getImageWithGps(index: i, completion: { photo in
+            getImageWithGps(index: start, completion: { photo in
                 
                 if let gpsPhoto = photo{
                     batchResult.append(gpsPhoto)
@@ -163,13 +162,16 @@ class PhotoLibraryController: UIViewController, GeoTaggedLibrary {
                 
                 
                 group.leave()
-        
+                
             })
+            
+            start = start + 1
         }
+
         
         group.notify(queue: .main) { 
             
-            self.lastPage = end
+            self.lastPage = start
             self.photosForBatch = batchResult
             self.isUpdating = false
             self.collectionView.reloadData()
@@ -204,11 +206,12 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         
         
         if multiSelect {
+            let fetchIndex = photosForBatch[row].fetchIndex
             cell.checkBox.isHidden = false
             cell.layer.borderWidth = 5
             
             // check to see if this box is selected
-            if let selected = selectedIndexes[row]{
+            if let selected = selectedIndexes[fetchIndex]{
                 if selected{
                     cell.checkBox.image = #imageLiteral(resourceName: "checkmark")
                     cell.layer.borderColor = UIColor.green.cgColor
@@ -239,23 +242,25 @@ extension PhotoLibraryController: UICollectionViewDelegate, UICollectionViewData
         
         let row = indexPath.row
         let cell = collectionView.cellForItem(at: indexPath) as! AssetCollectionCell
+        let fetchIndex = photosForBatch[row].fetchIndex
         
         selectedImage = cell.imageView.image
         
+        
         if multiSelect{
             //this item has been selected before
-            if let selected = selectedIndexes[row]{
+            if let selected = selectedIndexes[fetchIndex]{
                 if selected {
-                    selectedIndexes[row] = false
+                    selectedIndexes[fetchIndex] = false
                 }
                 else{
-                    selectedIndexes[row] = true
+                    selectedIndexes[fetchIndex] = true
                 }
             }
                 
             // this item is being selected for the first time
             else{
-                selectedIndexes[row] = true
+                selectedIndexes[fetchIndex] = true
             }
             
             self.collectionView.reloadItems(at: [indexPath])
@@ -302,8 +307,6 @@ extension PhotoLibraryController: UIScrollViewDelegate{
                     }
                     
                 }
-        
-        
     }
     
     
@@ -356,7 +359,7 @@ extension GeoTaggedLibrary {
                                         
                                         let location2d = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
                                         
-                                        let gpsPhoto = GpsPhoto(image: image, location: location2d)
+                                        let gpsPhoto = GpsPhoto(image: image, location: location2d, fetchIndex: index)
                                         
                                         completion(gpsPhoto)
                                         
@@ -395,11 +398,13 @@ extension GeoTaggedLibrary {
 struct GpsPhoto {
         var image: UIImage
         var location: CLLocationCoordinate2D
+        var fetchIndex: Int
+    
+    init(image: UIImage, location: CLLocationCoordinate2D, fetchIndex: Int){
         
-        init(image: UIImage, location: CLLocationCoordinate2D){
-            
             self.image = image
             self.location = location
+            self.fetchIndex = fetchIndex
         }
 }
 

@@ -49,12 +49,12 @@ struct FirebaseService {
         })
     }
     
-    static func updateFollowerStatus(id: String, completion: @escaping ([String: Bool]) -> () ){
+    static func updateFollowerStatus(id: String, completion: @escaping ([String: Bool]?) -> () ){
         let query = FirConst.userRef.child(id).child(FirConst.following)
         
         query.observe(.value, with: { snapshot in
             
-            let data = snapshot.value as! [String:Bool]
+            let data = snapshot.value as? [String:Bool]
             completion(data)
             
         

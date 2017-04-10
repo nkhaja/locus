@@ -88,10 +88,16 @@ class NewFollowerViewController: UIViewController {
             // Listen for followers for this user
             FirebaseService.updateFollowerStatus(id: ThisUser.instance!.id) { [weak self] following in
                 
-                ThisUser.instance!.following = following
-                self?.refreshControl.endRefreshing()
-                self?.activityIndicator.stopAnimating()
-                self?.tableView.reloadData()
+                if let following = following {
+                    
+                    ThisUser.instance!.following = following
+                    self?.refreshControl.endRefreshing()
+                    self?.activityIndicator.stopAnimating()
+                    self?.tableView.reloadData()
+                    
+                }
+
+
             }
 
         }
