@@ -44,15 +44,15 @@
                                     <action selector="pinDetailsButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="gWJ-0I-aaM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWS-uj-Jry">
-                                <rect key="frame" x="327" y="110" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWS-uj-Jry">
+                                <rect key="frame" x="329" y="110" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.22352941176470587" green="0.68627450980392157" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="97y-Nt-aXJ"/>
                                     <constraint firstAttribute="height" constant="30" id="nRJ-To-w7Q"/>
                                 </constraints>
                                 <size key="titleShadowOffset" width="0.0" height="3"/>
-                                <state key="normal" backgroundImage="pencil_white">
+                                <state key="normal" image="pencil_white">
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -216,7 +216,6 @@
         <!--Map-->
         <scene sceneID="9be-Ek-6PN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FQg-Kv-4i7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ssk-yL-pmB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="logo-mini" id="OWf-fN-tEC"/>
                     <toolbarItems/>
@@ -230,6 +229,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="sc1-lT-hMK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FQg-Kv-4i7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="862" y="-371"/>
         </scene>

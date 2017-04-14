@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		68A476FBA2336E62C2C4CB64 /* Pods_Locus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D2EB2F588420E468AD49DE /* Pods_Locus.framework */; };
+		BD19D2DE1E9FE6BC008B2AE8 /* baybridge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */; };
 		BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF01E06081F001E290B /* AppDelegate.swift */; };
 		BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF21E06081F001E290B /* MapViewController.swift */; };
 		BD1A7AF81E06081F001E290B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD1A7AF61E06081F001E290B /* Main.storyboard */; };
@@ -49,7 +50,6 @@
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
 		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
-		BD6747121E734D7800591079 /* baybridge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD6747111E734D7800591079 /* baybridge.jpg */; };
 		BD6747141E73554A00591079 /* IconCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6747131E73554A00591079 /* IconCollectionCell.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 		BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */; };
@@ -68,6 +68,7 @@
 		05D2EB2F588420E468AD49DE /* Pods_Locus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Locus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A1AD6623EE156786DAFADA /* Pods-Locus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.release.xcconfig"; sourceTree = "<group>"; };
 		A6B0DB943E15DD2938A54C97 /* Pods-Locus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.debug.xcconfig"; sourceTree = "<group>"; };
+		BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = baybridge.jpg; sourceTree = "<group>"; };
 		BD1A7AED1E06081F001E290B /* Locus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1A7AF01E06081F001E290B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD1A7AF21E06081F001E290B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
 				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
 				BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */,
+				BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD2E86771E689188000C7EBA /* Followers */,
 				BD2E86A21E6E01FE000C7EBA /* MyPins */,
@@ -364,10 +366,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD2E869D1E6DF0D7000C7EBA /* FollowerPreviewCell.xib in Resources */,
-				BD6747121E734D7800591079 /* baybridge.jpg in Resources */,
 				BD1A7AFD1E06081F001E290B /* LaunchScreen.storyboard in Resources */,
 				BD1A7B071E08D96E001E290B /* GoogleService-Info.plist in Resources */,
 				BD2DE4FC1E0F22070078AC9A /* Map.storyboard in Resources */,
+				BD19D2DE1E9FE6BC008B2AE8 /* baybridge.jpg in Resources */,
 				BD2E86701E67E4C9000C7EBA /* NewFollowers.storyboard in Resources */,
 				BD1A7AFA1E06081F001E290B /* Assets.xcassets in Resources */,
 				BD4387641E77AE3B0010F24C /* citySky.jpg in Resources */,

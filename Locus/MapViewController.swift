@@ -149,7 +149,7 @@ class MapViewController: UIViewController {
             
             
             if b == editPinButton {
-                b.imageEdgeInsets = UIEdgeInsets(top: 150, left: 150, bottom: 150, right: 150)
+
             }
             
         }

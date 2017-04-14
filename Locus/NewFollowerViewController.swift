@@ -222,12 +222,14 @@ extension NewFollowerViewController: UITableViewDelegate, UITableViewDataSource 
             ThisUser.instance!.reference!.child(FirConst.permissionsWaiting).child(newFollowerId).removeValue()
             
             pendingFollowers.remove(at: indexPath.row)
-            tableView.reloadData()
             
             
             // The above operationjo triggers a listener to handle remaining logic
             // TODO: Add feature where users can ignore requests
         }
+        
+        tableView.reloadData()
+
         
     }
     
@@ -286,6 +288,8 @@ extension NewFollowerViewController: UISearchBarDelegate {
         }
         
         let query = FirConst.userRef.queryOrdered(byChild: FirConst.name).queryStarting(atValue: text)
+        
+        query.keepSynced(true)
         
         query.observeSingleEvent(of: FIRDataEventType.value, with: { snapshot in
             if snapshot.hasChildren(){

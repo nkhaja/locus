@@ -23,7 +23,6 @@ struct FirebaseService {
     
     
     // Mark: Follower Functions
-    
     static func getUserName(id:String, completion: @escaping (String) -> ()){
     
         let query = FirConst.userRef.child(id).child(FirConst.name)

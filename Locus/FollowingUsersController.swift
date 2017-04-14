@@ -153,12 +153,13 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         
  
-            
+        // No search query, show all options
         if searchBar.text == nil || searchBar.text == "" {
             filteredFollowing = following
             
         }
         
+        // disable addMap button if this map is currently active
         if overlayMap == filteredFollowing[indexPath.row].id && indexPath.section == 1{
             cell.addMapButton.isEnabled = false
             cell.addMapButton.backgroundColor = UIColor.gray
@@ -223,6 +224,11 @@ extension FollowingUsersController: PreviewCellDelegate{
     func seeDetails(indexPath: IndexPath) {
        
         selectedUserId = following[indexPath.row].id
+        
+        if filteredFollowing.count > 0{
+            selectedUserId = filteredFollowing[indexPath.row].id
+        }
+        
         let storyboard = UIStoryboard(name: "Followers", bundle: nil)
         let pinsOfFollowingVc = storyboard.instantiateViewController(withIdentifier: String(describing: PinsOfFollowingController.self)) as! PinsOfFollowingController
         
@@ -292,9 +298,13 @@ extension FollowingUsersController: UISearchBarDelegate{
             return
         }
         
-        filteredFollowing = following.filter {
-            $0.name.hasPrefix(searchBar.text!)
+        filteredFollowing = []
+        for follower in following{
+            if follower.name.lowercased().hasPrefix(searchBar.text!.lowercased()){
+                filteredFollowing.append(follower)
+            }
         }
+        
         
         self.tableView.reloadData()
 
