@@ -18,7 +18,7 @@ class FollowingUsersController: UIViewController {
     lazy var filteredFollowing = [Identity]()
     
     var following = [Identity]()
-    var selectedUserId: String?
+    var selectedUserId: Identity?
     
     
     lazy var refreshControl = UIRefreshControl()
@@ -30,7 +30,7 @@ class FollowingUsersController: UIViewController {
 
     
     // The id of the user who's map is being overlayed with our own
-    var overlayMap: String?
+    var overlayMap: Identity?
 
 
 
@@ -95,7 +95,7 @@ class FollowingUsersController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "followersPins"{
             if let pinsofFollowingController = segue.destination as? PinsOfFollowingController{
-                pinsofFollowingController.id = selectedUserId
+                pinsofFollowingController.id = selectedUserId?.id
             }
         }
     }
@@ -151,7 +151,12 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FollowerPreviewCell") as! FollowerPreviewCell
         
+        // make sure these are set to default state in case changed at any point
         
+        cell.addMapButton.isEnabled = true
+        cell.unfollowButton.isEnabled = true
+        cell.unfollowButton.layer.opacity = 1
+        //cell.addMapButton.backgroundColor = UIColor(red: 57, green: 75, blue: 254, alpha: 1.0)
  
         // No search query, show all options
         if searchBar.text == nil || searchBar.text == "" {
@@ -160,10 +165,11 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         }
         
         // disable addMap button if this map is currently active
-        if overlayMap == filteredFollowing[indexPath.row].id && indexPath.section == 1{
+        if overlayMap?.id == filteredFollowing[indexPath.row].id && indexPath.section == 1{
             cell.addMapButton.isEnabled = false
             cell.addMapButton.backgroundColor = UIColor.gray
         }
+        
         
         // inner argument returns an id, that hashes to a name from the outer dict
         cell.nameLabel.text = filteredFollowing[indexPath.row].name
@@ -174,6 +180,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         
         if indexPath.section == 0 {
             
+            cell.nameLabel.text = overlayMap!.name
             cell.addMapButton.setImage(#imageLiteral(resourceName: "back_white"), for: .normal)
             cell.unfollowButton.isEnabled = false
             cell.unfollowButton.layer.opacity = 0
@@ -199,7 +206,7 @@ extension FollowingUsersController: PreviewCellDelegate{
         if indexPath.section == 0 {
             
             
-            mapVc.removeFollowerMap(id: overlayMap!)
+            mapVc.removeFollowerMap(id: overlayMap!.id)
             self.overlayMap = nil
 
             
@@ -208,11 +215,11 @@ extension FollowingUsersController: PreviewCellDelegate{
         else {
             
             // don't add the same map twice
-            guard overlayMap != following[indexPath.row].id
+            guard overlayMap?.id != following[indexPath.row].id
                 else{return}
            
-            self.overlayMap = following[indexPath.row].id
-            mapVc.overlayFollowerMap(id: overlayMap!)
+            self.overlayMap = following[indexPath.row]
+            mapVc.overlayFollowerMap(id: overlayMap!.id)
             
         }
         
@@ -223,16 +230,16 @@ extension FollowingUsersController: PreviewCellDelegate{
     
     func seeDetails(indexPath: IndexPath) {
        
-        selectedUserId = following[indexPath.row].id
+        selectedUserId = following[indexPath.row]
         
         if filteredFollowing.count > 0{
-            selectedUserId = filteredFollowing[indexPath.row].id
+            selectedUserId = filteredFollowing[indexPath.row]
         }
         
         let storyboard = UIStoryboard(name: "Followers", bundle: nil)
         let pinsOfFollowingVc = storyboard.instantiateViewController(withIdentifier: String(describing: PinsOfFollowingController.self)) as! PinsOfFollowingController
         
-        pinsOfFollowingVc.id = selectedUserId
+        pinsOfFollowingVc.id = selectedUserId?.id
         
         self.present(pinsOfFollowingVc, animated: true, completion: nil)
         

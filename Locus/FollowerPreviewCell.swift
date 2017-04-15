@@ -45,6 +45,13 @@ class FollowerPreviewCell: UITableViewCell {
     
     }
     
+    override func prepareForReuse() {
+        
+        self.nameLabel.text = nil
+        self.indexPath = nil
+        
+    }
+    
     func designButtons(){
         
         
