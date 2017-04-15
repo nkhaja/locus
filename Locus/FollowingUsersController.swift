@@ -156,7 +156,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
         cell.addMapButton.isEnabled = true
         cell.unfollowButton.isEnabled = true
         cell.unfollowButton.layer.opacity = 1
-        //cell.addMapButton.backgroundColor = UIColor(red: 57, green: 75, blue: 254, alpha: 1.0)
+        cell.addMapButton.backgroundColor = UIColor(red: 57/255, green: 175/255, blue: 254/255, alpha: 1.0)
  
         // No search query, show all options
         if searchBar.text == nil || searchBar.text == "" {

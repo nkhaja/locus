@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Locus/FollowingUsersController.swift"
-            timestampString = "513928818.981012"
+            timestampString = "513931679.671356"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "addMap(indexPath:isActive:)"
             landmarkType = "7">
             <Locations>
@@ -90,11 +90,11 @@
                   moduleName = "Locus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/FollowingUsersController.swift"
-                  timestampString = "513927896.182681"
+                  timestampString = "513933105.605378"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "197"
-                  endingLineNumber = "197"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
                   offsetFromSymbolStart = "30">
                </Location>
                <Location
@@ -105,14 +105,30 @@
                   moduleName = "Locus"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Nabil/Documents/ProductAcademy/Locus/Locus/FollowingUsersController.swift"
-                  timestampString = "513927896.18565"
+                  timestampString = "513933105.61292"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "197"
-                  endingLineNumber = "197"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
                   offsetFromSymbolStart = "3030">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Locus/NewFollowerViewController.swift"
+            timestampString = "513933105.18935"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "searchBar(_:textDidChange:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

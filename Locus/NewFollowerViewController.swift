@@ -288,10 +288,10 @@ extension NewFollowerViewController: UISearchBarDelegate {
         }
         
         let query = FirConst.userRef.queryOrdered(byChild: FirConst.name).queryStarting(atValue: text)
-        
+
         query.keepSynced(true)
         
-        query.observeSingleEvent(of: FIRDataEventType.value, with: { snapshot in
+        FirConst.userRef.observe( .value, with: { snapshot in
             if snapshot.hasChildren(){
                 for snap in snapshot.children{
                     let data = snap as! FIRDataSnapshot
