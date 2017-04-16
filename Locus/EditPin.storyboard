@@ -317,10 +317,10 @@
             </objects>
             <point key="canvasLocation" x="3464.8000000000002" y="308.9955022488756"/>
         </scene>
-        <!--Pin Detail Controller-->
+        <!--PinDetailController-->
         <scene sceneID="YBc-fd-I9I">
             <objects>
-                <viewController storyboardIdentifier="PinDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FJJ-ld-BOg" customClass="PinDetailController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PinDetailController" title="PinDetailController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FJJ-ld-BOg" customClass="PinDetailController" customModule="Locus" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hGF-5O-fCL"/>
                         <viewControllerLayoutGuide type="bottom" id="kkt-kU-Qqn"/>

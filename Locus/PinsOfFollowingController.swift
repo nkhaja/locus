@@ -84,12 +84,11 @@ class PinsOfFollowingController: UIViewController {
     
     
     
-    @IBAction func backButton(_ sender: Any) {
-        
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func backButton(_ sender: Any) {
+//        
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
-
 }
 
 
@@ -198,9 +197,9 @@ extension PinsOfFollowingController: OverlayButtonViewDelegate {
                 
             case .east:
                 
-                let storyBoard = UIStoryboard(name: "Edit", bundle: nil)
-                let pinDetailVc = storyboard?.instantiateViewController(withIdentifier: String(describing: PinDetailController.self)) as! PinDetailController
-                pinDetailVc.pin = visitPin
+               
+                let pinDetailVc = Helper.instantiateController(storyboardName: "EditPin", controllerName: String(describing: PinDetailController.self), bundle: nil) as! PinDetailController
+            
                 
                 self.present(pinDetailVc, animated: true, completion: nil)
                 
@@ -210,6 +209,7 @@ extension PinsOfFollowingController: OverlayButtonViewDelegate {
             case .west:
                 
                 // TODO: horrible, fix it
+
                 
                 let nav = self.tabBarController?.viewControllers?[0] as! UINavigationController
                 let mapVc = nav.viewControllers[0] as! MapViewController

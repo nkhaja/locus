@@ -94,10 +94,22 @@ class FollowingUsersController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "followersPins"{
-            if let pinsofFollowingController = segue.destination as? PinsOfFollowingController{
+            if let pinsofFollowingController = segue.destination as? PinsOfFollowingController {
                 pinsofFollowingController.id = selectedUserId?.id
             }
         }
+    }
+    
+    func removeFollower(id: String) {
+
+        for i in 0..<following.count {
+            if following[i].id == id{
+                following.remove(at: i)
+            }
+        }
+        
+        tableView.reloadData()
+        
     }
 
     
@@ -191,6 +203,7 @@ extension FollowingUsersController: UITableViewDataSource, UITableViewDelegate {
 
         
     }
+
     
 }
 
@@ -229,19 +242,33 @@ extension FollowingUsersController: PreviewCellDelegate{
     }
     
     func seeDetails(indexPath: IndexPath) {
-       
-        selectedUserId = following[indexPath.row]
         
-        if filteredFollowing.count > 0{
+        
+        // only need to update selectedUserId if selecting in second section
+        if indexPath.section == 1 {
+            
             selectedUserId = filteredFollowing[indexPath.row]
+
         }
         
-        let storyboard = UIStoryboard(name: "Followers", bundle: nil)
-        let pinsOfFollowingVc = storyboard.instantiateViewController(withIdentifier: String(describing: PinsOfFollowingController.self)) as! PinsOfFollowingController
+        else{
+            
+            selectedUserId = overlayMap
+        }
         
-        pinsOfFollowingVc.id = selectedUserId?.id
         
-        self.present(pinsOfFollowingVc, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "Followers", bundle: nil)
+//        let pinsOfFollowingVc = storyboard.instantiateViewController(withIdentifier: String(describing: PinsOfFollowingController.self)) as! PinsOfFollowingController
+//        
+//        
+//        pinsOfFollowingVc.id = selectedUserId?.id
+//        
+//        self.present(pinsOfFollowingVc, animated: true, completion: nil)
+        
+        self.performSegue(withIdentifier: "followersPins", sender: nil)
+        
+        
+        
         
         //function to set active Map
     }
@@ -257,6 +284,8 @@ extension FollowingUsersController: PreviewCellDelegate{
         
         
         let confirmAction = UIAlertAction(title: "Unfollow", style: .destructive) { alert in
+            
+            self.removeFollower(id: unfollowUserId)
             
             FirebaseService.unfollowUser(followingUserId: ThisUser.instance!.id, followedUserId: unfollowUserId) { [weak self] Void in
                 

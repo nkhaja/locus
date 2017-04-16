@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		68A476FBA2336E62C2C4CB64 /* Pods_Locus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D2EB2F588420E468AD49DE /* Pods_Locus.framework */; };
 		BD19D2DE1E9FE6BC008B2AE8 /* baybridge.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */; };
+		BD19D2E01EA301E4008B2AE8 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD19D2DF1EA301E4008B2AE8 /* PhotoTakingHelper.swift */; };
 		BD1A7AF11E06081F001E290B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF01E06081F001E290B /* AppDelegate.swift */; };
 		BD1A7AF31E06081F001E290B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1A7AF21E06081F001E290B /* MapViewController.swift */; };
 		BD1A7AF81E06081F001E290B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD1A7AF61E06081F001E290B /* Main.storyboard */; };
@@ -49,7 +50,6 @@
 		BD4387641E77AE3B0010F24C /* citySky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BD4387631E77AE3B0010F24C /* citySky.jpg */; };
 		BD4B01A01E595C4F00250551 /* NewFollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */; };
 		BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */; };
-		BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */; };
 		BD6747141E73554A00591079 /* IconCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6747131E73554A00591079 /* IconCollectionCell.swift */; };
 		BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD722D841E0DB63600AE378D /* LoginViewController.swift */; };
 		BD94ACDC1E50396100AFCB99 /* PhotoLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD94ACDB1E50396100AFCB99 /* PhotoLibraryController.swift */; };
@@ -69,6 +69,7 @@
 		99A1AD6623EE156786DAFADA /* Pods-Locus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.release.xcconfig"; sourceTree = "<group>"; };
 		A6B0DB943E15DD2938A54C97 /* Pods-Locus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Locus/Pods-Locus.debug.xcconfig"; sourceTree = "<group>"; };
 		BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = baybridge.jpg; sourceTree = "<group>"; };
+		BD19D2DF1EA301E4008B2AE8 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTakingHelper.swift; sourceTree = "<group>"; };
 		BD1A7AED1E06081F001E290B /* Locus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Locus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD1A7AF01E06081F001E290B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD1A7AF21E06081F001E290B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		BD4387631E77AE3B0010F24C /* citySky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = citySky.jpg; sourceTree = "<group>"; };
 		BD4B019F1E595C4F00250551 /* NewFollowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowerViewController.swift; sourceTree = "<group>"; };
 		BD4B01A11E595E6200250551 /* NewFollowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFollowTableViewCell.swift; sourceTree = "<group>"; };
-		BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTakingHelper.swift; path = ../../../../.Trash/PhotoTakingHelper.swift; sourceTree = "<group>"; };
 		BD6747111E734D7800591079 /* baybridge.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = baybridge.jpg; path = ../../../../Desktop/baybridge.jpg; sourceTree = "<group>"; };
 		BD6747131E73554A00591079 /* IconCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionCell.swift; sourceTree = "<group>"; };
 		BD722D841E0DB63600AE378D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Locus/LoginViewController.swift; sourceTree = "<group>"; };
@@ -181,12 +181,12 @@
 			isa = PBXGroup;
 			children = (
 				BD1A7AF01E06081F001E290B /* AppDelegate.swift */,
+				BD19D2DF1EA301E4008B2AE8 /* PhotoTakingHelper.swift */,
 				BD1A7AF21E06081F001E290B /* MapViewController.swift */,
 				BD2E86641E63A01A000C7EBA /* FirebaseService.swift */,
 				BD2DE4FF1E13268D0078AC9A /* LocationSearchController.swift */,
 				BD365DE61E1C2133005BD9BE /* BuildPinViewController.swift */,
 				BD4077E61E46BFCD00688418 /* IconCollectionController.swift */,
-				BD67470F1E73151B00591079 /* PhotoTakingHelper.swift */,
 				BD19D2DD1E9FE6BC008B2AE8 /* baybridge.jpg */,
 				BD1A7B0A1E08DC25001E290B /* Model */,
 				BD2E86771E689188000C7EBA /* Followers */,
@@ -440,13 +440,13 @@
 				BD6747141E73554A00591079 /* IconCollectionCell.swift in Sources */,
 				BD722D851E0DB63600AE378D /* LoginViewController.swift in Sources */,
 				BD2E866B1E6607C0000C7EBA /* FollowingUserCell.swift in Sources */,
-				BD6747101E73151B00591079 /* PhotoTakingHelper.swift in Sources */,
 				BD1A7B091E08DA26001E290B /* Pin.swift in Sources */,
 				BD2E869F1E6DF95C000C7EBA /* FollowerPreviewCell.swift in Sources */,
 				BD2D6D1C1E294CAC00F6F4BB /* DateView.swift in Sources */,
 				BD94ACDE1E50398E00AFCB99 /* SeeImageController.swift in Sources */,
 				BD1A7B051E06084A001E290B /* User.swift in Sources */,
 				BD4387601E7611BB0010F24C /* ExpandingToolBar.swift in Sources */,
+				BD19D2E01EA301E4008B2AE8 /* PhotoTakingHelper.swift in Sources */,
 				BD94AD0D1E56898F00AFCB99 /* CustomAnnotationView.swift in Sources */,
 				BD365DE71E1C2133005BD9BE /* BuildPinViewController.swift in Sources */,
 				BD4B01A21E595E6200250551 /* NewFollowTableViewCell.swift in Sources */,

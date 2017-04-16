@@ -11,19 +11,18 @@ import MapKit
 
 class LocusMapView: MKMapView, Clearable {
     var selectedMark:MKPlacemark?
+    let mapCamera = MKMapCamera()
+
     
     func setup(){
         self.showsBuildings = true
         self.mapType = .satelliteFlyover
         
-        let mapCamera = MKMapCamera()
         
         mapCamera.pitch = 45
         mapCamera.altitude = 500
         mapCamera.heading = 45
         
-        
-        self.camera = mapCamera
         
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
         

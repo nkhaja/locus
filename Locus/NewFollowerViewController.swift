@@ -275,8 +275,6 @@ extension NewFollowerViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredUsers = []
-        
         // make sure text is not nil or blank
         guard let text = searchBar.text?.lowercased() else {return }
         if text == "" {
@@ -293,6 +291,7 @@ extension NewFollowerViewController: UISearchBarDelegate {
         
         FirConst.userRef.observe( .value, with: { snapshot in
             if snapshot.hasChildren(){
+                self.filteredUsers = []
                 for snap in snapshot.children{
                     let data = snap as! FIRDataSnapshot
                     let user = User(snapshot: data)

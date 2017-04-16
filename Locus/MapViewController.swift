@@ -241,11 +241,19 @@ class MapViewController: UIViewController {
     
     
     func panTo(coordinate: CLLocationCoordinate2D, mapView: MKMapView){
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+    
+        let span = MKCoordinateSpanMake(0.005, 0.005)
         let region = MKCoordinateRegionMake(coordinate, span)
         mapView.setRegion(region, animated: true)
     }
     
+    func changeOrientation(map: LocusMapView){
+        
+        map.mapCamera.pitch = 45
+        map.mapCamera.altitude = 200
+        map.mapCamera.heading = 45
+        
+    }
     
     func overlayFollowerMap(id:String){
         
@@ -473,6 +481,7 @@ extension MapViewController: MKMapViewDelegate{
             view.addSubview(customView)
             
             self.panTo(coordinate: thisPin.coordinate, mapView: self.mapView)
+            self.changeOrientation(map: self.mapView)
             
         }
         

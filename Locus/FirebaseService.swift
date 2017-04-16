@@ -98,12 +98,10 @@ struct FirebaseService {
         
         for key in user.following.keys {
             
-            
             output_dispatch.enter()
 
-            FirConst.userRef.child(key).observe(.value, with: { snapshot in
-                
 
+            FirConst.userRef.child(key).observe(.value, with: { snapshot in
                 
                 let snapshotValue = snapshot.value as! [String:Any]
                 let name = snapshotValue["name"] as! String
