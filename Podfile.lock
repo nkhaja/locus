@@ -66,6 +66,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.7)
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
+  - IQKeyboardManager (4.0.8)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Storage
   - Google/SignIn
+  - IQKeyboardManager
   - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
@@ -98,8 +100,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
+  IQKeyboardManager: 1a8189fa153bf09044355ee0ad36826f6767e7f7
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: 8c08d0ee5833b857013a2c094725fe876ac7d024
+PODFILE CHECKSUM: 1156dd1c80a30df632055ef626517907d9311947
 
 COCOAPODS: 1.0.1

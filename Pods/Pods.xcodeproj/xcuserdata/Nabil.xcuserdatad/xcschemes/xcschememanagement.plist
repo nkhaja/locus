@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Locus.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,12 +42,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5D1E52D226202A1C6C685B73DF32A2C5</key>
+		<key>37C76CD246D637B8E4C586284A0D96B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FD6F9391AA4BC7C2901DB710E58967E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6C93DE13A9E39F5C57B693BE90DBB2D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7ADFDE2AD9F56A421926624FB70EC419</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,11 +68,6 @@
 			<true/>
 		</dict>
 		<key>A7AF6E763314D4D05792E29A5B9ABDE6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BC47E5374898053A3D8F4E607BB36E9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

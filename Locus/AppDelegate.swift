@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate {
@@ -22,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate {
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        
+        IQKeyboardManager.shared().isEnabled = true
+        
         return true
     }
 

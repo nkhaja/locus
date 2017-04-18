@@ -14,6 +14,9 @@ target 'Locus' do
 	pod 'SDWebImage', '~>3.8'
 	pod 'FirebaseUI/Storage'
 	pod 'ActionButton'
+	pod 'IQKeyboardManager'
+
+
 
 post_install do |installer|
    installer.pods_project.targets.each do |target|
